@@ -1,0 +1,30 @@
+/* import font family Roboto */
+
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+/* body css */
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+/* header css */
+
+.centerlogo {
+    height: 150px;
+    width: 150px;
+    justify-content: center;
+}
+
+.centerLS {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    color: #0275d8;
+}
+
+.nav-link:hover {
+    color: #000;
+}
