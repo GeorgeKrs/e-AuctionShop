@@ -11,8 +11,8 @@ body {
 /* header css */
 
 .centerlogo {
-    height: 150px;
-    width: 150px;
+    height: 100px;
+    width: 100px;
     justify-content: center;
 }
 
@@ -28,3 +28,36 @@ body {
 .nav-link:hover {
     color: #000;
 }
+
+.container-fluid {
+    background-color: #bfbfbf;
+}
+
+
+/* header search css  */
+
+.searchInput {
+    border-color: #0275d8 !important;
+}
+
+
+.btnsearch {
+    background-color: #fff;
+    border-color: #fff;
+}
+
+.btnsearch:hover {
+    background-color: #fff; 
+    border-color: #0275d8;
+}
+
+.btnsearch:active {
+    background-color: #fff !important;
+}
+
+.fa-search {
+    cursor: pointer;
+    border: none;
+    color: #0275d8;
+}
+
