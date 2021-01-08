@@ -19,85 +19,87 @@
 <body>
 
 
-    <?php 
-        require 'header.php' 
-    ?>  
+<?php 
+    require 'header.php' 
+?>  
 
-    <div class="container mt-4">
-    <div class="generalContainer roundedForms">
-    
-    <form name="signupform" id="signupform" action="" method="post" style="padding: 20px;" >
-        <div class="form-group">
-            <label for="inputName">Ονοματεπώνυμο</label>
-            <input type="text" class="form-control" id="inputName" placeholder="" required>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputUsername">Όνομα χρήστη</label>
-                <input type="text" class="form-control" id="inputUsername" placeholder="" required>
-            </div>
-                <div class="form-group col-md-6">
-                <label for="inputPassword">Email</label>
-            <input type="email" class="form-control" id="inputEmail" placeholder="" required>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputPassword">Κωδικός</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="" required>
-            </div>
-                <div class="form-group col-md-6">
-                <label for="inputPassword">Επιβεβαίωση Κωδικού</label>
-            <input type="password" class="form-control" id="inputPassword2" placeholder="" required>
-            </div>
-        </div>
+<div class="container mt-4">
+<div class="generalContainer roundedForms">
 
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputAddress">Διεύθυνση/Αριθμός</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="" required>
-            </div>
-                <div class="form-group col-md-6">
-                <label for="inputPassword">Κινητό τηλέφωνο</label>
-            <input type="password" class="form-control" id="inputPassword2" placeholder="" required>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputCity">Πόλη</label>
-                <input type="text" class="form-control" id="inputCity" required>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="inputNomo">Νομός</label>
-                <select id="inputNomo" class="form-control" required>
-                    <option selected>Επιλογή...</option>
-                    <?php
-                        require 'nomoi_ellados.php' 
-                    ?>
-                </select>
-            </div>
-            <div class="form-group col-md-2">
-                <label for="inputTK">ΤΚ</label>
-                <input type="text" class="form-control" id="inputΤΚ" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck" required>
-                <label class="form-check-label" for="gridCheck">
-                    Συμφωνώ με τους όρους και τις προϋποθέσεις
-                </label>
-            </div>
-        </div>
-        <button type="submit" onclick="validateform()" class="btn btn-primary">Εγγραφή</button>
-    </form>
-
+<form name="signupform" id="signupform" action="" method="post" style="padding: 20px;" >
+    <div class="form-group">
+        <label for="inputName">Ονοματεπώνυμο</label>
+        <input type="text" class="form-control" id="inputName" placeholder="" required>
     </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputUsername">Όνομα χρήστη</label>
+            <input type="text" class="form-control" id="inputUsername" placeholder="" required>
+        </div>
+            <div class="form-group col-md-6">
+            <label for="inputPassword">Email</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputPassword">Κωδικός</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="" required>
+        </div>
+            <div class="form-group col-md-6">
+            <label for="inputPassword">Επιβεβαίωση Κωδικού</label>
+        <input type="password" class="form-control" id="inputPassword2" placeholder="" required>
+        </div>
     </div>
 
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputAddress">Διεύθυνση/Αριθμός</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="" required>
+        </div>
+            <div class="form-group col-md-6">
+            <label for="inputPassword">Κινητό τηλέφωνο</label>
+        <input type="password" class="form-control" id="inputPassword2" placeholder="" required>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCity">Πόλη</label>
+            <input type="text" class="form-control" id="inputCity" required>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputNomo">Νομός</label>
+            <select id="inputNomo" class="form-control" required>
+                <option selected>Επιλογή...</option>
+                <?php
+                    require 'nomoi_ellados.php' 
+                ?>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputTK">ΤΚ</label>
+            <input type="text" class="form-control" id="inputΤΚ" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck" required>
+            <label class="form-check-label" for="gridCheck">
+                Συμφωνώ με τους όρους και τις προϋποθέσεις
+            </label>
+        </div>
+    </div>
+    <button type="submit" onclick="validateform()" class="btn btn-primary">Εγγραφή</button>
+</form>
+
+</div>
+</div>
 
 
+<?php 
+    require 'footer.php';
+?>
 
 
 
