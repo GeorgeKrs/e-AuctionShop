@@ -22,6 +22,7 @@
     require 'header.php';
     require 'header_2.php';
     require 'main_section.php';
+    require 'footer.php';
 ?>
 
 

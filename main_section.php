@@ -20,7 +20,7 @@
     </div>    
 
     <div class="mainSection mt-4">
-        <h3>Δημοπρασίες το τελευταίο 24ωρο:</h3>
+        <h3>Πρόσφατες Δημοπρασίες:</h3>
         <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-4">
                 <div class="card" style="width:250px">

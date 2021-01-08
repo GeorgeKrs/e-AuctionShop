@@ -109,5 +109,46 @@ body {
 
 .mainSection {
     float: left;
-    padding-left: 55px;
+    padding-left: 50px;
 }
+
+.card {
+    border: none;
+}
+/* login, signup css */
+
+.loginInput {
+    width: 300px;
+}
+
+.roundedForms {
+    border-radius: 15px 50px;
+    border: 2px solid #0275d8;
+}
+
+
+/* footer css */
+
+.footer-list {
+    list-style: none;
+    padding: 20px;
+    width: 100%;
+    /* background-color: #dfdfdf; */
+    margin-left: 20px;
+    margin-bottom: 20px;
+}    
+
+.footer-links {
+    font-size: 30px;
+    color: #000;
+}   
+
+.fa-instagram:hover {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    -webkit-background-clip: text;
+          /* Also define standard property for compatibility */
+          background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 30px;
+}
+

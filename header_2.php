@@ -7,7 +7,7 @@
         <h1>Αγοράστε εύκολα και γρήγορα.</h1>
             <ul class="header-2-list">   
                 <li style="display: inline; padding: 20px">
-                    <a href="#"><i class="fas fa-globe-europe nav-link"> Στόχος μας η αποστολή δεμάτων σε όλη την Eυρώπη</i></a>
+                    <a href="#"><i class="fas fa-hands-helping nav-link"> Στόχος μας η άμεση εξυπηρέτησή σας</i></a>
                 </li>
                 <li style="display: inline; padding: 20px">
                     <a href="#"><i class="fas fa-lock nav-link"> Συναλλαγές με ασφάλεια</i></a>
