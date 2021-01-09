@@ -20,7 +20,8 @@
 
 
 <?php 
-    require 'header.php' 
+    require 'session_check.php';
+    require 'header.php';
 ?>  
 
 

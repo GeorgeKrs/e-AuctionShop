@@ -19,10 +19,16 @@
 <body>
     
 <?php 
-    require 'header.php';
+    require 'session_check.php';
+
+    if(isset($_SESSION['username'])){
+        require 'header_loggedin.php';
+    } else {
+        require 'header.php';
+    }
     require 'header_2.php';
     require 'main_section.php';
-    require 'footer.php';
+    require 'footer.php';  
 ?>
 
 
