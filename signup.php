@@ -33,7 +33,7 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="inputUsername">Όνομα χρήστη</label>
+            <label for="inputUsername">Ψευδώνυμο</label>
             <input type="text" class="form-control" id="inputUsername" placeholder="" required>
         </div>
             <div class="form-group col-md-6">
@@ -58,8 +58,8 @@
             <input type="text" class="form-control" id="inputAddress" placeholder="" required>
         </div>
             <div class="form-group col-md-6">
-            <label for="inputPassword">Κινητό τηλέφωνο</label>
-        <input type="password" class="form-control" id="inputPassword2" placeholder="" required>
+            <label for="inputPhoneNumber">Κινητό τηλέφωνο</label>
+        <input type="text" class="form-control" id="inputPhoneNumber" placeholder="" required>
         </div>
     </div>
 
@@ -90,18 +90,69 @@
             </label>
         </div>
     </div>
-    <button type="submit" onclick="validateform()" class="btn btn-primary">Εγγραφή</button>
+    <button type="button" onclick="validateform()" class="btn btn-primary">Εγγραφή</button>
 </form>
 
 </div>
 </div>
 
+<!-- alert box if inputPassword1 != inputPassword2 -->
+<div
+    id="alertBox_pw"
+    class= "container mt-4" 
+    style= "background-color: white; 
+            text-align: center; 
+            width:400px;
+            border-radius: 15px 50px;
+            border: 2px solid #d8020a;
+            display: none;">
+
+    <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle"> Τα δύο πεδία των κωδικών πρέπει να είναι ίδια.</i></h6>
+</div>
+
+
+<!-- alert box if inputPassword1 != inputPassword2 -->
+<div
+    id="alertBox_phone"
+    class= "container mt-4" 
+    style= "background-color: white; 
+            text-align: center; 
+            width:400px;
+            border-radius: 15px 50px;
+            border: 2px solid #d8020a;
+            display: none;">
+
+    <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle"> Ο αριθμός τηλεφώνου πρέπει να έχει 10 αριθμούς.</i></h6>
+</div>
 
 <?php 
     require 'footer.php';
 ?>
 
 
+
+
+<!-- validate form , show error if passwords do not match -->
+<script>
+
+    function validateform() {
+
+        var pw1 = document.forms["signupform"]["inputPassword"].value;
+        var pw2 = document.forms["signupform"]["inputPassword2"].value;
+        var phoneNumber = document.forms["signupform"]["inputPhoneNumber"].value; 
+
+        if (pw1 != pw2) {
+            document.getElementById("alertBox_pw").style.display = "block";    
+        } else {
+            if (phoneNumber.length != 10) {
+            document.getElementById("alertBox_phone").style.display = "block"; 
+            } else {
+            document.getElementById("signupform").submit();
+        }
+    }   
+}
+
+</script>
 
 
 

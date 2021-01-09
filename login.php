@@ -30,7 +30,7 @@
     <div>
     <form name="loginform" id="loginform" action="" method="post" style="padding: 20px;" >
         <div class="form-group">
-            <label for="inputFirstName">Όνομα χρήστη</label>
+            <label for="inputFirstName">Ψευδώνυμο</label>
             <input type="text" class="form-control loginInput" id="inputFirstName" placeholder="" required>
         </div>
         <div class="form-group">
