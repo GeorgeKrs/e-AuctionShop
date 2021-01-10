@@ -20,7 +20,6 @@
     
 <?php 
     require 'session_check.php';
-    
     if(isset($_SESSION['username'])){
         require 'header_loggedin.php';
     } else {

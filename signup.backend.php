@@ -65,18 +65,16 @@ $registration_date = date("d/m/Y");
 // echo "$registration_date\n" ;
 
 
-// store user's name on the session
-$_SESSION['username'] = $username;
-
-
 // find if username/email are already on table
 $search_username = "SELECT * FROM user_info WHERE username = '$username' 
 OR email = '$email'";
 $result = mysqli_query($connection, $search_username);
 $number_rows = mysqli_num_rows($result);
 if ($number_rows == 1) {
-    header('location: email_name_taken.php');
+    header('location: email_name_taken.php');;
 }else{
+    // store user's name on the session
+    $_SESSION['username'] = $username;
     // else make the registration
     $registration = "INSERT INTO 
     user_info (username, email, pw, full_name, address_numb, phone, city, district, TK, registration_date) 
@@ -89,6 +87,7 @@ if ($number_rows == 1) {
 }
 
 ?>
+
 
 
 
