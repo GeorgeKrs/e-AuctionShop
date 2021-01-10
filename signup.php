@@ -112,14 +112,14 @@
 </div>
 
 
-<!-- alert box if inputPassword1 != inputPassword2 -->
-<div
+<!-- alert box if phoneNumber != 10 -->
+<div 
     id="alertBox_phone"
     class= "container mt-4" 
     style= "background-color: white; 
             text-align: center; 
             width:400px;
-            border-radius: 15px 50px;
+            border-radius: 15px 50px;   
             border: 2px solid #d8020a;
             display: none;">
 
@@ -141,18 +141,40 @@
     var pw1 = document.forms["signupform"]["inputPassword"].value;
     var pw2 = document.forms["signupform"]["inputPassword2"].value;
     var phoneNumber = document.forms["signupform"]["inputPhoneNumber"].value; 
+ 
 
         if ((pw1 != pw2) || (pw1.length === 0)) {
-            document.getElementById("alertBox_pw").style.display = "block";    
+            document.getElementById("alertBox_pw").style.display = "block"; 
+            // hide alertBox_pw after clicking outside
+            document.addEventListener('mouseup', function(e) {
+            var alert_div = document.getElementById('alertBox_pw');
+            if (!alert_div.contains(e.target)) {
+                alert_div.style.display = 'none';
+            }
+            });  
         } else {
             if (phoneNumber.length != 10) {
             document.getElementById("alertBox_phone").style.display = "block"; 
+            // hide alertBox_pw after clicking outside
+            document.addEventListener('mouseup', function(e) {
+            var alert_div2 = document.getElementById('alertBox_phone');
+            if (!alert_div2.contains(e.target)) {
+                alert_div2.style.display = 'none';
+            }
+            });  
             } else {
             document.getElementById("signupform").submit();
         }
-    }   
+    }
 }
+
 </script>
+
+
+
+
+
+
 
 
 <!-- validate form , show error if passwords do not match with type="button" -->
@@ -178,9 +200,7 @@
 
 </script> -->
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+   
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
