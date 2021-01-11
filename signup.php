@@ -27,7 +27,7 @@
 <div class="container mt-4">
 <div class="generalContainer roundedForms">
 
-<form name="signupform" id="signupform" action="signup.backend.php" method="post" style="padding: 20px;" >
+<form name="signupform" id="signupform" action="signup_backend.php" method="post" style="padding: 20px;" >
     <div class="form-group">
         <label for="inputName">Ονοματεπώνυμο</label>
         <input type="text" class="form-control"  name="inputName" id="inputName" placeholder="" required>

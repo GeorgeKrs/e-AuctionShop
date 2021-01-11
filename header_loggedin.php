@@ -6,6 +6,8 @@
     <div class="container">
         <div class="d-flex">    
             <div class="p-2 mr-auto"><a class="nav-link" href="index.php"><img class="rounded-circle centerlogo" src="images/logo_img.jpg" alt="e-AuctionShop logo"></a></div>
+
+            
             <div class="p-2 centerLS"><a class="nav-link" href="#"><?php echo $_SESSION['username']; ?></a></div>
             <div class="p-2 centerLS"><a class="nav-link" href="logout.php">Έξοδος</a></div>
         </div>

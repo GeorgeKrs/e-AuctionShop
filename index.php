@@ -10,10 +10,12 @@
 
     <!-- bootstrap and css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link href="style.css" type="text/css" rel="stylesheet">
    
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 
-    <link href="style.css" type="text/css" rel="stylesheet">
+
 
 </head>
 <body>

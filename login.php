@@ -29,7 +29,7 @@
 <div class="generalContainer  roundedForms" style="display:flex; justify-content: center;">
 
     <div>
-    <form name="loginform" id="loginform" action="login.backend.php" method="post" style="padding: 20px;" >
+    <form name="loginform" id="loginform" action="login_backend.php" method="post" style="padding: 20px;" >
         <div class="form-group">
             <label for="inputUserName">Ψευδώνυμο</label>
             <input type="text" class="form-control loginInput" id="inputUserName"
@@ -50,13 +50,13 @@
 <!-- alert box if inputPassword1 != inputUserName -->
 <div
     id="alertBox"
-    class= "container mt-4" 
-    style= "background-color: white; 
-            text-align: center; 
-            width:400px;
-            border-radius: 15px 50px;
-            border: 2px solid #d8020a;
-            display: none;">
+    class="container mt-4" 
+    style="background-color: white; 
+           text-align: center; 
+           width:400px;
+           border-radius: 15px 50px;
+           border: 2px solid #d8020a;
+           display: none;">
 
     <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle"> Ο κωδικός ή το όνομα χρήστη είναι λάθος.</i></h6>
 </div>
@@ -68,8 +68,6 @@
 ?>
 
 
-
-
 <script>
         document.getElementById('loginform').onsubmit=function(e) {
         e.preventDefault();
@@ -77,18 +75,18 @@
         var password = $("#inputPassword_login").val();
         console.log(username);
         console.log(password);
-        
 			$.ajax({
-				url: "login.backend.php",
+				url: "login_backend.php",
 				type: "POST",
 				data: { 
-                    // 1st var is php var, 2nd var is js var
+                    // left->name of var, right -> value
 					username: username,
-                    pw: password						
+                    password: password						
 				},
 				cache: false,
 				success: function(data) {
-                    var data = data;
+                    data = JSON.parse(data);
+                    console.log(data);
                     if (data.statusCode==200){
                         location.href = "index.php";    
                     }

@@ -1,5 +1,5 @@
     <?php
-        require 'category.nav.general.php';
+        require 'category_nav_general.php';
     ?>
     
     <div class="mainSection mt-4">
