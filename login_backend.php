@@ -2,8 +2,6 @@
     require 'session_check.php';
     require 'db_connection.php';    
 
-
-
 // trim function deletes whitespaces at the start/end of var
 
 if(isset($_POST['username'])){

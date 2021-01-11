@@ -69,33 +69,39 @@
 
 
 <script>
-        document.getElementById('loginform').onsubmit=function(e) {
-        e.preventDefault();
-		var username = $("#inputUserName").val();
-        var password = $("#inputPassword_login").val();
-        console.log(username);
-        console.log(password);
-			$.ajax({
-				url: "login_backend.php",
-				type: "POST",
-				data: { 
-                    // left->name of var, right -> value
-					username: username,
-                    password: password						
-				},
-				cache: false,
-				success: function(data) {
-                    data = JSON.parse(data);
-                    console.log(data);
-                    if (data.statusCode==200){
-                        location.href = "index.php";    
-                    }
-                    else if (data.statusCode==201) {
-                        alert("email or username incorrect"); 
-                    }
+    document.getElementById('loginform').onsubmit=function(e) {
+    e.preventDefault();
+    var username = $("#inputUserName").val();
+    var password = $("#inputPassword_login").val();
+    console.log(username);
+    console.log(password);
+        $.ajax({
+            url: "login_backend.php",
+            type: "POST",
+            data: { 
+                // left->name of var, right -> value
+                username: username,
+                password: password						
+            },
+            cache: false,
+            success: function(data) {
+                data = JSON.parse(data);
+                console.log(data);
+                if (data.statusCode==200){
+                    location.href = "index.php";    
                 }
-            }); 
-};
+                else if (data.statusCode==201) {
+                    document.getElementById('alertBox').style.display="block";
+                    document.addEventListener('mouseup', function(e) {
+                    var alert_div = document.getElementById('alertBox');
+                    if (!alert_div.contains(e.target)) {
+                        alert_div.style.display = 'none';
+                    }
+                    });
+                }
+            }
+        }); 
+    };
 </script>
 
 
