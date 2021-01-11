@@ -29,21 +29,17 @@
 <div class="generalContainer  roundedForms" style="display:flex; justify-content: center;">
 
     <div>
-    <form name="loginform" id="loginform" action="" method="post" style="padding: 20px;" >
+    <form name="loginform" id="loginform" action="login.backend.php" method="post" style="padding: 20px;" >
         <div class="form-group">
             <label for="inputUserName">Ψευδώνυμο</label>
             <input type="text" class="form-control loginInput" id="inputUserName"
             name="inputUserName" placeholder="" required>
         </div>
-        <!-- <div class="form-group">
-            <label for="inputUsername">Email</label>
-            <input type="email" class="form-control loginInput" id="inputUsername_login" name="inputUsername_login" placeholder="" required>
-        </div> -->
         <div class="form-group">
             <label for="inputPassword_login">Κωδικός</label>
             <input type="password" class="form-control loginInput" id="inputPassword_login" name="inputPassword_login" placeholder="" required>
         </div>
-        <button type="button" onclick="validateform()" class="btn btn-primary">Είσοδος</button>
+        <button type="submit" name="loginbtn" id="loginbtn" class="btn btn-primary">Είσοδος</button>
     </form>
     </div>
 
@@ -51,7 +47,7 @@
 </div>
 
 
-<!-- alert box if inputPassword1 != inputPassword2 -->
+<!-- alert box if inputPassword1 != inputUserName -->
 <div
     id="alertBox"
     class= "container mt-4" 
@@ -66,46 +62,49 @@
 </div>
 
 
+
 <?php 
     require 'footer.php';
 ?>
 
 
 
+
 <script>
-
-    function validateform() {
-        var username = document.getElementById("inputUserName").value;
-        var password = document.getElementById("inputPassword_login").value;
-            
-            $.ajax({
-                url: "login.backend.php",
-                method: "POST",
-                data: {"username":username,"password":password},
-                cache: false,
-                success: function(){
-                    document.getElementById("alertBox").style.display = "block";
-                    document.addEventListener('mouseup', function(e) {
-                        var alert_div = document.getElementById('alertBox');
-                        if (!alert_div.contains(e.target)) {
-                            alert_div.style.display = 'none';
-                        }else {
-                            (window.location.href = "index.php");
-                        }
-                    });  
+        document.getElementById('loginform').onsubmit=function(e) {
+        e.preventDefault();
+		var username = $("#inputUserName").val();
+        var password = $("#inputPassword_login").val();
+        console.log(username);
+        console.log(password);
+        
+			$.ajax({
+				url: "login.backend.php",
+				type: "POST",
+				data: { 
+                    // 1st var is php var, 2nd var is js var
+					username: username,
+                    pw: password						
+				},
+				cache: false,
+				success: function(data) {
+                    var data = data;
+                    if (data.statusCode==200){
+                        location.href = "index.php";    
+                    }
+                    else if (data.statusCode==201) {
+                        alert("email or username incorrect"); 
+                    }
                 }
-            });
-    }
-
+            }); 
+};
 </script>
-
-
 
 
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+ 
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
