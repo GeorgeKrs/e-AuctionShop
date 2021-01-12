@@ -4,40 +4,40 @@
 
 
 
-if(isset($_POST['inputUsername'])){
-    $username = $_POST['inputUsername'];
+if(isset($_POST['username'])){
+    $username = $_POST['username'];
 }
 
-if(isset($_POST['inputEmail'])){
-    $email = $_POST['inputEmail'];
+if(isset($_POST['email'])){
+    $email = $_POST['email'];
 }
 
-if(isset($_POST['inputPassword'])){
-    $pw = $_POST['inputPassword'];
+if(isset($_POST['pw'])){
+    $pw = $_POST['pw'];
 }
 
-if(isset($_POST['inputName'])){
-    $full_name = $_POST['inputName'];
+if(isset($_POST['full_name'])){
+    $full_name = $_POST['full_name'];
 }
 
-if(isset($_POST['inputAddress'])){
-    $address_numb = $_POST['inputAddress'];
+if(isset($_POST['address_numb'])){
+    $address_numb = $_POST['address_numb'];
 }
 
-if(isset($_POST['inputPhoneNumber'])){
-    $phone = $_POST['inputPhoneNumber'];
+if(isset($_POST['phone'])){
+    $phone = $_POST['phone'];
+}   
+
+if(isset($_POST['city'])){
+    $city = $_POST['city'];
 }
 
-if(isset($_POST['inputCity'])){
-    $city = $_POST['inputCity'];
+if(isset($_POST['district'])){
+    $district = $_POST['district'];
 }
 
-if(isset($_POST['inputNomo'])){
-    $district = $_POST['inputNomo'];
-}
-
-if(isset($_POST['inputΤΚ'])){
-    $TK = $_POST['inputΤΚ'];
+if(isset($_POST['tk'])){
+    $TK = $_POST['tk'];
 }
 
 
@@ -71,21 +71,22 @@ OR email = '$email'";
 $result = mysqli_query($connection, $search_username);
 $number_rows = mysqli_num_rows($result);
 if ($number_rows == 1) {
-    header('location: email_name_taken.php');;
+    // already exists
+    echo json_encode(array("statusCode"=>201));
 }else{
+    // succesful registration
+
     // store user's name on the session
-    $_SESSION['username'] = $username;
+    $_SESSION['username'] = $username;   
+    
     // else make the registration
     $registration = "INSERT INTO 
     user_info (username, email, pw, full_name, address_numb, phone, city, district, TK, registration_date) 
     VALUES
         ('$username', '$email', '$pw', '$full_name', '$address_numb', '$phone', '$city', '$district', '$TK', '$registration_date')";
     mysqli_query($connection, $registration);
-
-    // head to the mainmenu of the App but logged in
-    header('location: index.php');
+    echo json_encode(array("statusCode"=>200));
 }
-
 ?>
 
 

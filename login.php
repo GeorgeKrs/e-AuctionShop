@@ -73,8 +73,6 @@
     e.preventDefault();
     var username = $("#inputUserName").val();
     var password = $("#inputPassword_login").val();
-    console.log(username);
-    console.log(password);
         $.ajax({
             url: "login_backend.php",
             type: "POST",

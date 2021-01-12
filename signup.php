@@ -126,6 +126,20 @@
     <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle"> Ο αριθμός τηλεφώνου πρέπει να έχει 10 ψηφία.</i></h6>
 </div>
 
+<!-- email or username unavailable, response from backend -->
+<div 
+    id="alertBox_taken"
+    class= "container mt-4" 
+    style= "background-color: white; 
+            text-align: center; 
+            width:400px;
+            border-radius: 15px 50px;   
+            border: 2px solid #d8020a;
+            display: none;">
+
+    <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle"> To email ή το ψευδώνυμο χρησιμοποιούνται ήδη.</i></h6>
+</div>
+
 <?php 
     require 'footer.php';
 ?>
@@ -143,66 +157,74 @@
     var phoneNumber = document.forms["signupform"]["inputPhoneNumber"].value; 
  
 
-        if ((pw1 != pw2) || (pw1.length === 0)) {
-            document.getElementById("alertBox_pw").style.display = "block"; 
-            // hide alertBox_pw after clicking outside
-            document.addEventListener('mouseup', function(e) {
-            var alert_div = document.getElementById('alertBox_pw');
-            if (!alert_div.contains(e.target)) {
-                alert_div.style.display = 'none';
-            }
-            });  
+    if ((pw1 != pw2) || (pw1.length === 0)) {
+        document.getElementById("alertBox_pw").style.display = "block"; 
+        // hide alertBox_pw after clicking outside
+        document.addEventListener('mouseup', function(e) {
+        var alert_div = document.getElementById('alertBox_pw');
+        if (!alert_div.contains(e.target)) {
+            alert_div.style.display = 'none';
+        }
+        });  
+    } else {
+        if (phoneNumber.length != 10) {
+        document.getElementById("alertBox_phone").style.display = "block"; 
+        // hide alertBox_pw after clicking outside
+        document.addEventListener('mouseup', function(e) {
+        var alert_div2 = document.getElementById('alertBox_phone');
+        if (!alert_div2.contains(e.target)) {
+            alert_div2.style.display = 'none';
+        }
+        });  
         } else {
-            if (phoneNumber.length != 10) {
-            document.getElementById("alertBox_phone").style.display = "block"; 
-            // hide alertBox_pw after clicking outside
-            document.addEventListener('mouseup', function(e) {
-            var alert_div2 = document.getElementById('alertBox_phone');
-            if (!alert_div2.contains(e.target)) {
-                alert_div2.style.display = 'none';
-            }
-            });  
-            } else {
-            document.getElementById("signupform").submit();
+            var username = $("#inputUsername").val();
+            var email = $("#inputEmail").val();
+            var pw = $("#inputPassword").val();
+            var full_name = $("#inputName").val();
+            var address_numb = $("#inputAddress").val();
+            var phone = $("#inputPhoneNumber").val();
+            var city = $("#inputCity").val();
+            var district = $("#inputNomo").val(); 
+            var tk = $("#inputΤΚ").val();
+
+            $.ajax({
+                url: "signup_backend.php",
+                type: "POST",
+                data: { 
+                    // left->name of var, right -> value
+                    username: username,
+                    email: email,
+                    pw: pw,
+                    full_name: full_name,
+                    address_numb: address_numb,
+                    phone: phone,
+                    city: city,
+                    district: district,
+                    tk: tk,
+                },
+                cache: false,
+                success: function(data) {
+                    data = JSON.parse(data);
+                    console.log(data);
+                    if (data.statusCode==200){
+                        location.href = "index.php";    
+                    }
+                    else if (data.statusCode==201) {
+                        document.getElementById('alertBox_taken').style.display="block";
+                        document.addEventListener('mouseup', function(e) {
+                        var alert_div = document.getElementById('alertBox_taken');
+                        if (!alert_div.contains(e.target)) {
+                            alert_div.style.display = 'none';
+                        }
+                        });
+                    }
+                }
+            }); 
         }
     }
 }
 
 </script>
-
-
-
-
-
-
-
-
-<!-- validate form , show error if passwords do not match with type="button" -->
-
-<!-- <script>
-
-    function validateform() {
-
-        var pw1 = document.forms["signupform"]["inputPassword"].value;
-        var pw2 = document.forms["signupform"]["inputPassword2"].value;
-        var phoneNumber = document.forms["signupform"]["inputPhoneNumber"].value; 
-
-        if ((pw1 != pw2) || (pw1.length === 0)) {
-            document.getElementById("alertBox_pw").style.display = "block";    
-        } else {
-            if (phoneNumber.length != 10) {
-            document.getElementById("alertBox_phone").style.display = "block"; 
-            } else {
-            document.getElementById("signupform").submit();
-        }
-    }   
-}
-
-</script> -->
-
-
-
-
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
