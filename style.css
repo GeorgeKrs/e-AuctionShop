@@ -28,14 +28,10 @@ body {
     color: #0275d8;
 }
 
-.nav-link:hover {
+.nav-link:hover{
     color: #000;
+    transition: 700ms;
 }
-
-.container-fluid {
-    background-color: #dfdfdf;
-}
-
 
 
 /* header search css  */
@@ -80,6 +76,35 @@ body {
 
 /* header loggedin css */
 
+/* user link animation */
+
+.user{
+    position: relative;
+    display: inline-block;
+}
+
+.user:hover{
+    color:#0275d8;
+}
+
+.user::before {
+    position: absolute;
+    content: attr(data-content); /* Prints the value of the attribute */
+    color: #000;
+    overflow: hidden;
+    transition: 700ms ease;
+    text-decoration: underline;
+    width: 0px;
+}
+ 
+
+.user:hover::before {
+    width: 100px;
+}
+
+.fa-user-cog {
+    color:#000;
+}
 
 /* search category css */
 
@@ -106,6 +131,7 @@ body {
     text-decoration: none;
     color: #0275d8;
     font-weight: bold;
+    transition: 500ms ease;
 }
 
 /* main_section css */
@@ -154,5 +180,3 @@ body {
     -webkit-text-fill-color: transparent;
     font-size: 30px;
 }
-
-

@@ -3,21 +3,21 @@
         <div class="row">
             <div class="mt-4" style="float: left;">
                 <ul class="category-list">
-                    <li><a href="#" class="category-links">Κανόνες λειτουργίας</a></li>
-                    <li><a href="#" class="category-links">Πολιτική Απορρήτου</a></li>
-                    <li><a href="#" class="category-links">Κανόνες δημιουργίας νέας καταχώρησης</a></li>
-                    <li><a href="#" class="category-links">Πολιτική Χρέωση</a></li>
-                    <li><a href="#" class="category-links">Τρόποι Πληρωμής</a></li>
+                    <li><b><a href="#" class="category-links">Κανόνες λειτουργίας</a></b></li>
+                    <li><b><a href="#" class="category-links">Πολιτική Απορρήτου</a></b></li>
+                    <li><b><a href="#" class="category-links">Κανόνες δημιουργίας νέας καταχώρησης</a></b></li>
+                    <li><b><a href="#" class="category-links">Πολιτική Χρέωση</a></b></li>
+                    <li><b><a href="#" class="category-links">Τρόποι Πληρωμής</a></b></li>
                 </ul>
             </div>
 
             <div class="mt-4" style="float: left;">
                 <ul class="category-list">
-                    <li><h6><b>Ταχυδρομικές Εταιρίες που συνεργαζόμαστε</b></h6></li>
-                    <li><a href="https://www.acscourier.net/el/home" target="_blank" class="category-links">ACS courier</a></li>
-                    <li><a href="https://www.taxydromiki.com/" target="_blank" class="category-links">Γενική Ταχυδρομική</a></li>
-                    <li><a href="https://www.elta.gr/el-gr/home.aspx" target="_blank" class="category-links">ΕΛΤΑ courier</a></li>
-                    <li><a href="http://www.speedex.gr/" target="_blank" class="category-links">SPEEDEX</a></li>
+                    <li><b><h6><b>Ταχυδρομικές Εταιρίες που συνεργαζόμαστε</b></h6></li>
+                    <li><b><a href="https://www.acscourier.net/el/home" target="_blank" class="category-links">ACS courier</a></b></li>
+                    <li><b><a href="https://www.taxydromiki.com/" target="_blank" class="category-links">Γενική Ταχυδρομική</a></b></li>
+                    <li><b><a href="https://www.elta.gr/el-gr/home.aspx" target="_blank" class="category-links">ΕΛΤΑ courier</a></b></li>
+                    <li><b><a href="http://www.speedex.gr/" target="_blank" class="category-links">SPEEDEX</a></b></li>
                 </ul>
             </div>  
 
