@@ -9,7 +9,7 @@
 
             
             <div class="p-2 centerLS">
-                <a class="nav-link user" href="#" 
+                <a class="nav-link user" href="user_settings.php" 
                 data-content=<?php echo $_SESSION['username'];?>> 
                     <?php echo $_SESSION['username'];?>
                     <i class="fas fa-user-cog"></i>

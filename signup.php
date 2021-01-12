@@ -21,7 +21,7 @@
 
 <?php 
     require 'session_check.php'; 
-    require 'header.php' 
+    require 'header.php'; 
 ?>  
 
 <div class="container mt-4">

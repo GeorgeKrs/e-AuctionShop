@@ -26,9 +26,9 @@
 
 
 <div class="container mt-4">    
-<div class="generalContainer  roundedForms" style="display:flex; justify-content: center;">
+<div class="generalContainer  roundedForms" style="display:flex; justify-content: center; width: 750px; margin:auto;">
 
-    <div>
+    <div class="mt-4">
     <form name="loginform" id="loginform" action="login_backend.php" method="post" style="padding: 20px;" >
         <div class="form-group">
             <label for="inputUserName">Ψευδώνυμο</label>

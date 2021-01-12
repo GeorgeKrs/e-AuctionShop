@@ -1,4 +1,5 @@
-<div class="container-fluid">
+<div class="footer mt-4">
+<!-- <div class="container-fluid "> -->
     <div class="container" style="display:flex; justify-content: center;">
         <div class="row">
             <div class="mt-4" style="float: left;">
@@ -13,7 +14,7 @@
 
             <div class="mt-4" style="float: left;">
                 <ul class="category-list">
-                    <li><b><h6><b>Ταχυδρομικές Εταιρίες που συνεργαζόμαστε</b></h6></li>
+                    <li><b><h6><b><u>Ταχυδρομικές Εταιρίες που συνεργαζόμαστε</u></b></h6></li>
                     <li><b><a href="https://www.acscourier.net/el/home" target="_blank" class="category-links">ACS courier</a></b></li>
                     <li><b><a href="https://www.taxydromiki.com/" target="_blank" class="category-links">Γενική Ταχυδρομική</a></b></li>
                     <li><b><a href="https://www.elta.gr/el-gr/home.aspx" target="_blank" class="category-links">ΕΛΤΑ courier</a></b></li>
@@ -30,10 +31,16 @@
                 </ul>
             </div>
             
-        </div>
+        </div> 
+    </div>
+    <div class="container">
+        <h6 style="float: right;">&copy; 2021 e-AuctionShop.gr</h6>
     </div>  
+<!-- </div> -->
 </div>
 
-<div class="container mt-4">
-    <h6 style="float: right;">&copy; 2021 e-AuctionShop.gr</h6>
-</div>
+
+
+
+
+    

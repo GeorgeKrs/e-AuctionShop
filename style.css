@@ -7,7 +7,8 @@
 body {
     font-family: 'Roboto', 'sans-serif', 'Times New Roman', 'Times', 'serif';
     background-color: #dfdfdf;
-    
+    height: 100%;
+    position: relative;
 }
 
 
@@ -158,6 +159,7 @@ body {
 
 /* footer css */
 
+
 .footer-list {
     list-style: none;
     padding: 20px;
@@ -179,4 +181,11 @@ body {
           background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 30px;
+}
+
+
+/* user settings */
+
+.fasPadding {
+    padding-left:5px;
 }
