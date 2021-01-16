@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    <!-- favicon -->
+    <link rel='shortcut icon' type='image/x-icon' href='images/favicon.png'>
+    <title>e-AuctionShop</title>
+
+    <!-- bootstrap and css -->
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>
+
+    <link href='style.css' type='text/css' rel='stylesheet'>
+   
+    <link rel='stylesheet' href='//use.fontawesome.com/releases/v5.0.7/css/all.css'>
+
+
+
+</head>
+<body>
+     
+
+<?php 
+    require 'session_check.php'; 
+    require 'header_loggedin.php';  
+    require 'uuid_search.php';
+?>
+
+<div class="container mt-4">
+<div class="generalContainer roundedForms">
+
+    <form name="changePwform" id="changePwform" action="change_pw_backend.php" method="post" style="padding: 20px;" >
+
+    <div class="form-group">
+        <label for="inputPasswordold">Κωδικός</label>
+        <input type="password" class="form-control"  name="inputPasswordOld" id="inputPasswordOld" placeholder="" required>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputPassword1">Νέος κωδικός</label>
+            <input type="password" class="form-control" name="inputPassword1" id="inputPassword1" placeholder="" >
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword2">Επιβεβαίωση νέου κωδικού</label>
+        <input type="password" class="form-control" name="inputPassword2" id="inputPassword2" placeholder="" >
+        </div>
+    </div>
+
+    <button type="submit"  class="btn btn-primary">Αποθήκευση αλλαγών</button>
+    </form>
+
+</div>
+</div>
+
+
+
+<!-- alert box if old pw is wrong (202)-->
+<div 
+    id="alertBox_oldpw"
+    class= "container mt-4" 
+    style= "background-color: white; 
+            text-align: center; 
+            width:400px;
+            border-radius: 15px 50px;   
+            border: 2px solid #d8020a;
+            display: none;">
+
+    <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle"> Ο κωδικός σας είναι λάθος. Πληκτρολογήστε τον σωστά για να αλλάξετε κωδικό προσβασης.</i></h6>
+</div>
+
+
+<!-- alert box if inputPassword1 != inputPassword2 -->
+<div
+    id="alertBox_pw"
+    class= "container mt-4" 
+    style= "background-color: white; 
+            text-align: center; 
+            width:400px;
+            border-radius: 15px 50px;
+            border: 2px solid #d8020a;
+            display: none;">
+
+    <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle"> Τα δύο πεδία των κωδικών πρέπει να είναι ίδια και όχι κενά.</i></h6>
+</div>
+
+
+
+<!-- alert box if success (200) -->
+<div
+    id='alertBox_S'
+    class= 'container mt-4' 
+    style= 'background-color: white; 
+            text-align: center; 
+            width:400px;
+            border-radius: 15px 50px;
+            border: 2px solid #0AD802;
+            display: none;'>
+
+    <h6 style='font-size: 25px; padding-top: 8px; color: #000;'><i class='far fa-check-circle'  style='color: #0AD802';> Οι αλλαγές αποθηκεύτηκαν με επιτυχία.</i></h6>
+</div>
+
+
+<!-- alert box if fail to change pw on backend (202)-->
+<div
+    id="alertBox_F"
+    class= "container mt-4" 
+    style= "background-color: white; 
+            text-align: center; 
+            width:400px;
+            border-radius: 15px 50px;
+            border: 2px solid #d8020a;
+            display: none;">
+
+    <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle"> Δεν έγινε η αλλαγή του κωδικού σας. Δοκιμάστε αργότερα.</i></h6>
+</div>
+
+
+
+<?php 
+    require 'footer.php';
+?>
+
+
+
+
+
+<!-- pass the values to the back end and make the changes to the database -->
+<script>
+
+    document.getElementById('changePwform').onsubmit= function(e){
+    e.preventDefault();
+
+    var pw1 = $("#inputPassword1").val();
+    var pw2 = $("#inputPassword2").val();
+    var pw_old = $("#inputPasswordOld").val();  
+
+
+    if ((pw1 != pw2) || (pw1.length === 0)) {
+        document.getElementById("alertBox_pw").style.display = "block"; 
+        // hide alertBox_pw after clicking outside
+        document.addEventListener('mouseup', function(e) {
+        var alert_div = document.getElementById('alertBox_pw');
+        if (!alert_div.contains(e.target)) {
+            alert_div.style.display = 'none';
+        }
+        }); 
+    }else{  $.ajax({
+            url: "change_pw_backend.php",
+            type: "POST",
+            data: { 
+                // left-> name of post tag variable, right -> value
+                password: pw1,
+                inputPasswordOld: pw_old,
+            },
+            cache: false,
+            success: function(data) {
+                data = JSON.parse(data);
+                console.log(pw_old, pw1, pw2, data);
+                
+                if (data.statusCode==200){
+                    document.getElementById('alertBox_S').style.display="block";
+                    document.addEventListener('mouseup', function(e) {
+                    var alert_div = document.getElementById('alertBox_S');
+                    if (!alert_div.contains(e.target)) {
+                        alert_div.style.display = 'none';
+                    }
+                    });
+                } else if (data.statusCode==201) {
+                    document.getElementById('alertBox_F').style.display="block";
+                    document.addEventListener('mouseup', function(e) {
+                    var alert_div = document.getElementById('alertBox_F');
+                    if (!alert_div.contains(e.target)) {
+                        alert_div.style.display = 'none';
+                    }
+                    });
+                } else if (data.statusCode==202) {
+                    document.getElementById('alertBox_oldpw').style.display="block";
+                    document.addEventListener('mouseup', function(e) {
+                    var alert_div = document.getElementById('alertBox_oldpw');
+                    if (!alert_div.contains(e.target)) {
+                        alert_div.style.display = 'none';
+                    }
+                    });
+                }
+            }
+        }); 
+    }
+}
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<!-- jQuery library -->
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
+<!-- Popper JS -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+
+<!-- Latest compiled JavaScript -->
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script> 
+
+<!--icons-->
+<script src='https://kit.fontawesome.com/eb305cdc11.js'></script>
+
+</body>
+</html>

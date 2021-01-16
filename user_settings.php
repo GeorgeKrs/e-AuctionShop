@@ -38,13 +38,13 @@
 
     <div class="form-group" style="text-align: center;">
     
-        <a href="#" class="nav-link">Προσωπικά στοιχεία
+        <a href="personal_info_settings.php" class="nav-link">Προσωπικά στοιχεία
             <i class="fas fa-user-circle fasPadding"></i>
         </a>
     </div>
 
     <div class="form-group" style="text-align: center;">
-        <a href="#" class="nav-link">Αλλαγή κωδικού πρόσβασης
+        <a href="change_pw.php" class="nav-link">Αλλαγή κωδικού πρόσβασης
             <i class="fas fa-lock fasPadding"></i>
         </a>
     </div>

@@ -191,7 +191,7 @@
                 url: "signup_backend.php",
                 type: "POST",
                 data: { 
-                    // left->name of var, right -> value
+                    // left-> name of post tag variable, right -> value
                     username: username,
                     email: email,
                     pw: pw,
@@ -205,7 +205,6 @@
                 cache: false,
                 success: function(data) {
                     data = JSON.parse(data);
-                    console.log(data);
                     if (data.statusCode==200){
                         location.href = "index.php";    
                     }

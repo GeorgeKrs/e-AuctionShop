@@ -7,8 +7,6 @@
 body {
     font-family: 'Roboto', 'sans-serif', 'Times New Roman', 'Times', 'serif';
     background-color: #dfdfdf;
-    height: 100%;
-    position: relative;
 }
 
 
@@ -158,7 +156,6 @@ body {
 
 
 /* footer css */
-
 
 .footer-list {
     list-style: none;

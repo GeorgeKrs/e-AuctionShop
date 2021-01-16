@@ -9,12 +9,11 @@
         <li><b><a href="#" class="category-links">Αθλητικά Είδη</a></b></li>
         <li><b><a href="#" class="category-links">Βιβλία</a></b></li>
         <li><b><a href="#" class="category-links">Δώρα & Gadgets</a></b></li>
-        <li><b><a href="#" class="category-links">Είδη επιχειρήσεων</a></b></li>
         <li><b><a href="#" class="category-links">Μουσική</a></b></li>
         <li><b><a href="#" class="category-links">Μουσικά Όργανα</a></b></li>
         <li><b><a href="#" class="category-links">Σπίτι & Κήπος</a></b></li>
         <li><b><a href="#" class="category-links">Παιχνίδια</a></b></li>
-        <li><b><a href="#" class="category-links">Τέχνη & Διακόσμηση</a></b></li>
+        <li><b><a href="#" class="category-links">Τέχνη</a></b></li>
         <li><b><a href="#" class="category-links">Ψυχαγωγία,χόμπι & ταξίδια</a></b></li>
     </ul>
 </div>    
