@@ -39,7 +39,7 @@
         </div>
             <div class="form-group col-md-6">
             <label for="inputPassword">Email</label>
-        <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="" required>
+            <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="" required>
         </div>
     </div>
     <div class="form-row">

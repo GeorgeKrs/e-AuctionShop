@@ -43,11 +43,13 @@ body {
 .btnsearch {
     background-color: #fff;
     border-color: #fff;
+    transition: 1000ms;
 }
 
 .btnsearch:hover {
     background-color: #fff; 
     border-color: #0275d8;
+    transition: 1000ms;
 }
 
 .btnsearch:active {
@@ -124,13 +126,15 @@ body {
 .category-links {
     font-size: 14px;
     color: #000;
+    transition: 200ms;
 }
 
 .category-links:hover {
     text-decoration: none;
     color: #0275d8;
     font-weight: bold;
-    transition: 500ms ease;
+    transition: 200ms;
+    text-decoration-line: underline !important;
 }
 
 /* main_section css */
@@ -185,4 +189,37 @@ body {
 
 .fasPadding {
     padding-left:5px;
+}
+
+
+/* z pages , top found results div */
+
+.resultsDiv {
+    background-color: #dfdfdf;
+    padding: 10px;
+}
+
+
+/* breadcrumb path, url path to subnavigations */
+
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #fff;
+}
+ul.breadcrumb li {
+display: inline;
+font-size: 18px;
+}
+ul.breadcrumb li+li:before {
+padding: 8px;
+color: black;
+content: "/\00a0";
+}
+ul.breadcrumb li a {
+color: #0275d8;
+text-decoration: none;
+}
+ul.breadcrumb li a:hover {
+color: #000;
 }

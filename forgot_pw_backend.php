@@ -22,8 +22,17 @@ if ($number_rows == 1) {
                 WHERE uuid='$uuid'";
 
     if (mysqli_query($connection, $update_pw)) {
+
+        $to        =$email;
+        $subject   ='Password reset for e-AuctionShop:';
+        $message   ="Your new password is: $newPassword";
+        $headers   ='From: e-AuctionShop@gmail.com' . "\r\n" .
+                    'MIME-Version: 1.0' . "\r\n" .
+                    'Content-type: text/html; charset=utf-8';
+
+        mail($to, $subject, $message, $headers);
         // success
-        echo json_encode(array("statusCode"=>200));  
+        echo json_encode(array("statusCode"=>200));
     }else{
         // failed to change although old pw correct
         echo json_encode(array("statusCode"=>201));          
