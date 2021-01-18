@@ -141,7 +141,7 @@ body {
 
 .mainSection {
     float: left;
-    padding-left: 50px;
+    /* δεν χρειάζεται μετά τη διόρθωση με τα classes του bootsrap */
 }
 
 .card {
@@ -197,6 +197,7 @@ body {
 .resultsDiv {
     background-color: #dfdfdf;
     padding: 10px;
+    margin-left: 20px;
 }
 
 

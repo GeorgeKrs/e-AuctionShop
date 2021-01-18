@@ -1,4 +1,4 @@
-<div class="container mt-4 classforfooter">
+<div class="container mt-4">
 
 <!-- div for background to be white (white-Div) -->
 <div class="generalContainer">
