@@ -75,10 +75,9 @@ echo "
         <div class='form-group col-md-4'>
             <label for='inputNomo'>Νομός</label>
             <select name='inputNomo' id='inputNomo' class='form-control'>
-                <option selected> $row[district] </option>
-                <?php
-                    require 'nomoi_ellados.php' 
-                ?>
+                <option selected> $row[district]</option>";
+                    require 'nomoi_ellados.php';
+            echo "   
             </select>
         </div>
         <div class='form-group col-md-2'>
@@ -88,6 +87,7 @@ echo "
     </div>
     <button type='submit'  class='btn btn-primary' >Αποθήκευση αλλαγών</button>
 </form>
+
 
 
 </div>

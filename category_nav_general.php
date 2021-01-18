@@ -2,7 +2,7 @@
     <ul class="category-list">
         <li style="background-color: #dfdfdf;"><h3 style="font-size: 20px;"><b>Κατηγορίες:</h3></b></li>
         <li><hr style="background-color: #0275d8; width: 100%; height: 100%; border-width:3px;"></li>
-        <li><b><a href="#" class="category-links">Υπολογιστές</a></b></li>
+        <li><b><a href="z_upologistes.php" class="category-links">Υπολογιστές</a></b></li>
         <li><b><a href="#" class="category-links">Φωτογραφία & Βίντεο</a></b></li>
         <li><b><a href="#" class="category-links">Ρολόγια</a></b></li>
         <li><b><a href="#" class="category-links">Κοσμήματα</a></b></li>

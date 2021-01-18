@@ -74,7 +74,7 @@
             <select name="inputNomo" id="inputNomo" class="form-control" required>
                 <option selected>Επιλογή...</option>
                 <?php
-                    require 'nomoi_ellados.php' 
+                    require 'nomoi_ellados.php';
                 ?>
             </select>
         </div>
