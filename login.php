@@ -26,7 +26,7 @@
 
 
 <div class="container mt-4">    
-<div class="generalContainer  roundedForms" style="display:flex; justify-content: center; width: 750px; margin:auto;">
+<div class="generalContainer  roundedForms" style="display:flex; justify-content: center; margin:auto;">
 
     <div class="mt-4">
     <form name="loginform" id="loginform" action="login_backend.php" method="post" style="padding: 20px;" >

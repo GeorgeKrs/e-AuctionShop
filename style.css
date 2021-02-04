@@ -224,3 +224,19 @@ text-decoration: none;
 ul.breadcrumb li a:hover {
 color: #000;
 }
+
+
+
+
+
+/* responsive css */
+
+@media screen and (max-width: 790px) {
+    /* header changes */
+    .fa-user-cog{
+        display: none!important;
+    }
+    #logoImg{
+        display: none!important;
+    }
+}

@@ -1,3 +1,7 @@
+<?php 
+    require 'session_check.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +24,6 @@
 
 
 <?php 
-    require 'session_check.php'; 
     require 'header.php'; 
 ?>  
 

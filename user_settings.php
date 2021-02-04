@@ -31,7 +31,7 @@
 <div class="generalContainer roundedForms" style="width: 750px; margin:auto;">
 
     <div class="form-group" style="text-align: center;">
-        <a href="#" class="nav-link">Καινούρια καταχώρηση
+        <a href="new_product.php" class="nav-link">Καινούρια καταχώρηση
             <i class="fas fa-folder-open fasPadding"></i>
         </a>
     </div>
