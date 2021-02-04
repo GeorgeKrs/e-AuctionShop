@@ -1,5 +1,5 @@
 <div class="form-group col-md-12 col-sm-12">
-    <label for="inputAuctionStart">Έναρξη δημοπρασίας</label>
+    <label for="inputAuctionStart">Έναρξη δημοπρασίας:</label>
     <div class="form-row">
         <div class="form-group col-md-4 col-sm-12">
             <select name="inputAuctionStart_Day" id="inputAuctionStart_Day" class="form-control" required>
@@ -69,7 +69,7 @@
 </div>
 
 <div class="form-group col-md-12 col-sm-12">
-    <label for="inputAuctionEnd">Λήξη δημοπρασίας</label>
+    <label for="inputAuctionEnd">Λήξη δημοπρασίας:</label>
     <div class="form-row">
         <div class="form-group col-md-4 col-sm-12">
             <select name="inputAuctionEnd_Day" id="inputAuctionEnd_Day" class="form-control" required>
