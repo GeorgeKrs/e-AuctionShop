@@ -239,4 +239,16 @@ color: #000;
     #logoImg{
         display: none!important;
     }
+    #alertBox_success{
+        width: 100%!important;
+    }
+    #alertBox_fail{
+        width: 100%!important;
+    }
+    #user_settings{
+        width: 100%!important;
+    }
+
+
+
 }

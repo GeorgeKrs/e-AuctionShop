@@ -28,7 +28,7 @@
 
 
 <div class="container mt-4">
-<div class="generalContainer roundedForms" style="width: 750px; margin:auto;">
+<div class="generalContainer roundedForms" style="width: 750px; margin:auto;" id="user_settings">
 
     <div class="form-group" style="text-align: center;">
         <a href="new_product.php" class="nav-link">Καινούρια καταχώρηση

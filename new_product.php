@@ -47,15 +47,15 @@
 
         <div class="form-row">
             <div class="form-group col-md-6 col-sm-12">
-                <label class="inputLabel" for="inputImage">Φωτογραφία Προϊόντος</label>
+                <label class="inputLabel" for="inputImage">Φωτογραφία Προϊόντος:</label>
                 <input style="height: 45px;" type="file" class="form-control" accept="image/*" id="inputImage" name="inputImage" onchange="preview_image(event)" required>
-                <h1 style="font-family: Lobster; color:#fff"><u>Eikona</u></h1>
+                <h1 class="mt-4" style="color:#000; font-size:18px;">Επιλεγμένη Εικόνα:</h1>
                 <img id="img_preview" height="300px;" width="300px;" class="img-thumbnail">
             </div>
 
             <div class="form-group col-md-6 col-sm-12">
-                <label class="inputLabel" for="prod_description">Περιγραφή Προϊόντος:</label>
-                <textarea id="prod_description" name="prod_description" class="form-control" placeholder="" style="width: 100%; height:100%;" required></textarea>
+                <label class="inputLabel" for="inputDescription">Περιγραφή Προϊόντος:</label>
+                <textarea id="inputDescription" name="inputDescription" class="form-control" placeholder="" style="width: 100%; height:100%;" required></textarea>
             </div>
                 
         </div>
@@ -81,14 +81,14 @@
                 <label for="inputCategory">Κατηγορία προϊόντος:</label>
                 <select name="inputCategory" id="inputCategory" class="form-control" required>
                         <option selected>Επιλογή...</option>
-                        <option value="pc">Υπολογιστές</option>
-                        <option value="music_organs">Μουσικά Όργανα</option>
-                        <option value="games">Ηλεκτρονικά Παιχνίδια</option>
-                        <option value="jewellery">Κοσμήματα</option>
+                        <option value="Υπολογιστές">Υπολογιστές</option>
+                        <option value="Μουσικά Όργανα">Μουσικά Όργανα</option>
+                        <option value="Ηλεκτρονικά Παιχνίδια">Ηλεκτρονικά Παιχνίδια</option>
+                        <option value="Κοσμήματα">Κοσμήματα</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
-                <label for="inputCategory">Υποκατηγορία προϊόντος:</label>
+                <label for="inputSubCategory">Υποκατηγορία προϊόντος:</label>
                 <select name="inputSubCategory" id="inputSubCategory" class="form-control" required>
                         <option selected>Επιλογή...</option>
                 </select>
@@ -97,14 +97,14 @@
                     $(document).ready(function() {
                         $('#inputCategory').change(function () {
                             var categorySelection = $(this).val();
-                            if (categorySelection == "pc") {
-                                $('#inputSubCategory').html('<option value="cpu">Επεξεργαστές</option><option value="motherboard">Μητρικές Κάρτες</option><option value="monitor">Οθόνες</option><option value="gpu">Κάρτες Γραφικών</option><option value="pcGeneral">Περιφερειακά</option>');
-                            }else if (categorySelection == "music_organs") {
-                                $('#inputSubCategory').html('<option value="electric_g">Ηλεκτρικές Κιθάρες</option><option value="guitar">Κλασσικές Κιθάρες</option><option value="keyboard">Πλήκτρα</option><option value="bass">Μπάσο</option>');
-                            }else if (categorySelection == "games") {
+                            if (categorySelection == "Υπολογιστές") {
+                                $('#inputSubCategory').html('<option value="Επεξεργαστές">Επεξεργαστές</option><option value="Μητρικές Κάρτες">Μητρικές Κάρτες</option><option value="Οθόνες">Οθόνες</option><option value="gpu">Κάρτες Γραφικών</option><option value="Περιφερειακά">Περιφερειακά</option>');
+                            }else if (categorySelection == "Μουσικά Όργανα") {
+                                $('#inputSubCategory').html('<option value="Ηλεκτρικές Κιθάρες">Ηλεκτρικές Κιθάρες</option><option value="Κλασσικές Κιθάρες">Κλασσικές Κιθάρες</option><option value="Πλήκτρα">Πλήκτρα</option><option value="Μπάσο">Μπάσο</option>');
+                            }else if (categorySelection == "Ηλεκτρονικά Παιχνίδια") {
                                 $('#inputSubCategory').html('<option value="PS4">PS4</option><option value="PS5">PS5</option><option value="PC">PC</option><option value="XBOX">XBOX</option>');
-                            }else if (categorySelection == "jewellery") {
-                                $('#inputSubCategory').html('<option value="rings">Δαχτυλίδια</option><option value="neckless">Κολιέ</option><option value="earrings">Σκουλαρίκια</option><option value="bracelets">Βραχιόλια</option>');
+                            }else if (categorySelection == "Κοσμήματα") {
+                                $('#inputSubCategory').html('<option value="Δαχτυλίδια">Δαχτυλίδια</option><option value="Κολιέ">Κολιέ</option><option value="Σκουλαρίκια">Σκουλαρίκια</option><option value="Βραχιόλια">Βραχιόλια</option>');
                             }
                         });
                     });
@@ -133,8 +133,8 @@
                 <label for="inputType">Τύπος καταχώρησης:</label>
                 <select name="inputType" id="inputType" class="form-control" required>
                         <option selected>Επιλογή...</option>
-                        <option value="sell">Πώληση</option>
-                        <option value="auction">Δημοπρασία</option>
+                        <option value="Πώληση">Πώληση</option>
+                        <option value="Δημοπρασία">Δημοπρασία</option>
                 </select>
             </div>
 
@@ -153,7 +153,7 @@
             var typeSelection = document.getElementById("inputType");  
             var typeSelection = typeSelection.options[typeSelection.selectedIndex].value;
 
-            if (typeSelection=="auction"){
+            if (typeSelection=="Δημοπρασία"){
                 document.getElementById("inputRaisePrice").disabled = false;
             }else{
                 document.getElementById("inputRaisePrice").value = null;
@@ -226,20 +226,20 @@
                 <label for="inputTermsCondition">Όροι αποστολής:</label>
                 <select name="inputTermsCondition" id="inputTermsCondition" class="form-control" required>
                         <option selected>Επιλογή...</option>
-                        <option value="buyer">Επιβαρύνουν τον αγοραστή</option>
-                        <option value="saler">Επιβαρύνουν τον πωλητή</option>
+                        <option value="Επιβαρύνουν τον αγοραστή">Επιβαρύνουν τον αγοραστή</option>
+                        <option value="Επιβαρύνουν τον πωλητή">Επιβαρύνουν τον πωλητή</option>
                 </select>
             </div>
 
             <div class="form-group col-md-4">
                 <label for="inputSentExpenses">Έξοδα αποστολής:</label>
-                <input type="number" min="1" max="1000" step="1" class="form-control" name="inputSentExpenses" id="inputSentExpenses"> 
+                <input type="number" min="0" max="1000" step="1" class="form-control" name="inputSentExpenses" id="inputSentExpenses"> 
             </div>
         </div>
 
 
         <div class="form-group mt-4 col-md-6">
-            <label for="inputPayMethods">Τρόποι πληρωμής:</label>
+            <label for="inputPayMethods">Τρόποι πληρωμής-παραλαβής:</label>
         </div>
 
 
@@ -284,8 +284,8 @@
 
         <div class="form-row mt-4">
             <div class="form-group col-md-12">
-                <label for="inputTermsCondition">Σχόλια αποστολής:</label>
-                <textarea id="sentComments" name="sentComments" class="form-control" placeholder="" style="width: 100%; height:100%;" required></textarea>        
+                <label for="inputSentComments">Σχόλια αποστολής:</label>
+                <textarea id="inputSentComments" name="inputSentComments" class="form-control" placeholder="" style="width: 100%; height:100%;" required></textarea>        
             </div>
         </div>
 
@@ -297,27 +297,45 @@
 </div>
 
 
+<!-- <div class="container mt-4">
+    <div class="generalContainer roundedForms"> -->
+
+    <div
+        id="alertBox_success"
+        class="container mt-4" 
+        style="background-color: white; 
+            text-align: center; 
+            width:400px;
+            border-radius: 15px 50px;
+            border: 2px solid #75d802;
+            display: none;">
+
+        <h6 style="font-size: 25px; padding-top: 8px;"><i style="color: #75d802;" class="far fa-check-circle">Η καταχώρησή σας έγινε δεκτή.</i></h6>
+
+        <button class="mt-4 btn btn-light" onclick="redirectHomePage();">Επιστροφή στην αρχική</button>
+
+    </div>  
+
+    <div
+        id="alertBox_fail"
+        class="container mt-4" 
+        style="background-color: white; 
+            text-align: center; 
+            width:400px;
+            border-radius: 15px 50px;
+            border: 2px solid #d8020a;
+            display: none;">
+
+        <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle">Αποτυχία καταχώρησης. Παρακαλώ προσπαθείστε ξανά αργότερα</i></h6>
+
+        <button class="mt-4 btn btn-light" onclick="redirectHomePage();">Επιστροφή στην αρχική</button>
+    </div>  
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- </div>
+</div>
+ -->
 
 
 <?php 
@@ -326,7 +344,116 @@
 
 
 
+<script>
+    function redirectHomePage() {
+        window.location.href = "index.php";
+    }
+</script>
 
+
+<script>
+// script for preventing submit and getting the data from the user
+
+
+    document.getElementById('newProduct').onsubmit=function(e) {
+    e.preventDefault();
+
+
+    // file variables
+    var inputImage= $('input[type="file"]')[0].files[0];
+    
+    // textarea-text variables 
+    var inputDescription = document.getElementById("inputDescription").value;
+    var inputSentComments = document.getElementById("inputSentComments").value;
+    var inputΤitle = document.getElementById("inputTitle").value;
+
+    // numbers(double) variables
+    var inputPrice = document.getElementById("inputPrice").value;
+    var inputRaisePrice = document.getElementById("inputRaisePrice").value;
+    var inputSentExpenses = document.getElementById("inputSentExpenses").value;
+
+    // selectform variables
+    var inputCategory = document.getElementById("inputCategory").value;
+    var inputSubCategory = document.getElementById("inputSubCategory").value;
+    var inputAuctionLast = document.getElementById("inputAuctionLast").value;
+    var inputState = document.getElementById("inputState").value;
+    var inputType = document.getElementById("inputType").value;
+    var inputTermsCondition = document.getElementById("inputTermsCondition").value;
+
+    // chechboxes variables
+    var cashCourier = document.getElementById("cashCourier");
+    var cashHand = document.getElementById("cashHand");
+    var cardBank = document.getElementById("cardBank");
+    var paypal = document.getElementById("paypal");
+    var takeAway =  document.getElementById("takeAway");
+    var elta =  document.getElementById("elta");
+   
+
+    //  initialize new FormData
+    var formData = new FormData();
+
+    formData.append('inputImage',inputImage);
+
+    formData.append('inputDescription',inputDescription);
+    formData.append('inputSentComments',inputSentComments);
+    formData.append('inputΤitle',inputΤitle);
+
+    formData.append('inputPrice',inputPrice);
+    formData.append('inputRaisePrice',inputRaisePrice);
+    formData.append('inputSentExpenses',inputSentExpenses);
+
+    formData.append('inputCategory',inputCategory);
+    formData.append('inputSubCategory',inputSubCategory);
+    formData.append('inputAuctionLast',inputAuctionLast);
+    formData.append('inputState',inputState);
+    formData.append('inputType',inputType);
+    formData.append('inputTermsCondition',inputTermsCondition);
+
+    if (cashCourier.checked) {
+        formData.append("cashCourier","Αντικαταβολή με Courier")
+    }
+    if (cashHand.checked) {
+        formData.append("cashHand","Συνάντηση/Μετρητά")
+    }
+    if (cardBank.checked) {
+        formData.append("cardBank","Κατάθεση στη τράπεζα")
+    }
+    if (paypal.checked) {
+        formData.append("paypal","Paypal")
+    }
+    if (takeAway.checked) {
+        formData.append("takeAway","Παραλαβή από το κατάστημα")
+    }
+    if (elta.checked) {
+        formData.append("elta","Ελτά")
+    }
+
+
+    for (var key of formData.entries()) {
+        console.log(key[0] + ': ' + key[1]);
+    }
+
+    $.ajax({
+        url: 'new_product_backend.php',
+        enctype: 'multipart/form-data',
+        type: "POST",
+        cache: false, 
+        processData: false,
+        contentType: false,
+        data: formData, 
+        success: function(data) {
+            data = JSON.parse(data);
+            if (data.statusCode==200) {
+                    document.getElementById('alertBox_success').style.display="block";
+    
+            }else if (data.statusCode==201) {
+                document.getElementById('alertBox_fail').style.display="block";
+            }
+        }
+    });      
+};
+
+</script>
 
 
 
