@@ -6,14 +6,18 @@
     <div class="container">
         <div class="d-flex">    
             <div class="p-2 mr-auto" id="logoImg"><a  class="nav-link" href="index.php"><img class="rounded-circle centerlogo" src="images/logo_img.jpg" alt="e-AuctionShop logo"></a></div>
-
+            <!-- div for responsive -->
+            <div class="p-2 mr-auto" style="display:none;" id="homeLink"><a class="nav-link" href="index.php">Αρχική σελίδα</a></div>
+            <!-- end div for responsive -->
             
             <div class="p-2 centerLS">
-                <a class="nav-link user" href="user_settings.php" 
+                <a id="usernamePhone" class="nav-link user" href="user_settings.php" 
                 data-content=<?php echo $_SESSION['username'];?>> 
                     <?php echo $_SESSION['username'];?>
-                    <i class="fas fa-user-cog"></i>
+                    <i href="user_settings.php" class="fas fa-user-cog"></i>
                 </a>
+
+                <a id="userSettingsIcon_onPhone" class="nav-link user" style="display: none;" href="user_settings.php"><i  class="fas fa-user-cog"></i></a>
             </div>  
 
             <div class="p-2 centerLS"><a class="nav-link" href="logout.php">Έξοδος</a></div>

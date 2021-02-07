@@ -233,8 +233,24 @@ color: #000;
 
 @media screen and (max-width: 790px) {
     /* header changes */
-    .fa-user-cog{
+
+    /* .fa-user-cog{
         display: none!important;
+    } */
+
+    #usernamePhone{
+        display: none!important;
+    }
+
+    #userSettingsIcon_onPhone{
+        display: block!important;
+    }
+
+    #logoImg{
+        display: none!important;
+    }
+    #homeLink{
+        display: block!important;
     }
     #logoImg{
         display: none!important;
