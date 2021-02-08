@@ -1,6 +1,4 @@
-<?php 
-    require 'session_check.php';
-    require 'db_connection.php';    
+<?php    
     require 'uuid_search.php';
 
 

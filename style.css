@@ -111,7 +111,6 @@ body {
 
 .sideNav {
     width: 220px;
-    float: left;
 }
 
 .category-list {
@@ -124,9 +123,10 @@ body {
 }    
 
 .category-links {
-    font-size: 14px;
+    font-size: 16px;
     color: #000;
     transition: 200ms;
+    font-weight: bold;
 }
 
 .category-links:hover {
@@ -139,14 +139,18 @@ body {
 
 /* main_section css */
 
-.mainSection {
-    float: left;
-    /* δεν χρειάζεται μετά τη διόρθωση με τα classes του bootsrap */
+
+/* product */
+.product-zoom-Div {
+    transition: 0.4s;  
 }
 
-.card {
-    border: none;
+.product-zoom-Div:hover {  
+    transform: scale(1.1);
+    z-index: 100;
 }
+
+
 /* login, signup css */
 
 .loginInput {
@@ -264,7 +268,14 @@ color: #000;
     #user_settings{
         width: 100%!important;
     }
+    #sortById{
+        text-align: center!important;
+    }
+    #sortByIdH5tag{
+        float: none !important;
+    }
 
 
 
 }
+
