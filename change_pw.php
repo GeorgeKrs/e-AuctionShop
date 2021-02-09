@@ -1,3 +1,7 @@
+<?php 
+    require 'session_check.php'; 
+?>
+
 <!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -22,7 +26,6 @@
      
 
 <?php 
-    require 'session_check.php'; 
     require 'header_loggedin.php';  
     require 'uuid_search.php';
 ?>
@@ -82,10 +85,7 @@
 </div>
 
 
-
-
 <!-- pw change  -->
-
 
 <!-- alert box if inputPassword1 != inputPassword2 -->
 <div
@@ -182,14 +182,9 @@
 </div>
 
 
-
-
 <?php 
     require 'footer.php';
 ?>
-
-
-
 
 
 <!-- pass the values to the back end and make the changes to the database -->
@@ -309,7 +304,6 @@
     }); 
 }
 </script>
-
 
 
 <!-- jQuery library -->

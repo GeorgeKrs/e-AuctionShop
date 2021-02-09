@@ -1,6 +1,4 @@
-<?php 
-    require 'session_check.php';
-    require 'db_connection.php';    
+<?php  
     require 'uuid_search.php';
 
 
@@ -11,7 +9,6 @@ if(isset($_POST['password'])){
 if(isset($_POST['inputPasswordOld'])){
     $pw_old = $_POST['inputPasswordOld'];
 }
-
 
 
 $search_pw = "SELECT * FROM user_info WHERE pw = '$pw_old'";
@@ -36,5 +33,3 @@ if ($number_rows == 1) {
     echo json_encode(array("statusCode"=>202));   
 } 
 ?>
-
-

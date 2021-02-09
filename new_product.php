@@ -218,8 +218,8 @@
                 <label for="inputState">Κατάσταση:</label>
                 <select name="inputState" id="inputState" class="form-control" required>
                         <option selected>Επιλογή...</option>
-                        <option value="new">Καινούριο</option>
-                        <option value="old">Μεταχειρισμένο</option>
+                        <option value="Καινούριο">Καινούριο</option>
+                        <option value="Μεταχειρισμένο">Μεταχειρισμένο</option>
                 </select>
             </div>
             <div class="form-group col-md-4">

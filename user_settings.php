@@ -1,3 +1,7 @@
+<?php 
+    require 'session_check.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,12 +21,11 @@
 
 
 
-</head>
+</head>+
 <body>
      
 
-<?php 
-    require 'session_check.php'; 
+<?php  
     require 'header_loggedin.php';  
 ?> 
 
@@ -31,7 +34,7 @@
 <div class="generalContainer roundedForms" style="width: 750px; margin:auto;" id="user_settings">
 
     <div class="form-group" style="text-align: center;">
-        <a href="new_product.php" class="nav-link">Καινούρια καταχώρηση
+        <a href="new_product.php" class="nav-link">Νέα καταχώρηση
             <i class="fas fa-folder-open fasPadding"></i>
         </a>
     </div>
