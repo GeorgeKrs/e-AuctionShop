@@ -37,7 +37,7 @@
                 <?php 
 
 
-                $sql_query = "SELECT * FROM products_table ORDER BY id desc limit 9";
+                $sql_query = "SELECT * FROM products_table ORDER BY id desc limit 50";
 
                 $result = mysqli_query($connection, $sql_query);
 
