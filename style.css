@@ -270,6 +270,14 @@ color: #000;
     #sortByIdH5tag{
         float: none !important;
     }
+    #overflowID{
+        overflow-x: hidden!important;
+    }
 
+    /* forgot pw button */
+    #forgotPwButton{
+        float: none!important;
+        margin-top: 20px!important;    
+    }
 }
 

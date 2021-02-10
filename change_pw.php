@@ -42,7 +42,8 @@
     <form name="changePwform" id="changePwform" action="change_pw_backend.php" method="post" style="padding: 20px;" >
 
     <div class="form-group">
-        <label for="inputPasswordold">Κωδικός</label>
+        <!-- <h3 style="font-size: 16px;">Παρακαλώ Πληκτρολογήστε τον τωρινό κωδικό σας</h3> -->
+        <label for="inputPasswordold">Παρακαλώ πληκτρολογήστε τον τωρινό κωδικό σας</label>
         <input type="password" class="form-control"  name="inputPasswordOld" id="inputPasswordOld" placeholder="" required>
     </div>
 
@@ -59,7 +60,7 @@
 
     <button type="submit"  class="btn btn-primary">Αποθήκευση αλλαγών</button>
 
-    <button type="button" onclick="forgotPw()"  class="btn btn-primary" style="float: right;">Ξέχασες τον κωδικό σου;</button>
+    <button id="forgotPwButton" type="button" onclick="forgotPw()"  class="btn btn-primary" style="float: right;">Ξέχασες τον κωδικό σου;</button>
     </form>
 
     
