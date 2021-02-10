@@ -23,7 +23,8 @@
 
 </head>
 <body>
-     
+
+
 
 <?php 
     require 'header_loggedin.php';  
@@ -83,7 +84,7 @@
     class= "container mt-4" 
     style= "background-color: white; 
             text-align: center; 
-            width:400px;
+            width:350px;
             border-radius: 15px 50px;   
             border: 2px solid #d8020a;
             display: none;">
@@ -100,7 +101,7 @@
     class= "container mt-4" 
     style= "background-color: white; 
             text-align: center; 
-            width:400px;
+            width:350px;
             border-radius: 15px 50px;
             border: 2px solid #d8020a;
             display: none;">
@@ -116,7 +117,7 @@
     class= 'container mt-4' 
     style= 'background-color: white; 
             text-align: center; 
-            width:400px;
+            width:350px;
             border-radius: 15px 50px;
             border: 2px solid #0AD802;
             display: none;'>
@@ -131,7 +132,7 @@
     class= "container mt-4" 
     style= "background-color: white; 
             text-align: center; 
-            width:400px;
+            width:350px;
             border-radius: 15px 50px;
             border: 2px solid #d8020a;
             display: none;">
@@ -146,7 +147,7 @@
     class= "container mt-4" 
     style= "background-color: white; 
             text-align: center; 
-            width:400px;
+            width:350px;
             border-radius: 15px 50px;   
             border: 2px solid #d8020a;
             display: none;">
@@ -165,7 +166,7 @@
     class= 'container mt-4' 
     style= 'background-color: white; 
             text-align: center; 
-            width:400px;
+            width:350px;
             border-radius: 15px 50px;
             border: 2px solid #0AD802;
             display: none;'>
@@ -180,7 +181,7 @@
     class= "container mt-4" 
     style= "background-color: white; 
             text-align: center; 
-            width:400px;
+            width:350px;
             border-radius: 15px 50px;   
             border: 2px solid #d8020a;
             display: none;">
@@ -194,6 +195,8 @@
 ?>
 
 
+
+
 <!-- pass the values to the back end and make the changes to the database -->
 <script>
 
@@ -203,6 +206,10 @@
     var pw1 = $("#inputPassword1").val();
     var pw2 = $("#inputPassword2").val();
     var pw_old = $("#inputPasswordOld").val();  
+
+    formData = new FormData();
+    formData.append('pw1',pw1);
+    formData.append('pw_old',pw_old);
 
 
     if ((pw1 != pw2) || (pw1.length === 0)) {
@@ -217,37 +224,36 @@
     }else{  $.ajax({
             url: "change_pw_backend.php",
             type: "POST",
-            data: { 
-                // left-> name of post tag variable, right -> value
-                password: pw1,
-                inputPasswordOld: pw_old,
-            },
-            cache: false,
+            cache: false, 
+            processData: false,
+            contentType: false,
+            data: formData,
             success: function(data) {
                 data = JSON.parse(data);
+                
                 if (data.statusCode==200){
-                    document.getElementById('alertBox_S').style.display="block";
-                    document.addEventListener('mouseup', function(e) {
-                    var alert_div = document.getElementById('alertBox_S');
-                    if (!alert_div.contains(e.target)) {
-                        alert_div.style.display = 'none';
-                    }
+                        document.getElementById('alertBox_S').style.display="block";
+                        document.addEventListener('mouseup', function(e) {
+                        var alert_div = document.getElementById('alertBox_S');
+                        if (!alert_div.contains(e.target)) {
+                            alert_div.style.display = 'none';
+                        }
                     });
                 } else if (data.statusCode==201) {
-                    document.getElementById('alertBox_F').style.display="block";
-                    document.addEventListener('mouseup', function(e) {
-                    var alert_div = document.getElementById('alertBox_F');
-                    if (!alert_div.contains(e.target)) {
-                        alert_div.style.display = 'none';
-                    }
+                        document.getElementById('alertBox_F').style.display="block";
+                        document.addEventListener('mouseup', function(e) {
+                        var alert_div = document.getElementById('alertBox_F');
+                        if (!alert_div.contains(e.target)) {
+                            alert_div.style.display = 'none';
+                        }
                     });
                 } else if (data.statusCode==202) {
-                    document.getElementById('alertBox_oldpw').style.display="block";
-                    document.addEventListener('mouseup', function(e) {
-                    var alert_div = document.getElementById('alertBox_oldpw');
-                    if (!alert_div.contains(e.target)) {
-                        alert_div.style.display = 'none';
-                    }
+                        document.getElementById('alertBox_oldpw').style.display="block";
+                        document.addEventListener('mouseup', function(e) {
+                        var alert_div = document.getElementById('alertBox_oldpw');
+                        if (!alert_div.contains(e.target)) {
+                            alert_div.style.display = 'none';
+                        }
                     });
                 }
             }
@@ -311,7 +317,6 @@
     }); 
 }
 </script>
-
 
 <!-- jQuery library -->
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
