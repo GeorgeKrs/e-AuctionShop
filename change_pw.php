@@ -67,7 +67,7 @@
 <!-- hidden form -->
     <form class="form-group col-md-6" name="alertBox_forgotPw" id="alertBox_forgotPw" action="forgot_pw_backend.php" style="display: none;" method="post"> 
 
-        <label for="inputEmail">Email</label>
+        <label for="inputEmail">Παρακαλώ πληκτρολογήστε το email σας</label>
         <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="" required>
         <button type="submit"  class="btn btn-primary mt-4">Αποστολή νέου κωδικού</button>
 
