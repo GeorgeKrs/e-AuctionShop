@@ -42,6 +42,12 @@
 <div class="container mt-4">
 <div class="generalContainer roundedForms">
 
+<ul class="breadcrumb">
+    <li><a href="index.php" class="category-links">Αρχική Σελίδα</a></li>
+    <li><a href="user_settings.php" class="category-links">Ρυθμίσεις Χρήστη</a></li>
+    <li style="font-size: 17px;"><b>Νέα Καταχώρηση</b></li>
+</ul>
+
     <form name="newProduct" id="newProduct" action="new_product_backend.php" method="post" style="padding: 20px;">
 
 

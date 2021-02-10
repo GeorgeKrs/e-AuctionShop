@@ -54,7 +54,7 @@
 
     <div class="form-group" style="text-align: center;">
     
-        <a href="#" class="nav-link">Οι καταχωρήσεις μου
+        <a href="myAuctions.php" class="nav-link">Οι καταχωρήσεις μου
             <i class="fas fa-archive fasPadding"></i>
         </a>
     </div>
