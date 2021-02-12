@@ -296,11 +296,224 @@
         </div>
 
     
-        <button type="submit"  class="btn btn-primary mt-4" >Καταχώρηση Νέου προϊόντος</button>
+        
+ 
+        <label class="inputLabel" for="inputOptionalImage" style="padding-top: 50px;"> Περισσότερες φωτογραφίες του προϊόντος(Προαιρετικό, εώς και 4 επιπλέον φωτογραφίες):</label>
+
+        <div class="row mt-4 text-center" id="optional_images">
+
+            <div class="col-md-3 col-sm-12">
+                <input style="height: 45px;" type="file" class="form-control" accept="image/*" id="inputImage" name="inputImage" onchange="preview_optional_image_1(event)">
+                <h1 class="mt-4" style="color:#000; font-size:18px;">Εικόνα 1:</h1>
+                <img id="optional_img_preview_1" height="300px;" width="300px;" class="img-thumbnail">
+            </div>
+
+            <div class="col-md-3 col-sm-12">
+                <input style="height: 45px;" type="file" class="form-control" accept="image/*" id="inputImage" name="inputImage" onchange="preview_optional_image_2(event)"> 
+                <h1 class="mt-4" style="color:#000; font-size:18px;">Εικόνα 2:</h1>
+                <img id="optional_img_preview_2" height="300px;" width="300px;" class="img-thumbnail">
+            </div>
+
+            <div class="col-md-3 col-sm-12">
+                <input style="height: 45px;" type="file" class="form-control" accept="image/*" id="inputImage" name="inputImage" onchange="preview_optional_image_3(event)">
+                <h1 class="mt-4" style="color:#000; font-size:18px;">Εικόνα 3:</h1>
+                <img id="optional_img_preview_3" height="300px;" width="300px;" class="img-thumbnail">
+            </div>
+
+            <div class="col-md-3 col-sm-12 optinal-image-preview">
+                <input style="height: 45px;" type="file" class="form-control" accept="image/*" id="inputImage" name="inputImage" onchange="preview_optional_image_4(event)">
+                <h1 class="mt-4" style="color:#000; font-size:18px;">Εικόνα 4:</h1>
+                <img id="optional_img_preview_4" height="300px;" width="300px;" class="img-thumbnail">
+            </div>
+
+
+        
+            <!-- <button style="display:flex; justify-content: center;" type="button" class="btn btn-default mt-4" id="button_img_1" onclick="clear_optional_img()">
+                <i class="far fa-times-circle">Διαγραφή προαιρετικών εικόνων</i>
+            </button> -->
+            
+                
+        </div>
+
+<!-- start of preview scripts for optional images -->
+        <script>
+        // preview the 1stimage before upload
+        function preview_optional_image_1(event) {
+                var reader = new FileReader();
+                reader.onload = function()
+                {
+                var output = document.getElementById('optional_img_preview_1');
+                output.src = reader.result;
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            }
+
+        </script>
+
+        <script>
+        // preview the 2ndimage before upload
+        function preview_optional_image_2(event) {
+                var reader = new FileReader();
+                reader.onload = function()
+                {
+                var output = document.getElementById('optional_img_preview_2');
+                output.src = reader.result;
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            }
+
+        </script>
+
+        <script>
+        // preview the 3ndimage before upload
+        function preview_optional_image_3(event) {
+                var reader = new FileReader();
+                reader.onload = function()
+                {
+                var output = document.getElementById('optional_img_preview_3');
+                output.src = reader.result;
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            }
+
+        </script>
+
+        <script>
+        // preview the 4thimage before upload
+        function preview_optional_image_4(event) {
+                var reader = new FileReader();
+                reader.onload = function()
+                {
+                var output = document.getElementById('optional_img_preview_4');
+                output.src = reader.result;
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            }
+
+        </script>
+<!-- end of preview scripts for optional images -->
+
+
+<!-- empty the optional images fields -->
+        <script>
+         
+        </script>
+
+        
+
+
+
+        <!-- optional field for photos -->
+        <!-- <h1 style="color:#000; font-size:18px; padding-top:70px;">Περισσότερες φωτογραφίες του προϊόντος(Προαιρετικό, εώς και 5 επιπλέον φωτογραφίες):</h1>
+
+        <input style="height: 45px;" type="file" class="form-control" accept="image/*" id="optional_inputImage" name="optional_inputImage" multiple onclick="preview_optional_Images();">
+       
+        <div class="row mt-4">
+            <div class="col-sm-12 text-center" id="optional_img_preview">
+                
+    
+            </div>
+        </div>
+
+    
+
+        <script>
+        // preview the optional images before upload
+            function preview_optional_Images() {
+
+                var preview = document.querySelector('#optional_img_preview');
+
+                if (this.files) {
+                [].forEach.call(this.files, readAndPreview);
+                }
+
+                function readAndPreview(file) {
+
+
+                // Make sure `file.name` matches our extensions criteria
+                if (!/\.(jpe?g|png|jpg|gif|tiff)$/i.test(file.name)) {
+                    document.getElementById("optinal_img_alertbox").style.display = "block";
+                }else{
+                    document.getElementById("optinal_img_alertbox").style.display = "none";
+                    var reader = new FileReader();
+
+                    reader.addEventListener("load", function() {
+                        var image = new Image();
+                        image.height = 200;
+                        image.width  = 200;
+                        image.title  = file.name;
+                        image.src    = this.result;
+                        preview.appendChild(image);
+                    });
+
+                    
+                    reader.readAsDataURL(file);
+                    
+                }
+
+            }
+        }
+
+        
+        document.querySelector('#optional_inputImage').addEventListener("change", preview_optional_Images);
+
+        </script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- alert box if someone try to upload a file that is not img -->
+        <div
+            id="optinal_img_alertbox"
+            class="container mt-4" 
+            style="background-color: white; 
+                text-align: center; 
+                width:400px;
+                border-radius: 15px 50px;
+                border: 2px solid #d8020a;
+                display: none;">
+
+            <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle">Το συγκεκριμένο αρχείο δεν είναι εικόνα</i></h6>
+        </div> 
+        
+        
+        
+
+     
+
+        <button type="submit"  class="btn btn-primary mt-4">Καταχώρηση Νέου προϊόντος</button>
+    
+    
+    
     </form>
 
 </div>
 </div>
+
+
+
+
+
+
 
 
 <!-- <div class="container mt-4">
