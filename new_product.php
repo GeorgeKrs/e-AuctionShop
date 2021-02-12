@@ -629,9 +629,9 @@
     }
 
 
-    for (var key of formData.entries()) {
-        console.log(key[0] + ': ' + key[1]);
-    }
+    // for (var key of formData.entries()) {
+    //     console.log(key[0] + ': ' + key[1]);
+    // }
 
     $.ajax({
         url: 'new_product_backend.php',
