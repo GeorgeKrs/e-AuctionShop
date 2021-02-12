@@ -139,6 +139,10 @@ body {
 
 /* main_section css */
 
+.disabled-link{
+    color: #000;
+    pointer-events: none;
+}
 
 /* product */
 .product-zoom-Div {
@@ -299,11 +303,8 @@ color: #000;
     }
 
     /* pagination */
-    #pagination {
-        display: none;
-    }
-    #responsivePagination{
-        display: inline-block!important;
-        float: none!important;
-    }
+    #pagination{
+        font-size: 14px!important;
+   }
 }
+

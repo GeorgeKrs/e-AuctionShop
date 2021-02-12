@@ -33,84 +33,90 @@
 
 
             
-            <div class="row mt-4" id="productsDiv">
-                <?php 
-                    require 'pagination.php';
-
-                // $sql_query = "SELECT * FROM products_table ORDER BY id DESC";
-
-                // $result = mysqli_query($connection, $sql_query);
-
-                // if (mysqli_num_rows($result) > 0) {
-                //     while($row=mysqli_fetch_assoc($result)) {
-
-                //         $image = "$row[primary_image_url]";
-                //         $title = "$row[title]";
-                //         $price = "$row[price]";
-                //         $id = "$row[id]";
-                //         $auction_ended = "$row[auction_ended]";
-                //         $auction_type = "$row[auction_type]";
-
-                //         echo '
-                //             <div class="card-deck col-sm-12 col-md-4 mt-4 product-zoom-Div" style="padding: 30px;">
-                //                 <a class="category-links" href="products_info.php?link='.$id.'">
-                //                     <img class="card-img-top" src="auctions_images/'.$image.'" alt="product">
-                //                     <div class="card-body">
-                //                         <p class="card-text">'.$title.'</p>
-                //                         <p class="card-text">Λήξη '.$auction_type.'ς:<br>'.$auction_ended.'</p>
-                //                         <p class="card-text">Τιμή: '.$price.' &euro;</p>
-                //                     </div>
-                //                 </a>
-                //             </div>
-                //         ';
-                        
-                //     }
-                // }
-
-                // mysqli_close($connection);
-
-                ?>
-               
-
-            </div>  
 
 
-            <div class="row mt-4 text-center" id="pagination">
-                
-                <div class="col-md-12 col-sm-12">
+            <?php 
+                require 'pagination.php';
+            ?>
+            
+            <!-- start of pagination -->
+            <div class="row mt-4 text-center" style="margin:auto;" id="pagination">
+                <div class="col-md-6 col-sm-12">
+                </div>
+                <div class="col-md-6 col-sm-12">
                     <ul class="pagination">
 
-                        <?php 
-                        $pageno=1;
-                        for ($pageno==1; $pageno <= $total_pages; $pageno++) {
-                            echo '<li class="page-item"><a class="page-link" href="?pageno='.$pageno.'">'.$pageno.'</a></li>';
+                    <?php 
+                    
+                    if ($total_pages <=7){
+                        for ($counter = 1; $counter <= $total_pages; $counter++){
+                            if ($counter==$pageno){
+                                echo "<li class='page-item'><a class='page-link'>$counter</a></li>"; 
+                            }else{
+                                echo "<li class='page-item'><a class='page-link' href='?pageno=$counter'>$counter</a></li>"; 
+                            }
                         }
-                        ?>
 
+                    }elseif ($total_pages > 7){
+                        if ($pageno <= 4) {
+                            for($counter = 1; $counter < 8; $counter++){
+                                if ($counter == $pageno){
+                                    echo "<li class='page-item active'><a class='page-link active'>$counter</a></li>"; 
+                                }else{
+                                    echo "<li class='page-item'><a class='page-link' href='?pageno=$counter'>$counter</a></li>";
+                                }
+                            }
+
+                            echo "<li class='page-item'><a class='page-link'>...</a></li>";
+                            echo "<li class='page-item'><a class='page-link' href='?pageno=$second_last'>$second_last</a></li>";
+                            echo "<li class='page-item'><a class='page-link' href='?pageno=$total_pages'>$total_pages</a></li>";
+
+                        }elseif ($total_pages  > 4 && $pageno < $total_pages - 4){
+                            echo "<li class='page-item'><a class='page-link' href='?pageno=1'>1</a></li>";
+                            echo "<li class='page-item'><a class='page-link' href='?pageno=2'>2</a></li>";
+                            echo "<li class='page-item'><a class='page-link'>...</a></li>";
+                            for (
+                                $counter = $pageno - $adjacents;
+                                $counter <= $pageno + $adjacents;
+                                $counter++ 
+                                ) {  
+                                if ($counter == $pageno) {
+                                    echo "<li class='page-item active'><a class='page-link active'>$counter</a></li>"; 
+                                }else{
+                                    echo "<li class='page-item'><a class='page-link' href='?pageno=$counter'>$counter</a></li>";
+                                    }                  
+                                }
+                            echo "<li class='page-item'><a class='page-link'>...</a></li>";
+                            echo "<li class='page-item'><a class='page-link' href='?pageno=$second_last'>$second_last</a></li>";
+                            echo "<li class='page-item'><a class='page-link' href='?pageno=$total_pages'>$total_pages</a></li>";
+        
+    
+                        }else {
+                                echo "<li class='page-item'><a class='page-link' href='?pageno=1'>1</a></li>";
+                                echo "<li class='page-item'><a class='page-link' href='?pageno=2'>2</a></li>";
+                                echo "<li class='page-item'><a class='page-link'>...</a></li>";
+                                for (
+                                    $counter = $total_pages - 4;
+                                    $counter <= $total_pages;
+                                    $counter++
+                                    ) 
+                                    {
+                                    if ($counter == $pageno) {
+                                        echo "<li class='page-item active'><a class='page-link active'>$counter</a></li>"; 
+                                    }else{
+                                        echo "<li class='page-item'><a class='page-link' href='?pageno=$counter'>$counter</a></li>";
+                                }                   
+                            }
+    
+                        } 
+                    }
+
+                    ?>
+    
                     </ul>
                 </div>
-
-
-
-
-
-<script>
-    $(function(){
-    var current_page_URL = location.href;
-    $( "a" ).each(function() {
-    if ($(this).attr("href") !== "#") {
-        var target_URL = $(this).prop("href");
-       if (target_URL == current_page_URL) {
-          $('pagination a').parents('li, ul').removeClass('active');
-          $(this).parent('li').addClass('active');
-          return false;
-       }
-     }
-  });
-});
-</script>
-
             </div>
+            <!-- end of pagination -->
 
 
 
