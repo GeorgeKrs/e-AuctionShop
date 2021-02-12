@@ -462,25 +462,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <!-- alert box if someone try to upload a file that is not img -->
         <div
             id="optinal_img_alertbox"
@@ -673,14 +654,6 @@
 };
 
 </script>
-
-
-
-
-
-
-
-
 
 
 

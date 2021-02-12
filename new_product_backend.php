@@ -145,14 +145,30 @@
     $auction_ended = strtotime("+$inputAuctionLast day");
     $auction_ended = date("d-m-Y | H:i:s", $auction_ended);
 
-    $registration ="INSERT INTO products_table 
-                    (uuid, title, price, category, sub_category,auction_type, sent_terms, payment_methods, auction_duration, sent_expenses, prod_status, price_raise, prod_description, sent_comments, image_url, auction_started, auction_ended)     
-                    VALUES 
-                    ('$uuid', '$inputΤitle', '$inputPrice', '$inputCategory', '$inputSubCategory', '$inputType', '$inputTermsCondition', '$payment_methods', '$inputAuctionLast Ημέρες', '$inputSentExpenses', '$inputState', '$inputRaisePrice', '$inputDescription', '$inputSentComments', '$inputImage', '$auction_started','$auction_ended')";
 
-    mysqli_query($connection, $registration);
+    // create a unique product number and check it for duplicates in database
+    $checkVariable = false;
 
-    
+    while ($checkVariable == false){
+
+        $prod_number = rand(1000000, 9999999);
+
+        $search_prod_number = "SELECT * FROM products_table WHERE prod_number= '$prod_number'";
+        $search_result = mysqli_query($connection, $search_prod_number);
+        $number_rows = mysqli_num_rows($search_result);
+        
+        if ($number_rows == 0){
+            $registration ="INSERT INTO products_table 
+                        (uuid, title, price, category, sub_category,auction_type, sent_terms, payment_methods, auction_duration, sent_expenses, prod_status, price_raise, prod_description, sent_comments, primary_image_url, auction_started, auction_ended, prod_number)     
+                        VALUES 
+                        ('$uuid', '$inputΤitle', '$inputPrice', '$inputCategory', '$inputSubCategory', '$inputType', '$inputTermsCondition', '$payment_methods', '$inputAuctionLast Ημέρες', '$inputSentExpenses', '$inputState', '$inputRaisePrice', '$inputDescription', '$inputSentComments', '$inputImage', '$auction_started','$auction_ended', '$prod_number')";
+
+                        mysqli_query($connection, $registration);
+                        $checkVariable = true;
+        }    
+    }
+
+   
     // check if succesful
     if ($registration) {
         echo json_encode(array("statusCode"=>200));
