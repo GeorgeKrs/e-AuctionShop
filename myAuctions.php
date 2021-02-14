@@ -47,7 +47,7 @@
         if (mysqli_num_rows($result) > 0) {
             while($row=mysqli_fetch_assoc($result)) {
 
-                $image = "$row[image_url]";
+                $image = "$row[primary_image_url]";
                 $title = "$row[title]";
                 $price = "$row[price]";
                 $id = "$row[id]";

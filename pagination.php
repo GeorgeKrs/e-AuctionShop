@@ -1,55 +1,77 @@
-<?php
-require 'session_check.php';
-require 'db_connection.php';
+<?php 
 
-
-if (isset($_GET['pageno'])) {
-    $pageno = $_GET['pageno'];
+if ($pageno == 1) {
+    echo "<li class='page-item'><a class='page-link disabled-link' href='?pageno=$previous_page'><i class='fas fa-angle-left'></i></a></li>";
 }else{
-    $pageno = 1;
+    echo "<li class='page-item'><a class='page-link' href='?pageno=$previous_page'><i class='fas fa-angle-left'></i></a></li>";
 }
 
-$no_of_records_per_page = 1;
-$offset = ($pageno - 1) * $no_of_records_per_page;
-$previous_page = $pageno - 1;
-$next_page = $pageno + 1;
-$adjacents = 2;
+if ($total_pages <=7){
+    for ($counter = 1; $counter <= $total_pages; $counter++){
+        if ($counter==$pageno){
+            echo "<li class='page-item active'><a class='page-link'>$counter</a></li>"; 
+        }else{
+            echo "<li class='page-item'><a class='page-link' href='?pageno=$counter'>$counter</a></li>"; 
+        }
+    }
 
-$total_pages_sql = "SELECT COUNT(*) FROM products_table";
-$result = mysqli_query($connection, $total_pages_sql);
-$total_rows=mysqli_fetch_array($result)[0];
-$total_pages = ceil($total_rows / $no_of_records_per_page);
-$second_last = $total_pages - 1;
+}elseif ($total_pages > 7){
+    if ($pageno <= 4) {
+        for($counter = 1; $counter < 8; $counter++){
+            if ($counter == $pageno){
+                echo "<li class='page-item active'><a class='page-link active'>$counter</a></li>"; 
+            }else{
+                echo "<li class='page-item'><a class='page-link' href='?pageno=$counter'>$counter</a></li>";
+            }
+        }
 
-$sql_query = "SELECT * FROM products_table LIMIT $offset, $no_of_records_per_page";
-$result_data = mysqli_query($connection,$sql_query);
+        echo "<li class='page-item'><a class='page-link'>...</a></li>";
+        echo "<li class='page-item'><a class='page-link' href='?pageno=$second_last'>$second_last</a></li>";
+        echo "<li class='page-item'><a class='page-link' href='?pageno=$total_pages'>$total_pages</a></li>";
+
+    }elseif ($total_pages  > 4 && $pageno < $total_pages - 4){
+        echo "<li class='page-item'><a class='page-link' href='?pageno=1'>1</a></li>";
+        echo "<li class='page-item'><a class='page-link' href='?pageno=2'>2</a></li>";
+        echo "<li class='page-item'><a class='page-link'>...</a></li>";
+        for (
+            $counter = $pageno - $adjacents;
+            $counter <= $pageno + $adjacents;
+            $counter++ 
+            ) {  
+            if ($counter == $pageno) {
+                echo "<li class='page-item active'><a class='page-link active'>$counter</a></li>"; 
+            }else{
+                echo "<li class='page-item'><a class='page-link' href='?pageno=$counter'>$counter</a></li>";
+                }                  
+            }
+        echo "<li class='page-item'><a class='page-link'>...</a></li>";
+        echo "<li class='page-item'><a class='page-link' href='?pageno=$second_last'>$second_last</a></li>";
+        echo "<li class='page-item'><a class='page-link' href='?pageno=$total_pages'>$total_pages</a></li>";
 
 
-while($row = mysqli_fetch_array($result_data)){
+    }else {
+            echo "<li class='page-item'><a class='page-link' href='?pageno=1'>1</a></li>";
+            echo "<li class='page-item'><a class='page-link' href='?pageno=2'>2</a></li>";
+            echo "<li class='page-item'><a class='page-link'>...</a></li>";
+            for (
+                $counter = $total_pages - 4;
+                $counter <= $total_pages;
+                $counter++
+                ) 
+                {
+                if ($counter == $pageno) {
+                    echo "<li class='page-item active'><a class='page-link active'>$counter</a></li>"; 
+                }else{
+                    echo "<li class='page-item'><a class='page-link' href='?pageno=$counter'>$counter</a></li>";
+            }                   
+        }
 
-    $image = "$row[primary_image_url]";
-    $title = "$row[title]";
-    $price = "$row[price]";
-    $id = "$row[id]";
-    $auction_ended = "$row[auction_ended]";
-    $auction_type = "$row[auction_type]";
-
-    echo '
-        <div class="card-deck col-sm-12 col-md-4 mt-4 product-zoom-Div" style="padding: 30px;">
-            <a class="category-links" href="products_info.php?link='.$id.'">
-                <img class="card-img-top" src="auctions_images/'.$image.'" alt="product">
-                <div class="card-body">
-                    <p class="card-text">'.$title.'</p>
-                    <p class="card-text">Λήξη '.$auction_type.'ς:<br>'.$auction_ended.'</p>
-                    <p class="card-text">Τιμή: '.$price.' &euro;</p>
-                </div>
-            </a>
-        </div>
-    ';
-    
+    } 
 }
 
-mysqli_close($connection);
-
+if ($pageno == $total_pages) {
+    echo "<li class='page-item'><a class='page-link disabled-link' href='?pageno=$next_page'><i class='fas fa-angle-right'></i></a></li>";
+}else{
+    echo "<li class='page-item'><a class='page-link' href='?pageno=$next_page'><i class='fas fa-angle-right'></i></a></li>";
+}
 ?>
-
