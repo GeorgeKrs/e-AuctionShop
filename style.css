@@ -319,6 +319,16 @@ color: #000;
     #pagination{
         font-size: 14px!important;
    }
-   
+
+   /* Auctions General, index */
+   #AuctionsGeneral_Titles{
+       font-size: 20px!important;
+   }
+   #AuctionsGeneral_Ruler{
+       width: 100%!important;
+   }
+   #products_ruler{
+       display: block!important;
+   }
 }
 

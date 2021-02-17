@@ -3,21 +3,27 @@ require 'session_check.php';
 require 'db_connection.php';
 
 
+// if (isset($_POST['pageno'])) {
+//     $pageno = $_POST['pageno'];
+// }else{
+//     $pageno = 1;
+// }
+
 if (isset($_GET['pageno'])) {
     $pageno = $_GET['pageno'];
 }else{
     $pageno = 1;
 }
 
-if (isset($_GET['sortBy_Auctions'])) {
-    $sortBy_Auctions = $_GET['sortBy_Auctions'];
+if (isset($_POST['sortBy_Auctions'])) {
+    $sortBy_Auctions = $_POST['sortBy_Auctions'];
 }else{
     $sortBy_Auctions = "allProducts";
 }
 
 
 // variables for pagination
-$no_of_records_per_page = 3;
+$no_of_records_per_page = 9;
 $offset = ($pageno - 1) * $no_of_records_per_page;
 $previous_page = $pageno - 1;
 $next_page = $pageno + 1;
@@ -42,8 +48,8 @@ if ($sortBy_Auctions=="allProducts"){
 }else if ($sortBy_Auctions=="decreasingPrice"){
    
     $sql_query = "SELECT * FROM products_table ORDER BY price DESC LIMIT $offset, $no_of_records_per_page";
-
 }
+
 
 // $sql_query = "SELECT * FROM products_table LIMIT $offset, $no_of_records_per_page";
 $result_data = mysqli_query($connection,$sql_query);

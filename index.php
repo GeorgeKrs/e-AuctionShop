@@ -36,7 +36,7 @@
         require 'header.php';
     }
     require 'beforeSearchHeader.php';
-    require 'main_section.php';
+    require 'AuctionsGeneral.php';
     require 'footer.php';  
 ?>
 

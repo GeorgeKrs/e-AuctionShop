@@ -24,8 +24,9 @@
                 <div class="mt-4">
                     <h5 id="sortByIdH5tag" style="float: left; padding-right:10px;">Ταξινόμηση βάσει:</h5>
                     <div class="form-floating">
-                        <select class="form-select" id="sortAuctions" name="sortAuctions">
+                        <select class="form-select" id="sortAuctions" name="sortAuctions" onchange="val()">
                             <option value="allProducts" selected>Όλα τα προϊόντα</option>
+                            <option value="endSoon">Λήγουν σύντομα</option>
                             <option value="increasingPrice">Αύξουσα τιμή</option>
                             <option value="decreasingPrice">Φθήνουσα τιμή</option>
                         </select>
@@ -74,20 +75,20 @@
 </div>
 
 
-<!-- 
+
 
 <script> 
-
+    function val() {
     var sortBy_Auctions = document.getElementById("sortAuctions").value;
 
-    var pageno = "<?php 
-                    if (isset($_GET['pageno'])) {
-                    echo $_GET['pageno'];
-                        } ?>"
+    // var pageno = "<?php 
+    //                 if (isset($_GET['pageno'])) {
+    //                 echo $_GET['pageno'];
+    //                     } ?>"
 
     var formData = new FormData();
     formData.append("sortBy_Auctions", sortBy_Auctions);
-    formData.append("pageno", pageno);
+    // formData.append("pageno", pageno);
 
 
     for (var key of formData.entries()) {
@@ -98,7 +99,7 @@
     $.ajax({
         url: "products_filters_backend.php",
         enctype: 'multipart/form-data',
-        type: "GET",
+        type: "POST",
         cache: false, 
         processData: false,
         contentType: false,
@@ -107,5 +108,5 @@
             $("#productsDiv").html(data);
         } 
     });
-
-</script> -->
+}
+</script>
