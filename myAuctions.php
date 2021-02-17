@@ -26,10 +26,15 @@
 <body>
 
 <?php 
+    echo '
+    <div class="text-center" id="siteName" style="background-color: #000; color: #0275d8; padding:12px; display: none;">
+        <h3 style="font-family:Big Shoulders Display, cursive;">e-AuctionShop.gr</h3>
+    </div>
+    ';
     require 'header_loggedin.php';
 ?>
 
-<div class="container generalContainer mt-4">  
+<div class="container generalContainer roundedForms mt-4">  
 
     <ul class="breadcrumb">
         <li><a href="index.php" class="category-links">Αρχική Σελίδα</a></li>

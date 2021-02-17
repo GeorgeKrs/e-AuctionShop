@@ -1,5 +1,5 @@
     <form>
-        <ul class="category-list">
+        <ul class="category-list roundedForms">
             <li style="background-color: #dfdfdf;"><h3 style="font-size: 20px;"><b>Φίλτρα:</h3></b></li>
             <li><hr style="background-color: #0275d8; width: 100%; height: 100%; border-width:3px;"></li>
             <li style="background-color: #dfdfdf;"><h3 style="font-size: 16px;"><b>Κατάσταση:</h3></b></li>

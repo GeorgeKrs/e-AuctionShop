@@ -218,6 +218,11 @@ body {
     margin-left: 20px;
 }
 
+.card {
+    margin: auto;
+    margin-bottom: 20px;
+}
+
 
 /* breadcrumb path, url path to subnavigations */
 
@@ -296,6 +301,14 @@ color: #000;
         overflow-x: hidden!important;
     }
 
+    /* prod_categories */
+    #main_section_id{
+        text-align: center!important;  
+    }
+    #h5_tag{
+        float: none!important;
+    }
+
     /* forgot pw button */
     #forgotPwButton{
         float: none!important;
@@ -306,5 +319,6 @@ color: #000;
     #pagination{
         font-size: 14px!important;
    }
+   
 }
 

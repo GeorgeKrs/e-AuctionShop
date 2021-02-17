@@ -28,6 +28,11 @@
     
 <?php 
     require 'session_check.php';
+    echo '
+    <div class="text-center" id="siteName" style="background-color: #000; color: #0275d8; padding:12px; display: none;">
+        <h3 style="font-family:Big Shoulders Display, cursive;">e-AuctionShop.gr</h3>
+    </div>
+    ';
     if(isset($_SESSION['username'])){
         require 'header_loggedin.php';
     } else {
@@ -43,7 +48,7 @@
 <!-- div for background to be white (white-Div) -->
 <div class="container mt-4 classforfooter">
 <!-- div for header 2 only -->
-<div class="generalContainer">
+<div class="generalContainer roundedForms">
 
 
 <!-- BREADCRUMB -->
@@ -73,7 +78,7 @@
         <div class="col-lg-3 col-sm-12">
             <!-- side nav -->
             <div class="sideNav mt-4">
-                <ul class="category-list">
+                <ul class="category-list roundedForms">
                     <li style="background-color: #dfdfdf;"><h3 style="font-size: 20px;"><b>Υποκατηγορίες:</h3></b></li>
                     <li><hr style="background-color: #0275d8; width: 100%; height: 100%; border-width:3px;"></li>
 
@@ -117,15 +122,15 @@
 
         <div class="col-lg-9 col-sm-12">
             <div class="row"> 
-                <div class="col-11 d-inline-flex flex-column">   
+                <div class="col-11">   
                 <!-- resultDiv top of the pag e -->
-                    <div class="mainSection mt-4">
-                        <div class="resultsDiv">
+                    <div class="mainSection mt-4" id="main_section_id">
+                        <div class="resultsDiv roundedForms">
                             <h3><b>Βρέθηκαν Χ καταχωρήσεις</h3></b>
                             <hr style="background-color: #0275d8; width: 100%; height: 100%; border-width:3px;">
                             <!-- sort based on price or time -->
-                            <h5 style="float: left; padding-right:10px;">Ταξινόμηση βάσει:</h5>
-                            <div class="form-floating">
+                            <h5 style="float: left; padding-right:10px;" id="h5_tag">Ταξινόμηση βάσει:</h5>
+                            <div class="form-floating" style="margin-right: 10px;">
                                 <select class="form-select" id="sortAuctions">
                                     <option value="soonExpired"selected>Λήγουν συντομα</option>
                                     <option value="newProducts">Καινούργια προϊόντα</option>
@@ -137,7 +142,7 @@
                     </div>
                 </div>
             </div>
-        <!-- end of resultDiv top of the page -->
+            <!-- end of resultDiv top of the page -->
             
 
             <div class="row mt-4"> <!--row for objects-->
