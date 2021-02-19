@@ -261,6 +261,11 @@ color: #000;
 }
 
 
+/* product info */
+.disabledDiv {
+    pointer-events: none;
+    opacity: 0.4;
+}
 
 
 

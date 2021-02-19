@@ -24,13 +24,22 @@
 </head>
 <body>
 
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 <?php 
     echo '
     <div class="text-center" id="siteName" style="background-color: #000; color: #0275d8; padding:12px; display: none;">
         <h3 style="font-family:Big Shoulders Display, cursive;">e-AuctionShop.gr</h3>
     </div>
     ';
-    require 'header_loggedin.php';
+
+    if(isset($_SESSION['username'])){
+        require 'header_loggedin.php';
+    } else {
+        require 'header.php';
+    }
 
 
 
@@ -86,7 +95,15 @@
         }
     }
     // owner info sql query
+
+
+    // date and time data
+    $date_and_time = explode("|" , $auction_ended);
+    $date = explode("-", $date_and_time[0]);
+    $time = explode(":", $date_and_time[1]);
+    // date and time data
 ?>
+
 
 
 
@@ -119,11 +136,11 @@
 
             <h4><b><u>Λήγει σε:</u></b></h4>
 
-            <div class="mt-4 mb-4 card-columns">
+            <div class="mt-4 mb-4 card-columns" id="timerCard">
                 <div class="card bg-light">
                     <div class="card-body text-center">
-                        <p class="card-text">
-                            hello
+                        <p class="card-text" id="countDown">
+                            
                         </p>
                     </div>
                 </div>
@@ -164,8 +181,8 @@
                             Προσφορά:
                             </p>
                             
-                            <input type="number" id="bid_price" name="bid_price" step="0.5" min='.$price_raise.';>
-                            <button id="bid_Button_submit" class="btn btn-dark" type="button" onclick="bidPrice_function()">Υποβολή</button>
+                            <input type="number" id="bid_price" name="bid_price" step="0.5" min='.$price_raise.'>
+                            <button id="bid_button" class="btn btn-dark" type="button" onclick="bidPrice_function()">Υποβολή</button>
 
                         </div>
                     </div>
@@ -211,7 +228,7 @@
                         <div class="card-body text-center">
                             <p class="card-text">
 
-                            <button id="bid_Button_submit" class="btn btn-dark" type="button" onclick="buyProduct_function()">Αγορά Προϊόντος</button>
+                            <button id="buy_button" class="btn btn-dark" type="button" onclick="buyProduct_function()">Αγορά Προϊόντος</button>
 
                         </div>
                     </div>
@@ -347,25 +364,13 @@
         <!-- product id  -->
 
         
-        
-
-
-
-        
-
-
-
-
+ 
 
     </div>
     <!-- more info for product -->
 
-
-
-
 <!-- end of white-Div -->
 </div>
-
 
 
 
@@ -374,13 +379,89 @@
 ?>
 
 
+<script>
+    function bidPrice_function() {
+        var bid_price = parseFloat(document.getElementById("bid_price").value);
+        var price = parseFloat(<?php echo $price; ?>);
+        var min_price_raise = parseFloat(<?php echo $price_raise; ?>);
+
+        if (bid_price < min_price_raise){
+            alert("Η προσφορά σας είναι μικρότερη από την ελάχιστη προσφορά")
+        }else{
+            bid_price = bid_price + price; 
+            alert(bid_price);
+        }
+    }
+</script>
 
 
 
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
 
+    var date_day = parseInt(<?php echo $date[0]; ?>) ; 
+    var date_month = parseInt(<?php echo $date[1]; ?>) - 1 ; 
+    var date_year = parseInt(<?php echo $date[2]; ?>) ; 
+
+    var time_hour = parseInt(<?php echo $time[0]; ?>) ; 
+    var time_min = parseInt(<?php echo $time[1]; ?>) ; 
+    var time_sec = parseInt(<?php echo $time[2]; ?>) ; 
+
+    var countDownDate = new Date(date_year, date_month, date_day, time_hour, time_min, time_sec).getTime();
+
+
+
+    // Update the count down every 1 second
+    var updateTimer = setInterval(function() {
+
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="demo"
+    document.getElementById("countDown").innerHTML = days + " Ημέρες " + hours + " Ώρες "
+    + minutes + " Λεπτά " + seconds + " Δευτερόλεπτα ";
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+        clearInterval(updateTimer);
+        document.getElementById("countDown").innerHTML = "Η <?php echo $auction_type; ?> έχει λήξει.";
+        document.getElementById("timerCard").style.color = "red";
+
+        // var auction_type = <?php echo $auction_type; ?> ;
+
+        // alert(auction_type);
+
+        // if (auction_type == "Δημοπρασία") {
+        //     document.getElementById("bid_price").disabled = true;
+        //     document.getElementById("bid_button").disabled = true;
+        // }else{
+        //     document.getElementById("buy_button").disabled = true;
+        // }
+
+        <?php 
+            if ($auction_type=="Δημοπρασία"){
+                echo "document.getElementById('bid_price').disabled = true;\n"; 
+                echo "document.getElementById('bid_button').disabled = true;";   
+            }else{
+                echo "document.getElementById('buy_button').disabled = true;\n"; 
+            }
+        ?>
+    }
+    }, 1000);
+
+</script>
+
+
+    
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
