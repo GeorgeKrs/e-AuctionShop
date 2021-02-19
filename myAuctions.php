@@ -50,7 +50,7 @@
                     $pageno = 1;
                 }
                 // variables for pagination
-                $no_of_records_per_page = 3;
+                $no_of_records_per_page = 8;
                 $offset = ($pageno - 1) * $no_of_records_per_page;
                 $previous_page = $pageno - 1;
                 $next_page = $pageno + 1;
@@ -80,14 +80,14 @@
                         $auction_type = "$row[auction_type]";
 
                         echo '
-                        <div class="col-lg-3 col-sm-12">
+                        <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
                             <div class="card product-zoom-Div" style="padding: 30px;">
                                 <a class="category-links" href="products_info.php?link='.$id.'">
                                     <img class="card-img-top" src="auctions_images/'.$image.'" alt="product">
                                     <div class="card-body">
                                         <p class="card-text">'.$title.'</p>
                                         <p class="card-text">Λήξη '.$auction_type.'ς:<br>'.$auction_ended.'</p>
-                                        <p class="card-text">Τιμή: '.$price.' &euro;</p>
+                                        <p class="card-text">Αρχική Τιμή: '.$price.' &euro;</p>
                                     </div>
                                 </a>
                             </div>

@@ -218,11 +218,22 @@ body {
     margin-left: 20px;
 }
 
-.card {
+/* .card {
     margin: auto;
     margin-bottom: 20px;
+    height: 500px;
+    margin-right: 3px;
+    border-color: #000;
 }
 
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+} */
+
+.card-columns {
+    column-count: 1;
+}
 
 /* breadcrumb path, url path to subnavigations */
 
@@ -329,6 +340,12 @@ color: #000;
    }
    #products_ruler{
        display: block!important;
+   }
+
+   /* product info */
+
+   #bid_Button_submit{
+       margin-top: 16px!important;
    }
 }
 

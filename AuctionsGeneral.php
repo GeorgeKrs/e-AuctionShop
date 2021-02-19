@@ -42,16 +42,18 @@
                     $auction_type = "$row[auction_type]";
 
                     echo '
-                        <div class="card-deck col-sm-6 col-lg-4 mt-4 product-zoom-Div" style="padding: 30px;">
+                    <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
+                        <div class="card product-zoom-Div" style="padding: 30px;">
                             <a class="category-links" href="products_info.php?link='.$id.'">
                                 <img class="card-img-top" src="auctions_images/'.$image.'" alt="product">
                                 <div class="card-body">
                                     <p class="card-text">'.$title.'</p>
                                     <p class="card-text">Λήξη '.$auction_type.'ς:<br>'.$auction_ended.'</p>
-                                    <p class="card-text">Τιμή: '.$price.' &euro;</p>
+                                    <p class="card-text">Αρχική Τιμή: '.$price.' &euro;</p>
                                 </div>
                             </a>
                         </div>
+                    </div>
                     ';
 
                 }

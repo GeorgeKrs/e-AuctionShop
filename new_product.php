@@ -152,7 +152,7 @@
             
             <div class="form-group col-md-6">
                 <label for="inputRaisePrice">Ρυθμός αύξησης τιμής προϊόντος:</label>
-                <input type="number" min="1" max="100" step="1" class="form-control" name="inputRaisePrice" id="inputRaisePrice" disabled>
+                <input type="number" min="1" max="100" step="0.5" class="form-control" name="inputRaisePrice" id="inputRaisePrice" disabled>
             </div>
 
         </div>
