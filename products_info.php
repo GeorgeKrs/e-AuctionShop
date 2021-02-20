@@ -57,6 +57,7 @@
         while($row=mysqli_fetch_assoc($result)) {
 
             $uuid = "$row[uuid]";
+            $id = "$row[id]";
             $title = "$row[title]";
             $price = "$row[price]";
             $category = "$row[category]";
@@ -443,9 +444,14 @@
             }else{
                 echo "document.getElementById('buy_button').disabled = true;\n"; 
             }
+
+            $sql_query_update = "UPDATE products_table SET auction_status='expired' WHERE id='$id'";
+            $response = mysqli_query($connection, $sql_query_update);
+
         ?>
     }
     }, 1000);
+
 
 </script>
 

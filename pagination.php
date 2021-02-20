@@ -1,5 +1,9 @@
 <?php 
 
+if (isset($_GET['auctionStatus'])) {
+    $auctionsHistory = $_GET['auctionStatus'];
+}
+
 if ($pageno == 1) {
     echo "<li class='page-item'><a class='page-link disabled-link' href='?pageno=$previous_page'><i class='fas fa-angle-left'></i></a></li>";
 }else{

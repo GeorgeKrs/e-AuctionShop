@@ -46,7 +46,7 @@
                 </div>
             </li>
             <li style="display:flex; justify-content: center;">
-                <button class="btn btn-primary" type="submit">Εφαρμογή</button>
+                <button class="btn btn-primary" type="button">Εφαρμογή</button>
             </li>
 
         </ul>

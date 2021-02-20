@@ -42,7 +42,7 @@
                     $auction_type = "$row[auction_type]";
 
                     echo '
-                    <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
+                    <div class="mt-4 mb-4 col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
                         <div class="card product-zoom-Div" style="padding: 30px;">
                             <a class="category-links" href="products_info.php?link='.$id.'">
                                 <img class="card-img-top" src="auctions_images/'.$image.'" alt="product">
