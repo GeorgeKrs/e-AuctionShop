@@ -436,17 +436,6 @@
         document.getElementById("countDown").innerHTML = "Η <?php echo $auction_type; ?> έχει λήξει.";
         document.getElementById("timerCard").style.color = "red";
 
-        // var auction_type = <?php echo $auction_type; ?> ;
-
-        // alert(auction_type);
-
-        // if (auction_type == "Δημοπρασία") {
-        //     document.getElementById("bid_price").disabled = true;
-        //     document.getElementById("bid_button").disabled = true;
-        // }else{
-        //     document.getElementById("buy_button").disabled = true;
-        // }
-
         <?php 
             if ($auction_type=="Δημοπρασία"){
                 echo "document.getElementById('bid_price').disabled = true;\n"; 
