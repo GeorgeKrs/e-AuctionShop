@@ -106,7 +106,7 @@
             <ul class="pagination">
 
                 <?php 
-                    // require 'pagination.php';
+                    
                 ?>
 
             </ul>

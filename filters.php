@@ -1,4 +1,4 @@
-    <form>
+    <form id="filters_form">
         <ul class="category-list roundedForms">
             <li style="background-color: #dfdfdf;"><h3 style="font-size: 20px;"><b>Φίλτρα:</h3></b></li>
             <li><hr style="background-color: #0275d8; width: 100%; height: 100%; border-width:3px;"></li>
@@ -38,16 +38,17 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <!-- <label for="startPrice">από:</label> -->
-                    <input type="text" class="form-control" name="startPrice" id="startPrice" placeholder="από:">
+                    <input type="number" min="00" class="form-control" name="startPrice" id="startPrice" placeholder="από:">
                 </div>
                 <div class="form-group col-md-6">
                     <!-- <label for="endPrice">έως:</label> -->
-                    <input type="text" class="form-control" name="endPrice" id="endPrice" placeholder="έως:">
+                    <input type="number" min="1" class="form-control" name="endPrice" id="endPrice" placeholder="έως:">
                 </div>
             </li>
             <li style="display:flex; justify-content: center;">
-                <button class="btn btn-primary" type="button">Εφαρμογή</button>
+                <button class="btn btn-primary" type="submit">Εφαρμογή</button>
             </li>
 
         </ul>
     </form>
+

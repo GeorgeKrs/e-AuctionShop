@@ -127,7 +127,7 @@
         <div class="mt-4 col-lg-6 col-sm-12">
             <?php 
                 echo "<h4><b><u>$title</u></b></h4>";
-                echo '<img style="width: 100%; height:400px; padding: 40px;" src="auctions_images/'.$image.'" alt="product">';
+                echo '<img style="width: 100%; padding: 40px;" src="auctions_images/'.$image.'" alt="product">';
             ?>
         </div>
 
