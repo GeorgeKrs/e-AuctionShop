@@ -57,7 +57,8 @@
 <!-- BREADCRUMB -->
 <ul class="breadcrumb">
   <li><a href="index.php" class="category-links">Αρχική σελίδα</a></li>
-    <?php 
+    <?php
+        $category = $breadcrumb; 
         if ($breadcrumb=="Υπολογιστές"){
             echo '
             <li><a href="#" class="category-links">Υπολογιστές</a></li>
@@ -159,12 +160,12 @@
 
                         <li style="padding-left: 10px;">
                             <input class="form-check-input" type="radio" name="sub_category_name" id="e_guitars" value="e_guitars">
-                            <label class="form-check-label" for="e_guitars"><b>Ηλεκτρικές κιθάρες</b></label>
+                            <label class="form-check-label" for="e_guitars"><b>Ηλεκτρικές Kιθάρες</b></label>
                         </li>
 
                         <li style="padding-left: 10px;">
                             <input class="form-check-input" type="radio" name="sub_category_name" id="c_guitars" value="c_guitars">
-                            <label class="form-check-label" for="c_guitars"><b>Κλασσικές κιθάρες</b></label>
+                            <label class="form-check-label" for="c_guitars"><b>Κλασσικές Kιθάρες</b></label>
                         </li>
 
                         <li style="padding-left: 10px;">
@@ -230,7 +231,7 @@
                             <!-- sort based on price or time -->
                             <h5 style="float: left; padding-right:10px;" id="h5_tag">Ταξινόμηση βάσει:</h5>
                             <div class="form-floating" style="margin-right: 10px;">
-                                <select class="form-select" id="sortAuctions">
+                                <select class="form-select" id="sortAuctions" onchange="validateFilters();">
                                     <option value="soonExpired"selected>Λήγουν συντομα</option>
                                     <option value="newProducts">Καινούργια προϊόντα</option>
                                     <option value="Ascending">Αύξουσα τιμή</option>
@@ -247,40 +248,8 @@
         <div class="container mt-4">
         <div class="row" id="products_Div">
             <?php 
-                $category = $breadcrumb;
-                $sql_query = "SELECT * FROM products_table WHERE category='$category'";
-            
-                $result = mysqli_query($connection, $sql_query);
-            
-                if (mysqli_num_rows($result) > 0) {
-                    while($row=mysqli_fetch_assoc($result)) {
+                
 
-                        $image = "$row[primary_image_url]";
-                        $title = "$row[title]";
-                        $price = "$row[price]";
-                        $id = "$row[id]";
-                        $auction_ended = "$row[auction_ended]";
-                        $auction_type = "$row[auction_type]";
-
-                        echo '
-                        <div class="mt-4 mb-4 col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
-                            <div class="card product-zoom-Div" style="padding: 30px;">
-                                <a class="category-links" href="products_info.php?link='.$id.'">
-                                    <img class="card-img-top" src="auctions_images/'.$image.'" alt="product">
-                                    <div class="card-body">
-                                        <p class="card-text">'.$title.'</p>
-                                        <p class="card-text">Λήξη '.$auction_type.'ς:<br>'.$auction_ended.'</p>
-                                        <p class="card-text">Αρχική Τιμή: '.$price.' &euro;</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        ';
-                        
-                    }
-                }
-
-                mysqli_close($connection);
             ?>
         </div>
         </div>
@@ -303,44 +272,18 @@
 ?>
 
 
-
-
 <script>
+    var category = "<?php 
+                    if (isset($_GET['link'])) {
+                    echo $_GET['link'];
+                    } ?>"
 
     formData = new FormData();
-
-    $('#sortAuctions').on('change', function() {
-        sortAuctions = this.value;
-        formData.append("sortAuctions", sortAuctions);
-    });
-
-    $('input[name=typefilter]').change(function(){
-        var typeFilter = $( 'input[name=typefilter]:checked' ).val();
-        formData.append("typeFilter", typeFilter);
-    });
-
-    $('input[name=condfilter]').change(function(){
-        var condfilter = $( 'input[name=condfilter]:checked' ).val();
-        formData.append("condfilter", condfilter);
-    });
-
-    $('input[name=sub_category_name]').change(function(){
-        var sub_category_name = $( 'input[name=sub_category_name]:checked' ).val();
-        formData.append("sub_category_name", sub_category_name);
-    });
-
-
-    document.getElementById('filters_form').addEventListener('submit', function(e) {
-    e.preventDefault();
-        var min_price = parseInt(document.getElementById('startPrice').value);
-        var max_price = parseInt(document.getElementById('endPrice').value);
-        formData.append("min_price", min_price);
-        formData.append("max_price", max_price);
-    });
+    formData.append("category", category);
 
 
     $.ajax({
-        url: 'prod_categories_filters.php',
+        url: 'prod_category_backend.php',
         enctype: 'multipart/form-data',
         type: "POST",
         cache: false, 
@@ -352,6 +295,134 @@
         }
     });
 
+</script>
+
+
+
+<script>
+    function validateFilters(clicked_id) {
+
+        var orderProducts = document.getElementById("sortAuctions");
+        var sortAuctions = orderProducts.options[orderProducts.selectedIndex].text;
+
+        var min_price = parseInt(document.getElementById('startPrice').value);
+        var max_price = parseInt(document.getElementById('endPrice').value);
+
+        formData = new FormData();
+
+        // check sub-categories
+        if(document.getElementById('pcAll').checked) {
+            sub_category_name = ""; 
+        }else if(document.getElementById('cpu').checked) {
+            sub_category_name = "Επεξεργαστές" 
+        }else if(document.getElementById('gpu').checked) {
+            sub_category_name = "Κάρτες Γραφικών"
+        }else if(document.getElementById('monitor').checked) {
+            sub_category_name = "Οθόνες"
+        }else if(document.getElementById('mobo').checked) {
+            sub_category_name = "Μητρικές Κάρτες"
+        }else if(document.getElementById('pcGeneral').checked) {
+            sub_category_name = "Περιφερειακά"
+        }else if(document.getElementById('jewelleryAll').checked) {
+            sub_category_name = "";
+        }else if(document.getElementById('neckless').checked) {
+            sub_category_name = "Κολιέ";
+        }else if(document.getElementById('bracelets').checked) {
+            sub_category_name = "Βραχιόλια";
+        }else if(document.getElementById('rings').checked) {
+            sub_category_name = "Δαχτυλίδια";
+        }else if(document.getElementById('earings').checked) {
+            sub_category_name = "Σκουλαρίκια";
+        }else if(document.getElementById('musicInstrumentsfiltersAll').checked) {
+            sub_category_name = "";
+        }else if(document.getElementById('e_guitars').checked) {
+            sub_category_name = "Ηλεκτρικές Kιθάρες";
+        }else if(document.getElementById('c_guitars').checked) {
+            sub_category_name = "Κλασσικές Kιθάρες";
+        }else if(document.getElementById('bass').checked) {
+            sub_category_name = "Μπάσο";
+        }else if(document.getElementById('keys').checked) {
+            sub_category_name = "Πλήκτρα";
+        }else if(document.getElementById('gamesfiltersAll').checked) {
+            sub_category_name = "";
+        }else if(document.getElementById('PS4').checked) {
+            sub_category_name = "PS4";
+        }else if(document.getElementById('PS5').checked) {
+            sub_category_name = "PS5";
+        }else if(document.getElementById('PC_games').checked) {
+            sub_category_name = "PC";
+        }else if(document.getElementById('XBOX').checked) {
+            sub_category_name = "XBOX";
+        }
+
+        // check condition
+        if(document.getElementById('condfilter_all').checked) {
+            condfilter = ""; 
+        }else if(document.getElementById('condfilter_new').checked) {
+            condfilter = "Καινούργιο" 
+        }else if(document.getElementById('condfilter_old').checked) {
+            condfilter = "Μεταχειρισμένο"
+        }
+
+        // check type
+        if(document.getElementById('typefilter_all').checked) {
+            typeFilter = ""
+        }else if(document.getElementById('typeAuction').checked) {
+            typeFilter = "Δημοπρασία"
+        }else if(document.getElementById('typefilter_sale').checked) {
+            typeFilter = "Πώληση"
+        }
+
+
+        formData.append("sortAuctions", sortAuctions);
+        formData.append("min_price", min_price);
+        formData.append("max_price", max_price);
+
+        formData.append("typeFilter", typeFilter);
+        formData.append("condfilter", condfilter);
+        formData.append("sub_category_name", sub_category_name);
+
+        formData.append("clicked_id",clicked_id);
+
+
+        // $('#sortAuctions').on('change', function() {
+        //     sortAuctions = this.value;
+        //     formData.append("sortAuctions", sortAuctions);
+        // });
+
+        // $('input[name=typefilter]').change(function(){
+        //     var typeFilter = $( 'input[name=typefilter]:checked' ).val();
+        //     formData.append("typeFilter", typeFilter);
+        // });
+
+        // $('input[name=condfilter]').change(function(){
+        //     var condfilter = $( 'input[name=condfilter]:checked' ).val();
+        //     formData.append("condfilter", condfilter);
+        // });
+
+        // $('input[name=sub_category_name]').change(function(){
+        //     var sub_category_name = $( 'input[name=sub_category_name]:checked' ).val();
+        //     formData.append("sub_category_name", sub_category_name);
+        // });
+
+        for (var key of formData.entries()) {
+        console.log(key[0] + ': ' + key[1]);
+        }
+
+
+        // $.ajax({
+        //     url: 'prod_categories_filters.php',
+        //     enctype: 'multipart/form-data',
+        //     type: "POST",
+        //     cache: false, 
+        //     processData: false,
+        //     contentType: false,
+        //     data: formData, 
+        //     success: function(data) {
+        //         $('#products_Div').html(data);
+        //     }
+        // });
+    }
 </script>
 
 

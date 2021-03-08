@@ -5,30 +5,30 @@
             <li style="background-color: #dfdfdf;"><h3 style="font-size: 16px;"><b>Κατάσταση:</h3></b></li>
 
             <li style="padding-left: 10px;">
-                <input class="form-check-input" type="radio" name="condfilter" id="condfilter_all" value="condAll" checked>
+                <input class="form-check-input" type="radio" name="condfilter" id="condfilter_all" value="condAll" checked onclick="validateFilters();">
                 <label class="form-check-label" for="condfilter_all">Όλα</label>
             </li>
             <li style="padding-left: 10px;">
-                <input class="form-check-input" type="radio" name="condfilter" id="condfilter_new" value="condNew">
+                <input class="form-check-input" type="radio" name="condfilter" id="condfilter_new" value="condNew" onclick="validateFilters();">
                 <label class="form-check-label" for="condfilter_new">Καινούργιο</label>
             </li>
             <li style="padding-left: 10px;">
-                <input class="form-check-input" type="radio" name="condfilter" id="condfilter_old" value="condOld">
+                <input class="form-check-input" type="radio" name="condfilter" id="condfilter_old" value="condOld" onclick="validateFilters();">
                 <label class="form-check-label" for="condfilter_old">Μεταχειρισμένο</label>
             </li>
     
             <li style="background-color: #dfdfdf;"><h3 style="font-size: 16px; padding-top:20px;"><b>Είδος καταχώρησης:</h3></b></li>
 
             <li style="padding-left: 10px;">
-                <input class="form-check-input" type="radio" name="typefilter" id="typefilter_all" value="typeAll" checked>
+                <input class="form-check-input" type="radio" name="typefilter" id="typefilter_all" value="typeAll" checked onclick="validateFilters();">
                 <label class="form-check-label" for="typefilter_all">Όλες</label>
             </li>
             <li style="padding-left: 10px;">
-                <input class="form-check-input" type="radio" name="typefilter" id="typefilter_auction" value="typeAuction">
+                <input class="form-check-input" type="radio" name="typefilter" id="typefilter_auction" value="typeAuction" onclick="validateFilters();">
                 <label class="form-check-label" for="typefilter_auction">Δημοπρασίες</label>
             </li>
             <li style="padding-left: 10px;">
-                <input class="form-check-input" type="radio" name="typefilter" id="typefilter_sale" value="typeSale">
+                <input class="form-check-input" type="radio" name="typefilter" id="typefilter_sale" value="typeSale" onclick="validateFilters();">
                 <label class="form-check-label" for="typefilter_sale">Πωλήσεις</label>
             </li>
 
@@ -38,15 +38,15 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <!-- <label for="startPrice">από:</label> -->
-                    <input type="number" min="00" class="form-control" name="startPrice" id="startPrice" placeholder="από:">
+                    <input type="text" class="form-control" name="startPrice" id="startPrice" placeholder="από:" onclick="validateFilters();">
                 </div>
                 <div class="form-group col-md-6">
                     <!-- <label for="endPrice">έως:</label> -->
-                    <input type="number" min="1" class="form-control" name="endPrice" id="endPrice" placeholder="έως:">
+                    <input type="text" class="form-control" name="endPrice" id="endPrice" placeholder="έως:" onclick="validateFilters();">
                 </div>
             </li>
             <li style="display:flex; justify-content: center;">
-                <button class="btn btn-primary" type="submit">Εφαρμογή</button>
+                <button class="btn btn-primary" type="button" onclick="validateFilters();">Εφαρμογή</button>
             </li>
 
         </ul>

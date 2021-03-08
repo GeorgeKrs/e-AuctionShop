@@ -267,6 +267,14 @@ color: #000;
     opacity: 0.4;
 }
 
+/* pagination */
+
+.active-btn{
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}
+
 
 
 /* responsive css */
