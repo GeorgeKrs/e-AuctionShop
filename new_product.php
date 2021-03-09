@@ -229,7 +229,7 @@
                 <label for="inputState">Κατάσταση:</label>
                 <select name="inputState" id="inputState" class="form-control" required>
                         <option selected>Επιλογή...</option>
-                        <option value="Καινούριο">Καινούριο</option>
+                        <option value="Καινούργιο">Καινούργιο</option>
                         <option value="Μεταχειρισμένο">Μεταχειρισμένο</option>
                 </select>
             </div>

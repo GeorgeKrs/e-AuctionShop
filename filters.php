@@ -38,15 +38,19 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <!-- <label for="startPrice">από:</label> -->
-                    <input type="text" class="form-control" name="startPrice" id="startPrice" placeholder="από:" onclick="validateFilters();">
+                    <input type="text" class="form-control" name="startPrice" id="startPrice" placeholder="από:">
                 </div>
                 <div class="form-group col-md-6">
                     <!-- <label for="endPrice">έως:</label> -->
-                    <input type="text" class="form-control" name="endPrice" id="endPrice" placeholder="έως:" onclick="validateFilters();">
+                    <input type="text" class="form-control" name="endPrice" id="endPrice" placeholder="έως:">
                 </div>
             </li>
             <li style="display:flex; justify-content: center;">
                 <button class="btn btn-primary" type="button" onclick="validateFilters();">Εφαρμογή</button>
+            </li>
+
+            <li class="mt-4" style="display:flex; justify-content: center;">
+                <button class="btn btn-primary" type="button" onclick="window.location.reload();">Καθαρισμός Φίλτρων</button>
             </li>
 
         </ul>

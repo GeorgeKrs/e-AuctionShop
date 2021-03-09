@@ -9,19 +9,30 @@ if (isset($_POST['category'])) {
     $category = null;
 }
 
-$sql_query = "SELECT * FROM products_table WHERE category='$category'";
-$total_pages_sql = "SELECT COUNT(*) FROM products_table WHERE category='$category'";  
+if (isset($_POST['clicked_id'])) {
+    $button_page  = $_POST['clicked_id'];
+}else{
+    $button_page  = null;
+}
+
+
+$total_pages_sql = "SELECT COUNT(*) FROM products_table WHERE category='$category' AND auction_status='active' ";  
 
 // variables for pagination
-$no_of_records_per_page = 3;
+$limit = 3;
 $pages_result = mysqli_query($connection, $total_pages_sql);
 $total_rows=mysqli_fetch_array($pages_result)[0];
-$total_pages = ceil($total_rows / $no_of_records_per_page);
+$total_pages = ceil($total_rows / $limit);
 // end of variables for pagination
 
-$limit = 3;
+// if ($button_page == 1){
+//     $offset = 0;
+// }else{
+//     $offset = ($button_page - 1) * $limit;
+// }
 
-$sql_query .=" LIMIT $limit";
+$sql_query = "SELECT * FROM products_table WHERE category='$category' AND auction_status='active' LIMIT $limit ";
+
 
 
 $result = mysqli_query($connection, $sql_query);
@@ -63,7 +74,7 @@ echo
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-end">';
                         for ($i = 1; $i<=$total_pages; $i++){
-                            if ($i == 1) {
+                            if ($i == $button_page){
                                 echo '
                                 <li class="page-item">
                                     <button type="button" id="'.$i.'" onclick="validateFilters(this.id);" style="margin:0.5px;" class="active-btn btn btn-primary">'.$i.'</button>
@@ -82,7 +93,7 @@ echo
                 </nav>
             </div> 
         </div>
-    </div>  
+    </div>
     ';
 
 mysqli_close($connection);
