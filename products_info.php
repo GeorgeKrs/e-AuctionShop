@@ -382,9 +382,9 @@
 
 <script>
     function bidPrice_function() {
-        var bid_price = parseFloat(document.getElementById("bid_price").value);
-        var price = parseFloat(<?php echo $price; ?>);
-        var min_price_raise = parseFloat(<?php echo $price_raise; ?>);
+        var bid_price = parseInt(document.getElementById("bid_price").value);
+        var price = parseInt(<?php echo $price; ?>);
+        var min_price_raise = parseInt(<?php echo $price_raise; ?>);
 
         if (bid_price < min_price_raise){
             alert("Η προσφορά σας είναι μικρότερη από την ελάχιστη προσφορά")
@@ -400,56 +400,53 @@
 
 <script>
 
-    var date_day = parseInt(<?php echo $date[0]; ?>) ; 
-    var date_month = parseInt(<?php echo $date[1]; ?>) - 1 ; 
-    var date_year = parseInt(<?php echo $date[2]; ?>) ; 
+    var date_day = parseFloat(<?php echo $date[0]; ?>) ; 
+    var date_month = parseFloat(<?php echo $date[1]; ?>) - 1 ; 
+    var date_year = parseFloat(<?php echo $date[2]; ?>) ; 
 
-    var time_hour = parseInt(<?php echo $time[0]; ?>) ; 
-    var time_min = parseInt(<?php echo $time[1]; ?>) ; 
-    var time_sec = parseInt(<?php echo $time[2]; ?>) ; 
+    var time_hour = parseFloat(<?php echo $time[0]; ?>) ; 
+    var time_min = parseFloat(<?php echo $time[1]; ?>) ; 
+    var time_sec = parseFloat(<?php echo $time[2]; ?>) ; 
 
     var countDownDate = new Date(date_year, date_month, date_day, time_hour, time_min, time_sec).getTime();
 
 
-
     // Update the count down every 1 second
     var updateTimer = setInterval(function() {
+        // Get today's date and time
+        var now = new Date().getTime();
 
-    // Get today's date and time
-    var now = new Date().getTime();
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
 
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // Display the result in the element
+        document.getElementById("countDown").innerHTML = days + " Ημέρες " + hours + " Ώρες "
+        + minutes + " Λεπτά " + seconds + " Δευτερόλεπτα ";
 
-    // Display the result in the element with id="demo"
-    document.getElementById("countDown").innerHTML = days + " Ημέρες " + hours + " Ώρες "
-    + minutes + " Λεπτά " + seconds + " Δευτερόλεπτα ";
+        // If the count down is finished
+        if (distance < 0) {
+            clearInterval(updateTimer);
+            document.getElementById("countDown").innerHTML = "Η <?php echo $auction_type; ?> έχει λήξει.";
+            document.getElementById("timerCard").style.color = "red";
 
-    // If the count down is finished, write some text
-    if (distance < 0) {
-        clearInterval(updateTimer);
-        document.getElementById("countDown").innerHTML = "Η <?php echo $auction_type; ?> έχει λήξει.";
-        document.getElementById("timerCard").style.color = "red";
+            <?php 
+                if ($auction_type=="Δημοπρασία"){
+                    echo "document.getElementById('bid_price').disabled = true;\n"; 
+                    echo "document.getElementById('bid_button').disabled = true;";   
+                }else{
+                    echo "document.getElementById('buy_button').disabled = true;\n"; 
+                }
 
-        <?php 
-            if ($auction_type=="Δημοπρασία"){
-                echo "document.getElementById('bid_price').disabled = true;\n"; 
-                echo "document.getElementById('bid_button').disabled = true;";   
-            }else{
-                echo "document.getElementById('buy_button').disabled = true;\n"; 
-            }
-
-            $sql_query_update = "UPDATE products_table SET auction_status='expired' WHERE id='$id'";
-            $response = mysqli_query($connection, $sql_query_update);
-
-        ?>
-    }
+                $sql_query_update = "UPDATE products_table SET auction_status='expired' WHERE id='$id'";
+                // $response = mysqli_query($connection, $sql_query_update);
+            ?>
+        }
     }, 1000);
 
 

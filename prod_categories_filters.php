@@ -93,14 +93,14 @@ if ($sortAuctions!="Λήγουν Σύντομα"){
 // empty array for price filters
 $price_filter=[];
 
-$price_filter[]=" AND price>='$min_price' AND price<='$max_price'";
-
+// $price_filter[]=" AND price>='$min_price' AND price<='$max_price'";
+$price_filter[]=" AND price BETWEEN '$min_price' AND '$max_price'";
 
 
 
 // initialize count and db call
 $total_pages_sql = "SELECT COUNT(*) FROM products_table WHERE category='$category'";
-$sql_query_filtered = "SELECT FROM products_table WHERE category='$category'";
+$sql_query_filtered = "SELECT * FROM products_table WHERE category='$category'";
 
 if ($sortAuctions == "Λήγουν Σύντομα"){
     echo "Expired Soon";
@@ -116,24 +116,7 @@ if ($sortAuctions == "Λήγουν Σύντομα"){
     $sql_query_filtered.= '' .implode('', $sql_type_cond_filter);
     $sql_query_filtered.= '' .implode('AND', $price_filter);
     $sql_query_filtered.= '' .implode('ORDER BY', $sql_order_filter);
-
 }
-
-
-
-
-
-// $total_pages_sql = "SELECT COUNT(*) FROM products_table WHERE category='$category' 
-// AND sub_category='$sub_category_name' 
-// AND auction_type='$typeFilter' 
-// AND prod_status='$condfilter'
-// ";  
-
-
-
-// echo $total_pages_sql;
-// echo '<br>';
-echo $sql_query_filtered;
 
 
 // variables for pagination
@@ -141,13 +124,20 @@ $limit = 3;
 $pages_result = mysqli_query($connection, $total_pages_sql);
 $total_rows=mysqli_fetch_array($pages_result)[0];
 $total_pages = ceil($total_rows / $limit);
-// end of variables for pagination
+
 
 if ($button_page == 1){
     $offset = 0;
 }else{
     $offset = ($button_page - 1) * $limit;
 }
+// end of variables for pagination
+
+$sql_query_filtered.= " LIMIT $limit OFFSET $offset";
+
+// echo $sql_query_filtered;
+
+
 
 
 

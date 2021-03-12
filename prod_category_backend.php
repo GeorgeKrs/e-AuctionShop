@@ -25,12 +25,6 @@ $total_rows=mysqli_fetch_array($pages_result)[0];
 $total_pages = ceil($total_rows / $limit);
 // end of variables for pagination
 
-// if ($button_page == 1){
-//     $offset = 0;
-// }else{
-//     $offset = ($button_page - 1) * $limit;
-// }
-
 $sql_query = "SELECT * FROM products_table WHERE category='$category' AND auction_status='active' LIMIT $limit ";
 
 
@@ -74,7 +68,7 @@ echo
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-end">';
                         for ($i = 1; $i<=$total_pages; $i++){
-                            if ($i == $button_page){
+                            if ($i == 1){
                                 echo '
                                 <li class="page-item">
                                     <button type="button" id="'.$i.'" onclick="validateFilters(this.id);" style="margin:0.5px;" class="active-btn btn btn-primary">'.$i.'</button>
@@ -97,10 +91,5 @@ echo
     ';
 
 mysqli_close($connection);
-
-
-
-
-
 
 ?> 

@@ -248,7 +248,7 @@
                                     <option value="soonExpired"selected>Λήγουν Σύντομα</option>
                                     <option value="newProducts">Καινούργια προϊόντα</option>
                                     <option value="Ascending">Αύξουσα τιμή</option>
-                                    <option value="Descending">Φθήνουσα τιμή</option>
+                                    <option value="Descending">Φθίνουσα τιμή</option>
                                 </select>
                             </div>
                         </div>
@@ -370,7 +370,7 @@
             }
         }else if (category == "Ηλεκτρονικά Παιχνίδια"){
             if(document.getElementById('gamesfiltersAll').checked) {
-            sub_category_name = 'AllGames';
+            sub_category_name = 'All';
             }else if(document.getElementById('PS4').checked) {
                 sub_category_name = "PS4";
             }else if(document.getElementById('PS5').checked) {

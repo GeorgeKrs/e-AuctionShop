@@ -111,7 +111,7 @@
                             if (categorySelection == "Υπολογιστές") {
                                 $('#inputSubCategory').html('<option value="Επεξεργαστές">Επεξεργαστές</option><option value="Μητρικές Κάρτες">Μητρικές Κάρτες</option><option value="Οθόνες">Οθόνες</option><option value="gpu">Κάρτες Γραφικών</option><option value="Περιφερειακά">Περιφερειακά</option>');
                             }else if (categorySelection == "Μουσικά Όργανα") {
-                                $('#inputSubCategory').html('<option value="Ηλεκτρικές Κιθάρες">Ηλεκτρικές Κιθάρες</option><option value="Κλασσικές Κιθάρες">Κλασσικές Κιθάρες</option><option value="Πλήκτρα">Πλήκτρα</option><option value="Μπάσο">Μπάσο</option>');
+                                $('#inputSubCategory').html('<option value="Ηλεκτρικές Kιθάρες">Ηλεκτρικές Kιθάρες</option><option value="Κλασσικές Kιθάρες">Κλασσικές Kιθάρες</option><option value="Πλήκτρα">Πλήκτρα</option><option value="Μπάσο">Μπάσο</option>');
                             }else if (categorySelection == "Ηλεκτρονικά Παιχνίδια") {
                                 $('#inputSubCategory').html('<option value="PS4">PS4</option><option value="PS5">PS5</option><option value="PC">PC</option><option value="XBOX">XBOX</option>');
                             }else if (categorySelection == "Κοσμήματα") {
