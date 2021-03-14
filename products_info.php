@@ -74,7 +74,7 @@
             $prod_number = "$row[prod_number]";
             $auction_started = "$row[auction_started]";
             $auction_ended = "$row[auction_ended]";
-    
+
             $bid_price = $price;
         }
     }
@@ -116,8 +116,10 @@
                 $bid_price = "$row[bid_price]";
                 $maxBidUser = "$row[uuid]";
             }
-        }
-        
+        }else{
+            
+            $bid_price = intval(0);
+        }   
     }
     // bid_price sql query
 
