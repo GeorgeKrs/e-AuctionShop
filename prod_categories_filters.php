@@ -77,16 +77,13 @@ if ($condfilter!="All"){
 // empty array for ordering products
 $sql_order_filter=[];
 
-if ($sortAuctions!="Λήγουν Σύντομα"){
-    if ($sortAuctions=="Αύξουσα τιμή"){
-        $sql_order_filter[]=" ORDER BY price ASC ";
-    }elseif ($sortAuctions=="Φθίνουσα τιμή"){
-        $sql_order_filter[]=" ORDER BY price DESC ";
-    }elseif ($sortAuctions=="Καινούργια προϊόντα"){
-        $sql_order_filter[]=" ORDER BY id DESC ";
-    }else{
 
-    }
+if ($sortAuctions=="Αύξουσα τιμή"){
+    $sql_order_filter[]=" ORDER BY price ASC ";
+}elseif ($sortAuctions=="Φθίνουσα τιμή"){
+    $sql_order_filter[]=" ORDER BY price DESC ";
+}elseif ($sortAuctions=="Καινούργια προϊόντα"){
+    $sql_order_filter[]=" ORDER BY id DESC ";
 }
 
 
@@ -102,21 +99,19 @@ $price_filter[]=" AND price BETWEEN '$min_price' AND '$max_price'";
 $total_pages_sql = "SELECT COUNT(*) FROM products_table WHERE category='$category'";
 $sql_query_filtered = "SELECT * FROM products_table WHERE category='$category'";
 
-if ($sortAuctions == "Λήγουν Σύντομα"){
-    echo "Expired Soon";
-}else{
-    // implode all filters to count pages
-    $total_pages_sql.= '' .implode('AND', $sql_sub_category_filter);
-    $total_pages_sql.= '' .implode('', $sql_type_cond_filter);
-    $total_pages_sql.= '' .implode('AND', $price_filter);
-    $total_pages_sql.= '' .implode('ORDER BY', $sql_order_filter);
 
-    // implode all filters to make the call to the database
-    $sql_query_filtered.= '' .implode('AND', $sql_sub_category_filter);
-    $sql_query_filtered.= '' .implode('', $sql_type_cond_filter);
-    $sql_query_filtered.= '' .implode('AND', $price_filter);
-    $sql_query_filtered.= '' .implode('ORDER BY', $sql_order_filter);
-}
+// implode all filters to count pages
+$total_pages_sql.= '' .implode('AND', $sql_sub_category_filter);
+$total_pages_sql.= '' .implode('', $sql_type_cond_filter);
+$total_pages_sql.= '' .implode('AND', $price_filter);
+$total_pages_sql.= '' .implode('ORDER BY', $sql_order_filter);
+
+// implode all filters to make the call to the database
+$sql_query_filtered.= '' .implode('AND', $sql_sub_category_filter);
+$sql_query_filtered.= '' .implode('', $sql_type_cond_filter);
+$sql_query_filtered.= '' .implode('AND', $price_filter);
+$sql_query_filtered.= '' .implode('ORDER BY', $sql_order_filter);
+
 
 
 // variables for pagination
@@ -136,7 +131,6 @@ if ($button_page == 1){
 $sql_query_filtered.= " LIMIT $limit OFFSET $offset";
 
 // echo $sql_query_filtered;
-
 
 
 

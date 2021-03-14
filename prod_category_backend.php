@@ -25,7 +25,7 @@ $total_rows=mysqli_fetch_array($pages_result)[0];
 $total_pages = ceil($total_rows / $limit);
 // end of variables for pagination
 
-$sql_query = "SELECT * FROM products_table WHERE category='$category' AND auction_status='active' LIMIT $limit ";
+$sql_query = "SELECT * FROM products_table WHERE category='$category' AND auction_status='active' ORDER BY id DESC LIMIT $limit ";
 
 
 

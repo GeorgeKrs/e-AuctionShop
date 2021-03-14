@@ -98,6 +98,30 @@
     // owner info sql query
 
 
+    // bid_price sql query
+    $total_rows_query = "SELECT COUNT(*) FROM bids_table WHERE product_id='$id'";  
+    $result_count = mysqli_query($connection, $total_rows_query);
+
+    $total_rows_product = mysqli_num_rows($result_count);
+    
+    if ($total_rows_product > 1) {
+
+        $sql_query_bids = "SELECT MAX(bid_price) FROM bids_table WHERE product_id='$id'";
+
+        $result_bids = mysqli_query($connection, $sql_query_bids);
+
+        if (mysqli_num_rows($result_bids) > 0) {
+            while($row=mysqli_fetch_assoc($result_bids)) {
+
+                $bid_price = "$row[bid_price]";
+                $maxBidUser = "$row[uuid]";
+            }
+        }
+        
+    }
+    // bid_price sql query
+
+
     // date and time data
     $date_and_time = explode("|" , $auction_ended);
     $date = explode("-", $date_and_time[0]);
@@ -446,7 +470,7 @@
                 $sql_query_update = "UPDATE products_table SET auction_status='expired' WHERE id='$id'";
                 // $response = mysqli_query($connection, $sql_query_update);
             ?>
-        }
+    }
     }, 1000);
 
 

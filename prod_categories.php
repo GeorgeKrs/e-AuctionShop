@@ -245,8 +245,7 @@
                             <h5 style="float: left; padding-right:10px;" id="h5_tag">Ταξινόμηση βάσει:</h5>
                             <div class="form-floating" style="margin-right: 10px;">
                                 <select class="form-select" id="sortAuctions" onchange="validateFilters();">
-                                    <option value="soonExpired"selected>Λήγουν Σύντομα</option>
-                                    <option value="newProducts">Καινούργια προϊόντα</option>
+                                    <option value="newProducts" selected>Καινούργια προϊόντα</option>
                                     <option value="Ascending">Αύξουσα τιμή</option>
                                     <option value="Descending">Φθίνουσα τιμή</option>
                                 </select>
