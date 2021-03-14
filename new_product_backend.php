@@ -16,6 +16,8 @@
     $image_upload_path = 'auctions_images/'.$inputImage;
     move_uploaded_file($tmp_name, $image_upload_path);
 
+    // $image_dimensions = getimagesize($image_upload_path);
+    // print_r($image_dimensions);
 
 
     if (isset($_POST['inputDescription'])){
@@ -146,8 +148,7 @@
     $auction_ended = date("d-m-Y | H:i:s", $auction_ended);
 
     $auction_status = "active";
-    $winner_bid = "";
-
+    $winner_bid_id = intval(0);
 
     // create a unique product number and check it for duplicates in database
     $checkVariable = false;
@@ -162,21 +163,20 @@
         
         if ($number_rows == 0){
             $registration ="INSERT INTO products_table 
-                        (uuid, title, price, category, sub_category,auction_type, sent_terms, payment_methods, auction_duration, sent_expenses, prod_status, price_raise, prod_description, sent_comments, primary_image_url, auction_started, auction_ended, prod_number, auction_status, winner_bid)     
+                        (uuid, title, price, category, sub_category,auction_type, sent_terms, payment_methods, auction_duration, sent_expenses, prod_status, price_raise, prod_description, sent_comments, primary_image_url, auction_started, auction_ended, prod_number, auction_status)     
                         VALUES 
-                        ('$uuid', '$inputΤitle', '$inputPrice', '$inputCategory', '$inputSubCategory', '$inputType', '$inputTermsCondition', '$payment_methods', '$inputAuctionLast Ημέρες', '$inputSentExpenses', '$inputState', '$inputRaisePrice', '$inputDescription', '$inputSentComments', '$inputImage', '$auction_started','$auction_ended', '$prod_number', '$auction_status', '$winner_bid')";
+                        ('$uuid', '$inputΤitle', '$inputPrice', '$inputCategory', '$inputSubCategory', '$inputType', '$inputTermsCondition', '$payment_methods', '$inputAuctionLast Ημέρες', '$inputSentExpenses', '$inputState', '$inputRaisePrice', '$inputDescription', '$inputSentComments', '$inputImage', '$auction_started','$auction_ended', '$prod_number', '$auction_status')";
 
-                        mysqli_query($connection, $registration);
-                        $checkVariable = true;
-        }    
+            mysqli_query($connection, $registration);
+
+            $checkVariable = true;
+
+            echo json_encode(array("statusCode"=>200));
+            
+        }else{
+            echo json_encode(array("statusCode"=>201));
+        }  
     }
-
-   
-    // check if succesful
-    if ($registration) {
-        echo json_encode(array("statusCode"=>200));
-    }else 
-        echo json_encode(array("statusCode"=>201));
 
 
 

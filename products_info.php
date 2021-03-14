@@ -454,12 +454,28 @@
         // Display the result in the element
         document.getElementById("countDown").innerHTML = days + " Ημέρες " + hours + " Ώρες "
         + minutes + " Λεπτά " + seconds + " Δευτερόλεπτα ";
-
         // If the count down is finished
         if (distance < 0) {
             clearInterval(updateTimer);
             document.getElementById("countDown").innerHTML = "Η <?php echo $auction_type; ?> έχει λήξει.";
-            document.getElementById("timerCard").style.color = "red";
+            document.getElementById("timerCard").style.color = "red"; 
+
+            var id = <?php echo $id;?>;
+
+            formData = new FormData();
+            formData.append("id",id)
+
+            $.ajax({
+                url: 'auction_status_change.php',
+                enctype: 'multipart/form-data',
+                type: "POST",
+                cache: false, 
+                processData: false,
+                contentType: false,
+                data: formData, 
+                success: function(data) {
+                }
+            });   
 
             <?php 
                 if ($auction_type=="Δημοπρασία"){
@@ -468,10 +484,9 @@
                 }else{
                     echo "document.getElementById('buy_button').disabled = true;\n"; 
                 }
-
-                $sql_query_update = "UPDATE products_table SET auction_status='expired' WHERE id='$id'";
-                // $response = mysqli_query($connection, $sql_query_update);
             ?>
+
+              
     }
     }, 1000);
 

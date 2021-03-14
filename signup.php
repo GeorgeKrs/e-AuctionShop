@@ -111,7 +111,7 @@
     class= "container mt-4" 
     style= "background-color: white; 
             text-align: center; 
-            width:400px;
+            width:300px;
             border-radius: 15px 50px;
             border: 2px solid #d8020a;
             display: none;">
@@ -126,7 +126,7 @@
     class= "container mt-4" 
     style= "background-color: white; 
             text-align: center; 
-            width:400px;
+            width:300px;
             border-radius: 15px 50px;   
             border: 2px solid #d8020a;
             display: none;">
@@ -140,7 +140,7 @@
     class= "container mt-4" 
     style= "background-color: white; 
             text-align: center; 
-            width:400px;
+            width:300px;
             border-radius: 15px 50px;   
             border: 2px solid #d8020a;
             display: none;">
