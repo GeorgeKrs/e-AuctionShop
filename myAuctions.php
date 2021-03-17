@@ -32,7 +32,7 @@
     ';
     require 'header_loggedin.php';
 
-    $myCurrentAuctions = "Τωρινές Δημοπρασίες";
+    $myCurrentAuctions = "Ενεργές Δημοπρασίες";
     $myEndedAuctions = "Ληγμένες Δημοπρασίες";
 ?>
 

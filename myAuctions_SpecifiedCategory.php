@@ -36,8 +36,17 @@
         $auctionsHistory = $_GET['auctionStatus'];
     }
 
+    if (isset($_GET['myCurrentAuctions'])) {
+        $myCurrentAuctions = $_GET['myCurrentAuctions'];
+    }
+
+    if (isset($_GET['myEndedAuctions'])) {
+        $myEndedAuctions = $_GET['myEndedAuctions'];
+    }
+    
+
     if ($auctionsHistory=="Ενεργές Δημοπρασίες") {
-        $auction_status="in progress";
+        $auction_status="active";
     }else{
         $auction_status="expired";
     }
@@ -51,12 +60,47 @@
         <li><a href="myAuctions.php" class="category-links">Οι καταχωρήσεις μου</a></li>
         <li style="font-size: 18px;"><b><?php echo $auctionsHistory; ?></b></li>
     </ul>
+</div>
 
 
 
+<div class="container generalContainer roundedForms mt-4">  
+    <div class="row">
+        <?php
+        $sql_query_auctions = "SELECT * FROM products_table WHERE uuid='$uuid' AND auction_status='$auction_status'";
 
-<div class="row">
 
+        $result_auctions = mysqli_query($connection, $sql_query_auctions);
+
+        if (mysqli_num_rows($result_auctions) > 0) {
+            while($row=mysqli_fetch_assoc($result_auctions)) {
+
+                $image = "$row[primary_image_url]";
+                $title = "$row[title]";
+                $price = "$row[price]";
+                $id = "$row[id]";
+                $auction_ended = "$row[auction_ended]";
+                $auction_type = "$row[auction_type]";
+
+                echo '
+                <div class="mt-4 mb-4 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch">
+                    <div class="card product-zoom-Div" style="padding: 30px;">
+                        <a class="category-links" href="products_info.php?link='.$id.'">
+                            <img class="card-img-top" src="auctions_images/'.$image.'" alt="product">
+                            <div class="card-body">
+                                <p class="card-text">'.$title.'</p>
+                                <p class="card-text">Λήξη '.$auction_type.'ς:<br>'.$auction_ended.'</p>
+                                <p class="card-text">Αρχική Τιμή: '.$price.' &euro;</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                ';   
+            }
+        }
+        ?>
+
+    </div>
 </div>
 
 
