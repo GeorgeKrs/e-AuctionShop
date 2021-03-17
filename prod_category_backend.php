@@ -19,7 +19,7 @@ if (isset($_POST['clicked_id'])) {
 $total_pages_sql = "SELECT COUNT(*) FROM products_table WHERE category='$category' AND auction_status='active' ";  
 
 // variables for pagination
-$limit = 3;
+$limit = 6;
 $pages_result = mysqli_query($connection, $total_pages_sql);
 $total_rows=mysqli_fetch_array($pages_result)[0];
 $total_pages = ceil($total_rows / $limit);
@@ -42,7 +42,7 @@ if (mysqli_num_rows($result) > 0) {
         $auction_type = "$row[auction_type]";
 
         echo '
-        <div class="mt-4 mb-4 col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
+        <div class="mt-4 col-lg-4 col-md-4 col-sm-6 d-flex align-items-stretch">
             <div class="card product-zoom-Div" style="padding: 30px;">
                 <a class="category-links" href="products_info.php?link='.$id.'">
                     <img class="card-img-top" src="auctions_images/'.$image.'" alt="product">
