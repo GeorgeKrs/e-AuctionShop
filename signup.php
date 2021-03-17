@@ -91,14 +91,14 @@
             <input type="text" class="form-control" name="inputΤΚ" id="inputΤΚ" required>
         </div>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="gridCheck">
             <label class="form-check-label" for="gridCheck">
                 Συμφωνώ με τους όρους και τις προϋποθέσεις
             </label>
         </div>
-    </div>
+    </div> -->
     <button type="submit"  class="btn btn-primary" >Εγγραφή</button>
 </form>
 
