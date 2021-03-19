@@ -71,13 +71,13 @@
 
     
 <!-- hidden form -->
-    <form class="form-group col-md-6" name="alertBox_forgotPw" id="alertBox_forgotPw" action="forgot_pw_backend.php" style="display: none;" method="post"> 
+    <!-- <form class="form-group col-md-6" name="alertBox_forgotPw" id="alertBox_forgotPw" action="forgot_pw_backend.php" style="display: none;" method="post"> 
 
         <label for="inputEmail">Παρακαλώ πληκτρολογήστε το email σας</label>
         <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="" required>
         <button type="submit"  class="btn btn-primary mt-4">Αποστολή νέου κωδικού</button>
 
-    </form>
+    </form> -->
 
 </div>
 </div>
@@ -271,7 +271,8 @@
 <!-- script for making email visible -->
 <script>
     function forgotPw() {
-        document.getElementById("alertBox_forgotPw").style.display="block";
+        // document.getElementById("alertBox_forgotPw").style.display="block";
+        alert("Email recovery Password, not fixed")
     }
 </script>
 
