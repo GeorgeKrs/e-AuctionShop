@@ -100,16 +100,21 @@ $total_pages_sql = "SELECT COUNT(*) FROM products_table WHERE category='$categor
 $sql_query_filtered = "SELECT * FROM products_table WHERE category='$category'";
 
 
+$status_filter=[];
+$status_filter[]=" AND auction_status='active'";
+
 // implode all filters to count pages
 $total_pages_sql.= '' .implode('AND', $sql_sub_category_filter);
 $total_pages_sql.= '' .implode('', $sql_type_cond_filter);
 $total_pages_sql.= '' .implode('AND', $price_filter);
+$total_pages_sql.= '' .implode('AND', $status_filter);
 $total_pages_sql.= '' .implode('ORDER BY', $sql_order_filter);
 
 // implode all filters to make the call to the database
 $sql_query_filtered.= '' .implode('AND', $sql_sub_category_filter);
 $sql_query_filtered.= '' .implode('', $sql_type_cond_filter);
 $sql_query_filtered.= '' .implode('AND', $price_filter);
+$sql_query_filtered.= '' .implode('AND', $status_filter);
 $sql_query_filtered.= '' .implode('ORDER BY', $sql_order_filter);
 
 
