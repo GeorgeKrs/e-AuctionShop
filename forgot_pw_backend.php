@@ -1,4 +1,7 @@
 <?php  
+    error_reporting(-1);
+    ini_set('display_errors', 'On');
+    set_error_handler("var_dump");
     require 'uuid_search.php';
 
 
@@ -31,6 +34,7 @@ if ($number_rows == 1) {
         mail($to, $subject, $message, $headers);
         // success
         echo json_encode(array("statusCode"=>200));
+        
     }else{
         // failed to change although old pw correct
         echo json_encode(array("statusCode"=>201));          

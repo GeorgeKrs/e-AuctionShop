@@ -38,6 +38,8 @@
 
     if (isset($_POST['inputRaisePrice'])){
         $inputRaisePrice=$_POST['inputRaisePrice'];
+    }else{
+        $inputRaisePrice = intval(0);
     }
 
     if (isset($_POST['inputSentExpenses'])){

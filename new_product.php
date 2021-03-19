@@ -109,7 +109,9 @@
                         $('#inputCategory').change(function () {
                             var categorySelection = $(this).val();
                             if (categorySelection == "Υπολογιστές") {
-                                $('#inputSubCategory').html('<option value="Επεξεργαστές">Επεξεργαστές</option><option value="Μητρικές Κάρτες">Μητρικές Κάρτες</option><option value="Οθόνες">Οθόνες</option><option value="gpu">Κάρτες Γραφικών</option><option value="Περιφερειακά">Περιφερειακά</option>');
+                                $('#inputSubCategory').html(
+                                    '<option value="Επεξεργαστές">Επεξεργαστές</option><option value="Μητρικές Κάρτες">Μητρικές Κάρτες</option><option value="Οθόνες">Οθόνες</option><option value="Κάρτες γραφικών">Κάρτες Γραφικών</option><option value="Περιφερειακά">Περιφερειακά</option>'
+                                    );
                             }else if (categorySelection == "Μουσικά Όργανα") {
                                 $('#inputSubCategory').html('<option value="Ηλεκτρικές Kιθάρες">Ηλεκτρικές Kιθάρες</option><option value="Κλασσικές Kιθάρες">Κλασσικές Kιθάρες</option><option value="Πλήκτρα">Πλήκτρα</option><option value="Μπάσο">Μπάσο</option>');
                             }else if (categorySelection == "Ηλεκτρονικά Παιχνίδια") {
@@ -152,7 +154,7 @@
             
             <div class="form-group col-md-6">
                 <label for="inputRaisePrice">Ρυθμός αύξησης τιμής προϊόντος:</label>
-                <input type="number" min="1" max="100" step="0.5" class="form-control" name="inputRaisePrice" id="inputRaisePrice" disabled>
+                <input type="number" min="0" max="100" step="0.5" class="form-control" name="inputRaisePrice" id="inputRaisePrice" disabled>
             </div>
 
         </div>
@@ -292,7 +294,7 @@
         <div class="form-row mt-4">
             <div class="form-group col-md-12">
                 <label for="inputSentComments">Σχόλια αποστολής:</label>
-                <textarea id="inputSentComments" name="inputSentComments" class="form-control" placeholder="" style="width: 100%; height:100%;" required></textarea>        
+                <textarea id="inputSentComments" name="inputSentComments" class="form-control" placeholder="" style="width: 100%; height:100%;"></textarea>        
             </div>
         </div>
 
@@ -314,7 +316,7 @@
             <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle">Το συγκεκριμένο αρχείο δεν είναι εικόνα</i></h6>
         </div> 
         
-        <button type="submit"  class="btn btn-primary mt-4">Καταχώρηση Νέου προϊόντος</button>
+        <button type="button" onclick="newProduct_registration();" class="btn btn-primary mt-4">Καταχώρηση Νέου προϊόντος</button>
     
     
     
@@ -379,102 +381,109 @@
 <script>
 // script for preventing submit and getting the data from the user
 
-    document.getElementById('newProduct').onsubmit=function(e) {
-    e.preventDefault();
+    // document.getElementById('newProduct').onsubmit=function(e) {
+    // e.preventDefault();
 
+    function newProduct_registration() {
 
-    // file variables
-    var inputImage= $('input[type="file"]')[0].files[0];
-    
-    // textarea-text variables 
-    var inputDescription = document.getElementById("inputDescription").value;
-    var inputSentComments = document.getElementById("inputSentComments").value;
-    var inputΤitle = document.getElementById("inputTitle").value;
+        // file variables
+        var inputImage= $('input[type="file"]')[0].files[0];
+        
+        // textarea-text variables 
+        var inputDescription = document.getElementById("inputDescription").value;
+        var inputSentComments = document.getElementById("inputSentComments").value;
+        var inputΤitle = document.getElementById("inputTitle").value;
 
-    // numbers(double) variables
-    var inputPrice = document.getElementById("inputPrice").value;
-    var inputRaisePrice = document.getElementById("inputRaisePrice").value;
-    var inputSentExpenses = document.getElementById("inputSentExpenses").value;
+        // numbers(double) variables
+        var inputPrice = document.getElementById("inputPrice").value;
+        var inputRaisePrice = document.getElementById("inputRaisePrice").value;
+        var inputSentExpenses = document.getElementById("inputSentExpenses").value;
 
-    // selectform variables
-    var inputCategory = document.getElementById("inputCategory").value;
-    var inputSubCategory = document.getElementById("inputSubCategory").value;
-    var inputAuctionLast = document.getElementById("inputAuctionLast").value;
-    var inputState = document.getElementById("inputState").value;
-    var inputType = document.getElementById("inputType").value;
-    var inputTermsCondition = document.getElementById("inputTermsCondition").value;
+        // selectform variables
+        var inputCategory = document.getElementById("inputCategory").value;
+        var inputSubCategory = document.getElementById("inputSubCategory").value;
+        var inputAuctionLast = document.getElementById("inputAuctionLast").value;
+        var inputState = document.getElementById("inputState").value;
+        var inputType = document.getElementById("inputType").value;
+        var inputTermsCondition = document.getElementById("inputTermsCondition").value;
 
-    // chechboxes variables
-    var cashCourier = document.getElementById("cashCourier");
-    var cashHand = document.getElementById("cashHand");
-    var cardBank = document.getElementById("cardBank");
-    var paypal = document.getElementById("paypal");
-    var takeAway =  document.getElementById("takeAway");
-    var elta =  document.getElementById("elta");
+        // chechboxes variables
+        var cashCourier = document.getElementById("cashCourier");
+        var cashHand = document.getElementById("cashHand");
+        var cardBank = document.getElementById("cardBank");
+        var paypal = document.getElementById("paypal");
+        var takeAway =  document.getElementById("takeAway");
+        var elta =  document.getElementById("elta");
 
-    //  initialize new FormData
-    var formData = new FormData();
+        //  initialize new FormData
+        var formData = new FormData();
 
-    formData.append('inputImage',inputImage);
-
-    formData.append('inputDescription',inputDescription);
-    formData.append('inputSentComments',inputSentComments);
-    formData.append('inputΤitle',inputΤitle);
-
-    formData.append('inputPrice',inputPrice);
-    formData.append('inputRaisePrice',inputRaisePrice);
-    formData.append('inputSentExpenses',inputSentExpenses);
-
-    formData.append('inputCategory',inputCategory);
-    formData.append('inputSubCategory',inputSubCategory);
-    formData.append('inputAuctionLast',inputAuctionLast);
-    formData.append('inputState',inputState);
-    formData.append('inputType',inputType);
-    formData.append('inputTermsCondition',inputTermsCondition);
-
-    if (cashCourier.checked) {
-        formData.append("cashCourier","Αντικαταβολή με Courier")
-    }
-    if (cashHand.checked) {
-        formData.append("cashHand","Συνάντηση/Μετρητά")
-    }
-    if (cardBank.checked) {
-        formData.append("cardBank","Κατάθεση στη τράπεζα")
-    }
-    if (paypal.checked) {
-        formData.append("paypal","Paypal")
-    }
-    if (takeAway.checked) {
-        formData.append("takeAway","Παραλαβή από το κατάστημα")
-    }
-    if (elta.checked) {
-        formData.append("elta","Ελτά")
-    }
-
-
-    // for (var key of formData.entries()) {
-    //     console.log(key[0] + ': ' + key[1]);
-    // }
-
-    $.ajax({
-        url: 'new_product_backend.php',
-        enctype: 'multipart/form-data',
-        type: "POST",
-        cache: false, 
-        processData: false,
-        contentType: false,
-        data: formData, 
-        success: function(data) {
-            data = JSON.parse(data);
-            if (data.statusCode==200) {
-                document.getElementById('alertBox_success').style.display="block";
-    
-            }else if (data.statusCode==201) {
-                document.getElementById('alertBox_fail').style.display="block";
-            }
+        if (inputType == "Δημοπρασία"){
+            formData.append('inputRaisePrice',inputRaisePrice);
+            formData.append('inputType',inputType);
+        }else{
+            formData.append('inputType',inputType);
         }
-    });      
-};
+
+        formData.append('inputImage',inputImage);
+
+        formData.append('inputDescription',inputDescription);
+        formData.append('inputSentComments',inputSentComments);
+        formData.append('inputΤitle',inputΤitle);
+
+        formData.append('inputPrice',inputPrice);
+        formData.append('inputSentExpenses',inputSentExpenses);
+
+        formData.append('inputCategory',inputCategory);
+        formData.append('inputSubCategory',inputSubCategory);
+        formData.append('inputAuctionLast',inputAuctionLast);
+        formData.append('inputState',inputState);
+        formData.append('inputTermsCondition',inputTermsCondition);
+
+        if (cashCourier.checked) {
+            formData.append("cashCourier","Αντικαταβολή με Courier")
+        }
+        if (cashHand.checked) {
+            formData.append("cashHand","Συνάντηση/Μετρητά")
+        }
+        if (cardBank.checked) {
+            formData.append("cardBank","Κατάθεση στη τράπεζα")
+        }
+        if (paypal.checked) {
+            formData.append("paypal","Paypal")
+        }
+        if (takeAway.checked) {
+            formData.append("takeAway","Παραλαβή από το κατάστημα")
+        }
+        if (elta.checked) {
+            formData.append("elta","Ελτά")
+        }
+
+
+        // for (var key of formData.entries()) {
+        //     console.log(key[0] + ': ' + key[1]);
+        // }
+
+        $.ajax({
+            url: 'new_product_backend.php',
+            enctype: 'multipart/form-data',
+            type: "POST",
+            cache: false, 
+            processData: false,
+            contentType: false,
+            data: formData, 
+            success: function(data) {
+                data = JSON.parse(data);
+                if (data.statusCode==200) {
+                    document.getElementById('alertBox_success').style.display="block";
+        
+                }else if (data.statusCode==201) {
+                    document.getElementById('alertBox_fail').style.display="block";
+                }
+            }
+        });      
+    };
+
 
 </script>
 
