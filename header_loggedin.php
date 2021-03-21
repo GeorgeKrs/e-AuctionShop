@@ -23,7 +23,7 @@
             <div class="p-2 centerLS"><a class="nav-link" href="logout.php">Έξοδος</a></div>
         </div>
 
-        <hr style="background-color: #0275d8; width: 100%; height: 100%; border-width:3px;">
+        <hr id="pcViewport" style="background-color: #0275d8; width: 100%; height: 100%; border-width:3px;">
         
         <?php 
             require 'searchbar.php';

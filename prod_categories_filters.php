@@ -120,7 +120,7 @@ $sql_query_filtered.= '' .implode('ORDER BY', $sql_order_filter);
 
 
 // variables for pagination
-$limit = 6;
+$limit = 1;
 $pages_result = mysqli_query($connection, $total_pages_sql);
 $total_rows=mysqli_fetch_array($pages_result)[0];
 $total_pages = ceil($total_rows / $limit);
@@ -136,8 +136,6 @@ if ($button_page == 1){
 $sql_query_filtered.= " LIMIT $limit OFFSET $offset";
 
 // echo $sql_query_filtered;
-
-
 
 
 $result_filters = mysqli_query($connection, $sql_query_filtered);

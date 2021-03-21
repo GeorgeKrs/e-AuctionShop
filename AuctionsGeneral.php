@@ -28,7 +28,7 @@
             <div class="row mt-4">
 
                 <?php 
-                $sql_query = "SELECT * FROM products_table WHERE auction_status='active' ORDER BY id DESC LIMIT 9 ";
+                $sql_query = "SELECT * FROM products_table WHERE auction_status='active' ORDER BY id DESC LIMIT 12 ";
                 $result_data = mysqli_query($connection,$sql_query);
 
 
