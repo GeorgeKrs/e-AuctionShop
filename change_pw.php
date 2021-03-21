@@ -272,7 +272,7 @@
 <script>
     function forgotPw() {
         // document.getElementById("alertBox_forgotPw").style.display="block";
-        alert("Email recovery Password, not fixed")
+        alert("Email recovery Password, not build")
     }
 </script>
 

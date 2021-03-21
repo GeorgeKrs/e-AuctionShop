@@ -380,6 +380,16 @@
         </div>
         <!-- sent comments  -->
 
+        <!-- username -->
+        <div style="padding: 20px;">
+            
+            <h5><b></b><i class="fas fa-user-circle"> Όνομα Χρήστη Δημοπρασίας-Πώλησης:</i></b></h5>
+            <?php 
+                echo "$username";
+            ?>
+        </div>
+        <!-- username  -->
+
         <!-- product id -->
         <div style="padding: 20px;">
             
