@@ -45,7 +45,7 @@
 
 
 <div class="container mt-4">
-<div class="generalContainer roundedForms">
+<div class="generalContainer roundedForms" id="outerDiv">
 
 <ul class="breadcrumb">
     <li><a href="index.php" class="category-links">Αρχική Σελίδα</a></li>
@@ -162,7 +162,7 @@
 
         <script>
             // type = auction more info
-            document.getElementById('inputType').onclick = function() {
+            document.getElementById('inputType').onchange = function() {
             var typeSelection = document.getElementById("inputType");  
             var typeSelection = typeSelection.options[typeSelection.selectedIndex].value;
 
@@ -316,7 +316,7 @@
             <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle">Το συγκεκριμένο αρχείο δεν είναι εικόνα</i></h6>
         </div> 
         
-        <button type="button" onclick="newProduct_registration();" class="btn btn-primary mt-4">Καταχώρηση Νέου προϊόντος</button>
+        <button type="button" id="btn_msg" onclick="form_validation_script()" class="btn btn-primary mt-4">Καταχώρηση Νέου προϊόντος</button>
     
     
     
@@ -324,6 +324,21 @@
 
 </div>
 </div>
+
+
+    <div
+        id="validation_div"
+        class="container mt-4" 
+        style="background-color: white; 
+            text-align: center; 
+            width:300px;
+            border-radius: 15px 50px;
+            border: 2px solid #6502d8;
+            display: none;">
+
+        <h6 style="font-size: 25px; padding-top: 8px;"><i style="color: #6502d8;" class="fas fa-exclamation-circle">Παρακαλώ συμπληρώστε όλα τα υποχρεωτικά πεδία πριν καταχωρήσετε την αγγελία σας.</i></h6>
+
+    </div>  
 
 
 
@@ -343,7 +358,7 @@
 
         <h6 style="font-size: 25px; padding-top: 8px;"><i style="color: #75d802;" class="far fa-check-circle">Η καταχώρησή σας έγινε δεκτή.</i></h6>
 
-        <button class="mt-4 btn btn-light" onclick="redirectHomePage();">Επιστροφή στην αρχική</button>
+        <button class="mt-4 btn btn-light" onclick="redirectHomePage()">Επιστροφή στην αρχική</button>
 
     </div>  
 
@@ -359,7 +374,7 @@
 
         <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle">Αποτυχία καταχώρησης. Παρακαλώ προσπαθείστε ξανά αργότερα</i></h6>
 
-        <button class="mt-4 btn btn-light" onclick="redirectHomePage();">Επιστροφή στην αρχική</button>
+        <button class="mt-4 btn btn-light" onclick="redirectHomePage()">Επιστροφή στην αρχική</button>
     </div>  
 
 
@@ -385,7 +400,6 @@
     // e.preventDefault();
 
     function newProduct_registration() {
-
         // file variables
         var inputImage= $('input[type="file"]')[0].files[0];
         
@@ -460,9 +474,9 @@
         }
 
 
-        // for (var key of formData.entries()) {
-        //     console.log(key[0] + ': ' + key[1]);
-        // }
+        for (var key of formData.entries()) {
+            console.log(key[0] + ': ' + key[1]);
+        }
 
         $.ajax({
             url: 'new_product_backend.php',
@@ -487,6 +501,105 @@
 
 </script>
 
+<script>
+
+    function form_validation_script() {
+        
+        // textarea-text variables 
+        var inputDescription = document.getElementById("inputDescription").value;
+
+        // numbers(double) variables
+        var inputPrice = document.getElementById("inputPrice").value;
+        var inputSentExpenses = document.getElementById("inputSentExpenses").value;
+
+        // selectform variables
+        var inputCategory = document.getElementById("inputCategory").value;
+        var inputSubCategory = document.getElementById("inputSubCategory").value;
+        var inputAuctionLast = document.getElementById("inputAuctionLast").value;
+        var inputState = document.getElementById("inputState").value;
+        var inputType = document.getElementById("inputType").value;
+        var inputTermsCondition = document.getElementById("inputTermsCondition").value;
+
+        var validation_array = [];
+
+        if (inputDescription==""){
+            document.getElementById("inputDescription").style.borderColor = "red";
+        }else{
+            document.getElementById("inputDescription").style.borderColor = "gainsboro";
+            validation_array.push(inputDescription);
+        }
+
+        if (inputPrice==0){
+            document.getElementById("inputPrice").style.borderColor = "red";
+        }else{
+            document.getElementById("inputPrice").style.borderColor = "gainsboro";
+            validation_array.push(inputPrice);
+        }
+
+        if (inputState=="Επιλογή..."){
+            document.getElementById("inputState").style.borderColor = "red";
+        }else{
+            document.getElementById("inputState").style.borderColor = "gainsboro";
+            validation_array.push(inputState);
+        }
+
+        if (inputTermsCondition=="Επιλογή..."){
+            document.getElementById("inputTermsCondition").style.borderColor = "red";
+        }else{
+            document.getElementById("inputTermsCondition").style.borderColor = "gainsboro";
+            validation_array.push(inputTermsCondition);
+        }
+
+        if (inputAuctionLast=="Ημέρες..."){
+            document.getElementById("inputAuctionLast").style.borderColor = "red";
+        }else{
+            document.getElementById("inputAuctionLast").style.borderColor = "gainsboro";
+            validation_array.push(inputAuctionLast);
+        }
+
+        if (inputCategory=="Επιλογή..."){
+            document.getElementById("inputCategory").style.borderColor = "red";
+        }else{
+            document.getElementById("inputCategory").style.borderColor = "gainsboro";
+            validation_array.push(inputCategory);
+        }
+
+        if (inputSubCategory=="Επιλογή..."){
+            document.getElementById("inputSubCategory").style.borderColor = "red";
+        }else{
+            document.getElementById("inputSubCategory").style.borderColor = "gainsboro";
+            validation_array.push(inputSubCategory);
+        }
+
+        if (inputType=="Επιλογή..."){
+            document.getElementById("inputType").style.borderColor = "red";
+        }else{
+            document.getElementById("inputType").style.borderColor = "gainsboro";
+            validation_array.push(inputType);
+        }
+
+        if (inputSentExpenses==""){
+            document.getElementById("inputSentExpenses").style.borderColor = "red";
+        }else{
+            document.getElementById("inputSentExpenses").style.borderColor = "gainsboro";
+            validation_array.push(inputSentExpenses);
+        }
+
+        // var array_to_string = validation_array.toString();
+        // alert(array_to_string);
+
+        if (validation_array.length == 9){
+            newProduct_registration();
+        }else{
+            document.getElementById("validation_div").style.display = "block";
+
+            document.addEventListener('mouseup', function(e) {
+                document.getElementById("validation_div").style.display = 'none';
+            })
+        }
+    }
+
+</script>
 
 
     

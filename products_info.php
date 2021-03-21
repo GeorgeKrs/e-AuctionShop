@@ -209,7 +209,7 @@
                             </p>
                             
                             <input type="number" id="bid_price" name="bid_price" step="0.5" min='.$price_raise.'>
-                            <button id="bid_button" class="btn btn-dark" type="button" onclick="bidPrice_function()">Υποβολή</button>
+                            <button id="bid_Button_submit" class="btn btn-dark" type="button" onclick="bidPrice_function()">Υποβολή</button>
 
                         </div>
                     </div>
