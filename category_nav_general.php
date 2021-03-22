@@ -17,7 +17,8 @@ echo
 
 
         <li><hr style="background-color: #0275d8; width: 100%; height: 100%; border-width:3px;"></li>
-        <li><b><a href="#" class="category-links">Φωτογραφία & Βίντεο</a></b></li>
+        <li><b>Inactive categories</b></li>
+        <li class="mt-4"><b><a href="#" class="category-links">Φωτογραφία & Βίντεο</a></b></li>
         <li><b><a href="#" class="category-links">Ρολόγια</a></b></li>
         <li><b><a href="#" class="category-links">Αθλητικά Είδη</a></b></li>
         <li><b><a href="#" class="category-links">Βιβλία</a></b></li>

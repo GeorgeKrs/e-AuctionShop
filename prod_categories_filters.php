@@ -120,7 +120,7 @@ $sql_query_filtered.= '' .implode('ORDER BY', $sql_order_filter);
 
 
 // variables for pagination
-$limit = 1;
+$limit = 6;
 $pages_result = mysqli_query($connection, $total_pages_sql);
 $total_rows=mysqli_fetch_array($pages_result)[0];
 $total_pages = ceil($total_rows / $limit);

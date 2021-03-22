@@ -446,21 +446,19 @@
             }
         });
 
-        // var win = window,
-        //     doc = document,
-        //     docElem = doc.documentElement,
-        //     body = doc.getElementsByTagName('body')[0],
-        //     x = win.innerWidth || docElem.clientWidth || body.clientWidth,
-        //     y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
+        var win = window,
+            doc = document,
+            docElem = doc.documentElement,
+            body = doc.getElementsByTagName('body')[0],
+            x = win.innerWidth || docElem.clientWidth || body.clientWidth,
+            y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
         
-        // if (x <= 450 && y <= 700) {
-        //     var view = document.getElementById("products_Div");
-        //     alert("mobile");
-        // }else{
-        //     var view = document.getElementById("main_section_id");
-        //     alert("pc");
-        // }
-        // view.scrollIntoView(); 
+        if (x <= 450 && y <= 700) {
+            var view = document.getElementById("products_Div");
+        }else{
+            var view = document.getElementById("main_section_id");
+        }
+        view.scrollIntoView(); 
     }
 </script>
 
