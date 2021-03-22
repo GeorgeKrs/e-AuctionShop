@@ -242,7 +242,7 @@
                         καταχωρήσεις</h3></b>
                             <hr style="background-color: #0275d8; width: 100%; height: 100%; border-width:3px;">
                             <!-- sort based on price or time -->
-                            <h5 style="float: left; padding-right:10px;" id="h5_tag">Ταξινόμηση βάσει:</h5>
+                            <h5 style="float: left; padding-right:10px;" id="h5_tag">Ταξινόμηση βάση:</h5>
                             <div class="form-floating" style="margin-right: 10px;">
                                 <select class="form-select" id="sortAuctions" onchange="validateFilters();">
                                     <option value="newProducts" selected>Καινούργια προϊόντα</option>

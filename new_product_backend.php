@@ -2,24 +2,7 @@
     require 'uuid_search.php';
 
     
-    // image 
-    $img_name = $_FILES['inputImage']['name'];
-    $img_size = $_FILES['inputImage']['size'];
-    $tmp_name = $_FILES['inputImage']['tmp_name'];
-
-
-    $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-    $img_ex_lc = strtolower($img_ex);
-
-
-    $inputImage = uniqid("IMG-", true).'.'.$img_ex_lc;
-    $image_upload_path = 'auctions_images/'.$inputImage;
-    move_uploaded_file($tmp_name, $image_upload_path);
-
-    // $image_dimensions = getimagesize($image_upload_path);
-    // print_r($image_dimensions);
-
-
+    
     if (isset($_POST['inputDescription'])){
         $inputDescription=$_POST['inputDescription'];
     }
@@ -39,7 +22,7 @@
     if (isset($_POST['inputRaisePrice'])){
         $inputRaisePrice=$_POST['inputRaisePrice'];
     }else{
-        $inputRaisePrice = intval(0);
+        $inputRaisePrice = floatval(0);
     }
 
     if (isset($_POST['inputSentExpenses'])){
@@ -164,6 +147,21 @@
         $number_rows = mysqli_num_rows($search_result);
         
         if ($number_rows == 0){
+            // image 
+            $img_name = $_FILES['inputImage']['name'];
+            $img_size = $_FILES['inputImage']['size'];
+            $tmp_name = $_FILES['inputImage']['tmp_name'];
+
+
+            $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+            $img_ex_lc = strtolower($img_ex);
+
+
+            $inputImage = uniqid("IMG-", true).'.'.$img_ex_lc;
+            $image_upload_path = 'auctions_images/'.$inputImage;
+            move_uploaded_file($tmp_name, $image_upload_path);
+
+
             $registration ="INSERT INTO products_table 
                         (uuid, title, price, category, sub_category,auction_type, sent_terms, payment_methods, auction_duration, sent_expenses, prod_status, price_raise, prod_description, sent_comments, primary_image_url, auction_started, auction_ended, prod_number, auction_status)     
                         VALUES 
@@ -179,7 +177,4 @@
             echo json_encode(array("statusCode"=>201));
         }  
     }
-
-
-
 ?>

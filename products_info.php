@@ -431,6 +431,12 @@
     }
 </script>
 
+<script>
+    function buyProduct_function() {
+        alert("Buy function not build yet");
+    }
+
+</script>
 
 
 

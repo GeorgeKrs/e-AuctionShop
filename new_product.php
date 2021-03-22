@@ -53,7 +53,7 @@
     <li style="font-size: 17px;"><b>Νέα Καταχώρηση</b></li>
 </ul>
 
-    <form name="newProduct" id="newProduct" action="new_product_backend.php" method="post" style="padding: 20px;">
+    <form name="newProduct" id="newProduct" onsubmit="newProduct_registration()" action="new_product_backend.php" method="post" style="padding: 20px;">
 
 
         <div class="form-row">
@@ -154,7 +154,7 @@
             
             <div class="form-group col-md-6">
                 <label for="inputRaisePrice">Ρυθμός αύξησης τιμής προϊόντος:</label>
-                <input type="number" min="0" max="100" step="0.5" class="form-control" name="inputRaisePrice" id="inputRaisePrice" disabled>
+                <input type="number" min="0" max="100" step="1" class="form-control" name="inputRaisePrice" id="inputRaisePrice" disabled>
             </div>
 
         </div>
@@ -298,6 +298,9 @@
             </div>
         </div>
 
+
+        <button type="button" id="btn_msg" onclick="form_validation_script()" class="btn btn-primary mt-4">Καταχώρηση Νέου προϊόντος</button>
+
     
     
 
@@ -316,10 +319,7 @@
             <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle">Το συγκεκριμένο αρχείο δεν είναι εικόνα</i></h6>
         </div> 
         
-        <button type="button" id="btn_msg" onclick="form_validation_script()" class="btn btn-primary mt-4">Καταχώρηση Νέου προϊόντος</button>
-    
-    
-    
+        
     </form>
 
 </div>
@@ -395,111 +395,110 @@
 
 <script>
 // script for preventing submit and getting the data from the user
+    // function newProduct_registration() {
 
-    // document.getElementById('newProduct').onsubmit=function(e) {
-    // e.preventDefault();
+    // // document.getElementById('newProduct').onsubmit=function(e) {
+    // //     e.preventDefault();
 
-    function newProduct_registration() {
-        // file variables
-        var inputImage= $('input[type="file"]')[0].files[0];
+    //     // file variables
+    //     var inputImage= $('input[type="file"]')[0].files[0];
         
-        // textarea-text variables 
-        var inputDescription = document.getElementById("inputDescription").value;
-        var inputSentComments = document.getElementById("inputSentComments").value;
-        var inputΤitle = document.getElementById("inputTitle").value;
+    //     // textarea-text variables 
+    //     var inputDescription = document.getElementById("inputDescription").value;
+    //     var inputSentComments = document.getElementById("inputSentComments").value;
+    //     var inputΤitle = document.getElementById("inputTitle").value;
 
-        // numbers(double) variables
-        var inputPrice = document.getElementById("inputPrice").value;
-        var inputRaisePrice = document.getElementById("inputRaisePrice").value;
-        var inputSentExpenses = document.getElementById("inputSentExpenses").value;
+    //     // numbers(double) variables
+    //     var inputPrice = document.getElementById("inputPrice").value;
+    //     var inputRaisePrice = document.getElementById("inputRaisePrice").value;
+    //     var inputSentExpenses = document.getElementById("inputSentExpenses").value;
 
-        // selectform variables
-        var inputCategory = document.getElementById("inputCategory").value;
-        var inputSubCategory = document.getElementById("inputSubCategory").value;
-        var inputAuctionLast = document.getElementById("inputAuctionLast").value;
-        var inputState = document.getElementById("inputState").value;
-        var inputType = document.getElementById("inputType").value;
-        var inputTermsCondition = document.getElementById("inputTermsCondition").value;
+    //     // selectform variables
+    //     var inputCategory = document.getElementById("inputCategory").value;
+    //     var inputSubCategory = document.getElementById("inputSubCategory").value;
+    //     var inputAuctionLast = document.getElementById("inputAuctionLast").value;
+    //     var inputState = document.getElementById("inputState").value;
+    //     var inputType = document.getElementById("inputType").value;
+    //     var inputTermsCondition = document.getElementById("inputTermsCondition").value;
 
-        // chechboxes variables
-        var cashCourier = document.getElementById("cashCourier");
-        var cashHand = document.getElementById("cashHand");
-        var cardBank = document.getElementById("cardBank");
-        var paypal = document.getElementById("paypal");
-        var takeAway =  document.getElementById("takeAway");
-        var elta =  document.getElementById("elta");
+    //     // chechboxes variables
+    //     var cashCourier = document.getElementById("cashCourier");
+    //     var cashHand = document.getElementById("cashHand");
+    //     var cardBank = document.getElementById("cardBank");
+    //     var paypal = document.getElementById("paypal");
+    //     var takeAway =  document.getElementById("takeAway");
+    //     var elta =  document.getElementById("elta");
 
-        //  initialize new FormData
-        var formData = new FormData();
+    //     //  initialize new FormData
+    //     var formData = new FormData();
 
-        if (inputType == "Δημοπρασία"){
-            formData.append('inputRaisePrice',inputRaisePrice);
-            formData.append('inputType',inputType);
-        }else{
-            formData.append('inputType',inputType);
-        }
+    //     if (inputType == "Δημοπρασία"){
+    //         formData.append('inputRaisePrice',inputRaisePrice);
+    //     }
 
-        formData.append('inputImage',inputImage);
+    //     formData.append('inputType',inputType);
+    //     formData.append('inputImage',inputImage);
 
-        formData.append('inputDescription',inputDescription);
-        formData.append('inputSentComments',inputSentComments);
-        formData.append('inputΤitle',inputΤitle);
+    //     formData.append('inputDescription',inputDescription);
+    //     formData.append('inputSentComments',inputSentComments);
+    //     formData.append('inputΤitle',inputΤitle);
 
-        formData.append('inputPrice',inputPrice);
-        formData.append('inputSentExpenses',inputSentExpenses);
+    //     formData.append('inputPrice',inputPrice);
+    //     formData.append('inputSentExpenses',inputSentExpenses);
 
-        formData.append('inputCategory',inputCategory);
-        formData.append('inputSubCategory',inputSubCategory);
-        formData.append('inputAuctionLast',inputAuctionLast);
-        formData.append('inputState',inputState);
-        formData.append('inputTermsCondition',inputTermsCondition);
+    //     formData.append('inputCategory',inputCategory);
+    //     formData.append('inputSubCategory',inputSubCategory);
+    //     formData.append('inputAuctionLast',inputAuctionLast);
+    //     formData.append('inputState',inputState);
+    //     formData.append('inputTermsCondition',inputTermsCondition);
 
-        if (cashCourier.checked) {
-            formData.append("cashCourier","Αντικαταβολή με Courier")
-        }
-        if (cashHand.checked) {
-            formData.append("cashHand","Συνάντηση/Μετρητά")
-        }
-        if (cardBank.checked) {
-            formData.append("cardBank","Κατάθεση στη τράπεζα")
-        }
-        if (paypal.checked) {
-            formData.append("paypal","Paypal")
-        }
-        if (takeAway.checked) {
-            formData.append("takeAway","Παραλαβή από το κατάστημα")
-        }
-        if (elta.checked) {
-            formData.append("elta","Ελτά")
-        }
+    //     if (cashCourier.checked) {
+    //         formData.append("cashCourier","Αντικαταβολή με Courier")
+    //     }
+    //     if (cashHand.checked) {
+    //         formData.append("cashHand","Συνάντηση/Μετρητά")
+    //     }
+    //     if (cardBank.checked) {
+    //         formData.append("cardBank","Κατάθεση στη τράπεζα")
+    //     }
+    //     if (paypal.checked) {
+    //         formData.append("paypal","Paypal")
+    //     }
+    //     if (takeAway.checked) {
+    //         formData.append("takeAway","Παραλαβή από το κατάστημα")
+    //     }
+    //     if (elta.checked) {
+    //         formData.append("elta","Ελτά")
+    //     }
 
 
-        for (var key of formData.entries()) {
-            console.log(key[0] + ': ' + key[1]);
-        }
+    //     // for (var key of formData.entries()) {
+    //     //     console.log(key[0] + ': ' + key[1]);
+    //     // }
 
-        $.ajax({
-            url: 'new_product_backend.php',
-            enctype: 'multipart/form-data',
-            type: "POST",
-            cache: false, 
-            processData: false,
-            contentType: false,
-            data: formData, 
-            success: function(data) {
-                data = JSON.parse(data);
-                if (data.statusCode==200) {
-                    document.getElementById('alertBox_success').style.display="block";
+    //     $.ajax({
+    //         url: 'new_product_backend.php',
+    //         enctype: 'multipart/form-data',
+    //         type: "POST",
+    //         cache: false, 
+    //         processData: false,
+    //         contentType: false,
+    //         data: formData, 
+    //         success: function(data) {
+    //             data = JSON.parse(data);
+    //             if (data.statusCode==200) {
+    //                 document.getElementById('alertBox_success').style.display="block";
         
-                }else if (data.statusCode==201) {
-                    document.getElementById('alertBox_fail').style.display="block";
-                }
-            }
-        });      
-    };
-
+    //             }else if (data.statusCode==201) {
+    //                 document.getElementById('alertBox_fail').style.display="block";
+    //             }
+    //         }
+    //     });      
+    // }   
 
 </script>
+
+
 
 <script>
 
@@ -589,7 +588,90 @@
         // alert(array_to_string);
 
         if (validation_array.length == 9){
-            newProduct_registration();
+            var inputImage= $('input[type="file"]')[0].files[0];
+        
+            // textarea-text variables 
+            var inputSentComments = document.getElementById("inputSentComments").value;
+            var inputΤitle = document.getElementById("inputTitle").value;
+
+            // numbers(double) variables
+            var inputRaisePrice = document.getElementById("inputRaisePrice").value;
+
+
+            // chechboxes variables
+            var cashCourier = document.getElementById("cashCourier");
+            var cashHand = document.getElementById("cashHand");
+            var cardBank = document.getElementById("cardBank");
+            var paypal = document.getElementById("paypal");
+            var takeAway =  document.getElementById("takeAway");
+            var elta =  document.getElementById("elta");
+
+            //  initialize new FormData
+            var formData = new FormData();
+
+            if (inputType == "Δημοπρασία"){
+                formData.append('inputRaisePrice',inputRaisePrice);
+            }
+
+            formData.append('inputType',inputType);
+            formData.append('inputImage',inputImage);
+
+            formData.append('inputDescription',inputDescription);
+            formData.append('inputSentComments',inputSentComments);
+            formData.append('inputΤitle',inputΤitle);
+
+            formData.append('inputPrice',inputPrice);
+            formData.append('inputSentExpenses',inputSentExpenses);
+
+            formData.append('inputCategory',inputCategory);
+            formData.append('inputSubCategory',inputSubCategory);
+            formData.append('inputAuctionLast',inputAuctionLast);
+            formData.append('inputState',inputState);
+            formData.append('inputTermsCondition',inputTermsCondition);
+
+            if (cashCourier.checked) {
+                formData.append("cashCourier","Αντικαταβολή με Courier")
+            }
+            if (cashHand.checked) {
+                formData.append("cashHand","Συνάντηση/Μετρητά")
+            }
+            if (cardBank.checked) {
+                formData.append("cardBank","Κατάθεση στη τράπεζα")
+            }
+            if (paypal.checked) {
+                formData.append("paypal","Paypal")
+            }
+            if (takeAway.checked) {
+                formData.append("takeAway","Παραλαβή από το κατάστημα")
+            }
+            if (elta.checked) {
+                formData.append("elta","Ελτά")
+            }
+
+
+            // for (var key of formData.entries()) {
+            //     console.log(key[0] + ': ' + key[1]);
+            // }
+
+            $.ajax({
+                url: 'new_product_backend.php',
+                enctype: 'multipart/form-data',
+                type: "POST",
+                cache: false, 
+                processData: false,
+                contentType: false,
+                data: formData, 
+                success: function(data) {
+                    data = JSON.parse(data);
+                    if (data.statusCode==200) {
+                        document.getElementById('alertBox_success').style.display="block";
+            
+                    }else if (data.statusCode==201) {
+                        document.getElementById('alertBox_fail').style.display="block";
+                    }
+                }
+            });      
+
         }else{
             document.getElementById("validation_div").style.display = "block";
 
