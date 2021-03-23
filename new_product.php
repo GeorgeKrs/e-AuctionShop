@@ -53,19 +53,19 @@
     <li style="font-size: 17px;"><b>Νέα Καταχώρηση</b></li>
 </ul>
 
-    <form name="newProduct" id="newProduct" onsubmit="newProduct_registration()" action="new_product_backend.php" method="post" style="padding: 20px;">
+    <form name="newProduct" id="newProduct" action="new_product_backend.php" method="post" style="padding: 20px;">
 
 
         <div class="form-row">
             <div class="form-group col-md-6 col-sm-12">
-                <label class="inputLabel" for="inputImage">Φωτογραφία Προϊόντος:</label>
+                <label class="inputLabel" for="inputImage">Φωτογραφία Προϊόντος *</label>
                 <input style="height: 45px;" type="file" class="form-control" accept="image/*" id="inputImage" name="inputImage" onchange="preview_image(event)" required>
                 <h1 class="mt-4" style="color:#000; font-size:18px;">Επιλεγμένη Εικόνα:</h1>
                 <img id="img_preview" height="300px;" width="300px;" class="img-thumbnail">
             </div>
 
             <div class="form-group col-md-6 col-sm-12">
-                <label class="inputLabel" for="inputDescription">Περιγραφή Προϊόντος:</label>
+                <label class="inputLabel" for="inputDescription">Περιγραφή Προϊόντος *</label>
                 <textarea id="inputDescription" name="inputDescription" class="form-control" placeholder="" style="width: 100%; height:100%;" required></textarea>
             </div>
                 
@@ -89,7 +89,7 @@
 
         <div class="form-row mt-4">
             <div class="form-group col-md-6">
-                <label for="inputCategory">Κατηγορία προϊόντος:</label>
+                <label for="inputCategory">Κατηγορία προϊόντος *</label>
                 <select name="inputCategory" id="inputCategory" class="form-control" required>
                         <option selected>Επιλογή...</option>
                         <option value="Υπολογιστές">Υπολογιστές</option>
@@ -99,7 +99,7 @@
                 </select>
             </div>
             <div class="form-group col-md-6">
-                <label for="inputSubCategory">Υποκατηγορία προϊόντος:</label>
+                <label for="inputSubCategory">Υποκατηγορία προϊόντος *</label>
                 <select name="inputSubCategory" id="inputSubCategory" class="form-control" required>
                         <option selected>Επιλογή...</option>
                 </select>
@@ -129,12 +129,12 @@
       
         <div class="form-row mt-4">
             <div class="form-group col-md-6">
-                <label for="inputTitle">Τίτλος προϊόντος:</label>
+                <label for="inputTitle">Τίτλος προϊόντος *</label>
                 <input type="text" class="form-control" name="inputTitle" id="inputTitle" required>
             </div>
 
             <div class="form-group col-md-6">
-                <label for="inputPrice">Τιμή προϊόντος:</label>
+                <label for="inputPrice">Τιμή προϊόντος *</label>
                 <input type="number" min="1" max="10000" class="form-control" name="inputPrice" id="inputPrice" required>
             </div>
         </div>
@@ -143,7 +143,7 @@
 
         <div class="form-row mt-4">
             <div class="form-group col-md-6">
-                <label for="inputType">Τύπος καταχώρησης:</label>
+                <label for="inputType">Τύπος καταχώρησης *</label>
                 <select name="inputType" id="inputType" class="form-control" required>
                         <option selected>Επιλογή...</option>
                         <option value="Πώληση">Πώληση</option>
@@ -153,7 +153,7 @@
 
             
             <div class="form-group col-md-6">
-                <label for="inputRaisePrice">Ρυθμός αύξησης τιμής προϊόντος:</label>
+                <label for="inputRaisePrice">Ρυθμός αύξησης τιμής προϊόντος</label>
                 <input type="number" min="0" max="100" step="1" class="form-control" name="inputRaisePrice" id="inputRaisePrice" disabled>
             </div>
 
@@ -180,7 +180,7 @@
 
         <div class="form-row mt-4">
             <div class="form-group col-md-6 col-sm-12">
-            <label for="inputAuctionLast">Διάρκεια δημοπρασίας/πώλησης:</label>
+            <label for="inputAuctionLast">Διάρκεια δημοπρασίας/πώλησης *</label>
                 <select name="inputAuctionLast" id="inputAuctionLast" class="form-control" required>
                     <option selected>Ημέρες...</option>
                     <option value="1">1 Ημέρα</option>
@@ -224,7 +224,7 @@
 
         <div class="form-row mt-4">
             <div class="form-group col-md-4">
-                <label for="inputState">Κατάσταση:</label>
+                <label for="inputState">Κατάσταση *</label>
                 <select name="inputState" id="inputState" class="form-control" required>
                         <option selected>Επιλογή...</option>
                         <option value="Καινούργιο">Καινούργιο</option>
@@ -232,7 +232,7 @@
                 </select>
             </div>
             <div class="form-group col-md-4">
-                <label for="inputTermsCondition">Όροι αποστολής:</label>
+                <label for="inputTermsCondition">Όροι αποστολής *</label>
                 <select name="inputTermsCondition" id="inputTermsCondition" class="form-control" required>
                         <option selected>Επιλογή...</option>
                         <option value="Επιβαρύνουν τον αγοραστή">Επιβαρύνουν τον αγοραστή</option>
@@ -241,14 +241,14 @@
             </div>
 
             <div class="form-group col-md-4">
-                <label for="inputSentExpenses">Έξοδα αποστολής:</label>
+                <label for="inputSentExpenses">Έξοδα αποστολής *</label>
                 <input type="number" min="0" max="1000" step="1" class="form-control" name="inputSentExpenses" id="inputSentExpenses"> 
             </div>
         </div>
 
 
         <div class="form-group mt-4 col-md-6">
-            <label for="inputPayMethods">Τρόποι πληρωμής-παραλαβής:</label>
+            <label for="inputPayMethods">Τρόποι πληρωμής-παραλαβής</label>
         </div>
 
 
@@ -293,11 +293,14 @@
 
         <div class="form-row mt-4">
             <div class="form-group col-md-12">
-                <label for="inputSentComments">Σχόλια αποστολής:</label>
+                <label for="inputSentComments">Σχόλια αποστολής *</label>
                 <textarea id="inputSentComments" name="inputSentComments" class="form-control" placeholder="" style="width: 100%; height:100%;"></textarea>        
             </div>
         </div>
 
+        <div class="mt-4">
+            <h3>Τα πεδία με το σύμβολο * είναι υποχρεωτικά.</h3>
+        </div>
 
         <button type="button" id="btn_msg" onclick="form_validation_script()" class="btn btn-primary mt-4">Καταχώρηση Νέου προϊόντος</button>
 
@@ -358,7 +361,7 @@
 
         <h6 style="font-size: 25px; padding-top: 8px;"><i style="color: #75d802;" class="far fa-check-circle">Η καταχώρησή σας έγινε δεκτή.</i></h6>
 
-        <button class="mt-4 btn btn-light" onclick="redirectHomePage()">Επιστροφή στην αρχική</button>
+        <button type="button" class="mt-4 btn btn-light" onclick="redirectHomePage()">Επιστροφή στην αρχική</button>
 
     </div>  
 
@@ -374,7 +377,7 @@
 
         <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle">Αποτυχία καταχώρησης. Παρακαλώ προσπαθείστε ξανά αργότερα</i></h6>
 
-        <button class="mt-4 btn btn-light" onclick="redirectHomePage()">Επιστροφή στην αρχική</button>
+        <button type="button" class="mt-4 btn btn-light" onclick="redirectHomePage()">Επιστροφή στην αρχική</button>
     </div>  
 
 
