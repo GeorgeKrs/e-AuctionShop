@@ -413,7 +413,7 @@
         }
 
         if (isNaN(max_price)) {
-            max_price = 10000;
+            max_price = 30000;
         }
        
 

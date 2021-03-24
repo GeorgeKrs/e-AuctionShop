@@ -49,7 +49,7 @@
                                 <div class="card-body">
                                     <p class="card-text">'.$title.'</p>
                                     <p class="card-text">Λήξη '.$auction_type.'ς:<br>'.$auction_ended.'</p>
-                                    <p class="card-text">Αρχική Τιμή: '.$price.' &euro;</p>
+                                    <p class="card-text">Αρχική Τιμή: '.$price.'&euro;</p>
                                 </div>
                             </a>
                         </div>
