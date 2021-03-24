@@ -503,7 +503,7 @@
 
 </script>
 
-<script>
+<!-- <script>
 // wait function for new product
 function wait(ms){
    var start = new Date().getTime();
@@ -512,7 +512,7 @@ function wait(ms){
      end = new Date().getTime();
   }
 }
-</script>
+</script> -->
 
 <script>
 
@@ -691,8 +691,7 @@ function wait(ms){
                     }
                 },
                 complete: function() {
-                    wait(2000);
-                    console.log("2 sec");
+                    // wait(2000);
                     document.getElementById("btn_NewProduct").disabled=false;
                     document.getElementById("btn_NewProduct").style.color= '#ffffff';
                     document.getElementById("btn_NewProduct").innerHTML= "Καταχώρηση Νέου προϊόντος";

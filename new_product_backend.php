@@ -147,27 +147,27 @@
         $number_rows = mysqli_num_rows($search_result);
         
         if ($number_rows == 0){
-            // // image 
-            // $img_name = $_FILES['inputImage']['name'];
-            // $img_size = $_FILES['inputImage']['size'];
-            // $tmp_name = $_FILES['inputImage']['tmp_name'];
+            // image 
+            $img_name = $_FILES['inputImage']['name'];
+            $img_size = $_FILES['inputImage']['size'];
+            $tmp_name = $_FILES['inputImage']['tmp_name'];
 
 
-            // $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-            // $img_ex_lc = strtolower($img_ex);
+            $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+            $img_ex_lc = strtolower($img_ex);
 
 
-            // $inputImage = uniqid("IMG-", true).'.'.$img_ex_lc;
-            // $image_upload_path = 'auctions_images/'.$inputImage;
-            // move_uploaded_file($tmp_name, $image_upload_path);
+            $inputImage = uniqid("IMG-", true).'.'.$img_ex_lc;
+            $image_upload_path = 'auctions_images/'.$inputImage;
+            move_uploaded_file($tmp_name, $image_upload_path);
 
 
-            // $registration ="INSERT INTO products_table 
-            //             (uuid, title, price, category, sub_category,auction_type, sent_terms, payment_methods, auction_duration, sent_expenses, prod_status, price_raise, prod_description, sent_comments, primary_image_url, auction_started, auction_ended, prod_number, auction_status)     
-            //             VALUES 
-            //             ('$uuid', '$inputΤitle', '$inputPrice', '$inputCategory', '$inputSubCategory', '$inputType', '$inputTermsCondition', '$payment_methods', '$inputAuctionLast Ημέρες', '$inputSentExpenses', '$inputState', '$inputRaisePrice', '$inputDescription', '$inputSentComments', '$inputImage', '$auction_started','$auction_ended', '$prod_number', '$auction_status')";
+            $registration ="INSERT INTO products_table 
+                        (uuid, title, price, category, sub_category,auction_type, sent_terms, payment_methods, auction_duration, sent_expenses, prod_status, price_raise, prod_description, sent_comments, primary_image_url, auction_started, auction_ended, prod_number, auction_status)     
+                        VALUES 
+                        ('$uuid', '$inputΤitle', '$inputPrice', '$inputCategory', '$inputSubCategory', '$inputType', '$inputTermsCondition', '$payment_methods', '$inputAuctionLast Ημέρες', '$inputSentExpenses', '$inputState', '$inputRaisePrice', '$inputDescription', '$inputSentComments', '$inputImage', '$auction_started','$auction_ended', '$prod_number', '$auction_status')";
 
-            // mysqli_query($connection, $registration);
+            mysqli_query($connection, $registration);
 
             $checkVariable = true;
 
