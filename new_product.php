@@ -302,7 +302,9 @@
             <h3>Τα πεδία με το σύμβολο * είναι υποχρεωτικά.</h3>
         </div>
 
-        <button type="button" id="btn_msg" onclick="form_validation_script()" class="btn btn-primary mt-4">Καταχώρηση Νέου προϊόντος</button>
+        <button type="button" id="btn_NewProduct" onclick="form_validation_script()" class="btn btn-primary mt-4">
+            Καταχώρηση Νέου προϊόντος
+        </button>
 
     
     
@@ -361,7 +363,7 @@
 
         <h6 style="font-size: 25px; padding-top: 8px;"><i style="color: #75d802;" class="far fa-check-circle">Η καταχώρησή σας έγινε δεκτή.</i></h6>
 
-        <button type="button" class="mt-4 btn btn-light" onclick="redirectHomePage()">Επιστροφή στην αρχική</button>
+        <button type="button" class="mt-4 mb-4 btn btn-light" onclick="redirectHomePage()">Επιστροφή στην αρχική</button>
 
     </div>  
 
@@ -377,7 +379,7 @@
 
         <h6 style="font-size: 25px; padding-top: 8px;"><i class="fas fa-exclamation-triangle">Αποτυχία καταχώρησης. Παρακαλώ προσπαθείστε ξανά αργότερα</i></h6>
 
-        <button type="button" class="mt-4 btn btn-light" onclick="redirectHomePage()">Επιστροφή στην αρχική</button>
+        <button type="button" class="mt-4 mb-4 btn btn-light" onclick="redirectHomePage()">Επιστροφή στην αρχική</button>
     </div>  
 
 
@@ -501,7 +503,16 @@
 
 </script>
 
-
+<script>
+// wait function for new product
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
+}
+</script>
 
 <script>
 
@@ -664,6 +675,12 @@
                 processData: false,
                 contentType: false,
                 data: formData, 
+                beforeSend: function() {
+                    document.getElementById("btn_NewProduct").style.color= '#6502d8';
+                    document.getElementById("btn_NewProduct").innerHTML="Παρακαλώ περιμένετε";
+                    document.getElementById("btn_NewProduct").disabled=true;
+
+                },
                 success: function(data) {
                     data = JSON.parse(data);
                     if (data.statusCode==200) {
@@ -672,6 +689,13 @@
                     }else if (data.statusCode==201) {
                         document.getElementById('alertBox_fail').style.display="block";
                     }
+                },
+                complete: function() {
+                    wait(2000);
+                    console.log("2 sec");
+                    document.getElementById("btn_NewProduct").disabled=false;
+                    document.getElementById("btn_NewProduct").style.color= '#ffffff';
+                    document.getElementById("btn_NewProduct").innerHTML= "Καταχώρηση Νέου προϊόντος";
                 }
             });      
 

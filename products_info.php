@@ -181,6 +181,20 @@
             if ($auction_type=="Δημοπρασία"){
 
                 echo '
+                <h4><b><u>Αρχική τιμή:</u></b></h4>
+
+                <div class="mt-4 card-columns">
+                    <div class="card bg-light">
+                        <div class="card-body text-center">
+                            <p class="card-text">';
+                                echo "$price&euro;";
+                                    
+                echo '           
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
 
                 <h4><b><u>Τρέχουσα τιμή:</u></b></h4>
 
