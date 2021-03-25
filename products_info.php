@@ -141,6 +141,7 @@
         <?php 
             echo '<li><a href="prod_categories.php?link='.$category.'" class="category-links">'.$category.'</a></li>';
             echo '<li><b>'.$sub_category.'</b></li>';
+            echo '<li><b>'.$title.'</b></li>';
         ?>
     </ul>
      <!-- breadcrumbs -->
