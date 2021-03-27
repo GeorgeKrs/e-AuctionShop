@@ -108,22 +108,20 @@
     
     if ($total_rows_product > 0) {
 
-        $sql_query_bids = "SELECT MAX(bid_price) AS maxBid FROM bids_table";
+        // $sql_query_bids = "SELECT MAX(bid_price) AS maxBid FROM bids_table ";
+
+        $sql_query_bids = "SELECT bid_price FROM bids_table WHERE product_id='$prod_number' ORDER BY bid_price DESC LIMIT 1";
 
         $result_bids = mysqli_query($connection, $sql_query_bids);
 
         if (mysqli_num_rows($result_bids) > 0) {
             while($row=mysqli_fetch_assoc($result_bids)) {
-
-                $max_bid = "$row[maxBid]";
-                // $maxBidUser = "$row[uuid]";
-                echo $max_bid;
-                echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
-                echo $max_bid;
+                
+                $max_bid = "$row[bid_price]";
 
             }
         }else{
-            $max_bid = intval(0);
+            $max_bid = intval(0);   
         }   
     }else{
         $max_bid = intval(0);
@@ -259,8 +257,45 @@
                         </div>
                     </div>
                 </div>
-                ';
 
+                <div class="card-columns" id="alertBox_under_max_price" style="display: none">
+                    <div class="card bg-danger">
+                        <div 
+                        class="card-body text-center">
+                            <i class="fas fa-exclamation-triangle" 
+                                <h6 style="font-size: 20px; padding-top: 8px;"> Η τιμή της προσφοράς σας είναι
+                                μικρότερη από τη τρέχουσα τιμή του προϊόντος</h6>
+                             </i>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-columns" id="alertBox_success" style="display: none">
+                    <div class="card bg-success">
+                        <div 
+                        class="card-body text-center">
+                            <i class="fas fa-clipboard-check">
+                                <h6 style="font-size: 20px; padding-top: 8px;"> Η προσφορά σας έγινε δεκτή, θα γίνει αυτόματη ανανέωση της τιμής σε λίγα δευτερόλεπτα</h6>
+                            </i>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-columns" id="alertBox_fail_server" style="display: none">
+                    <div class="card bg-danger">
+                        <div 
+                        class="card-body text-center">
+                            <i class="fas fa-exclamation-triangle">
+                                <h6 style="font-size: 20px; padding-top: 8px;"> Η προσφορά σας δεν έγινε δεκτή, ξαναδοκιμάστε αργότερα.</h6>
+                            </i>
+
+                        </div>
+                    </div>
+                </div>
+                ';
+                
             }else{
             
                 echo '
@@ -448,60 +483,81 @@
 
 
 <script>
-    function bidPrice_function() {
+function bidPrice_function() {
 
-        var bid_id = <?php echo $uuid; ?> ;
-        
-        if(bid_id != 0) {
-            var bid_price = parseFloat(document.getElementById("bid_price").value);
-            var price =  parseFloat(<?php echo $price; ?>);
-            var min_price_raise = parseFloat(<?php echo $price_raise; ?>);
-            var product_id = <?php echo $prod_number; ?>;
+    var bid_id = <?php echo $uuid; ?> ;
+    
+    if(bid_id != 0) {
+        var bid_price = parseFloat(document.getElementById("bid_price").value);
+        var price =  parseFloat(<?php echo $price; ?>);
+        var min_price_raise = parseFloat(<?php echo $price_raise; ?>);
+        var product_id = <?php echo $prod_number; ?>;
+        var max_bid = <?php echo $max_bid; ?>; 
 
-            if ((bid_price-price) < min_price_raise){
-                document.getElementById('alertBox_min_price').style.display="block";
-            }else{
-                document.getElementById('alertBox_min_price').style.display="none";
-                
-                formData = new FormData();
-                
-                formData.append("bid_price", bid_price);
-                formData.append("bid_id", bid_id);
-                formData.append("product_id", product_id);
+        // console.log("Bid price:", bid_price);
+        // console.log("price:", price);
+        // console.log("min Bid price:", min_price_raise);
+        // console.log("Product ID:", product_id);
+        // console.log("Max bid:", max_bid);
 
-                $.ajax({
-                    url: 'bid_backend.php',
-                    enctype: 'multipart/form-data',
-                    type: "POST",
-                    cache: false, 
-                    processData: false,
-                    contentType: false,
-                    data: formData, 
-                    beforeSend: function() {
-                            document.getElementById("bid_Button_submit").style.color= '#6502d8';
-                            document.getElementById("bid_Button_submit").innerHTML="Παρακαλώ περιμένετε";
-                            document.getElementById("bid_Button_submit").disabled=true;
-                    },
-                    success: function(data) {
-                        data = JSON.parse(data);
-                        if (data.statusCode==200) {
-                            document.getElementById('alertBox_success').style.display="block";
-                
-                        }else if (data.statusCode==201) {
-                            document.getElementById('alertBox_fail').style.display="block";
-                        }
-                    },
-                    complete: function() {
-                        document.getElementById("bid_Button_submit").disabled=false;
-                        document.getElementById("bid_Button_submit").style.color= '#ffffff';
-                        document.getElementById("bid_Button_submit").innerHTML= "Υποβολή";
-                    }
-                });  
-            }
+        if (price > max_bid) {
+            max_bid = price;
+        }
+
+        if (bid_price <= max_bid){
+            document.getElementById('alertBox_under_max_price').style.display="block";
+            document.getElementById('alertBox_min_price').style.display="none";
+
+        }else if (bid_price > max_bid && bid_price < (max_bid + min_price_raise)) {
+            document.getElementById('alertBox_min_price').style.display="block";
+            document.getElementById('alertBox_under_max_price').style.display="none";
         }else{
-            window.location.href = "login.php";
-        }    
-    }
+            document.getElementById('alertBox_min_price').style.display="none";
+            document.getElementById('alertBox_under_max_price').style.display="none";
+
+            formData = new FormData();
+            
+            formData.append("bid_price", bid_price);
+            formData.append("bid_id", bid_id);
+            formData.append("product_id", product_id);
+            
+            $.ajax({
+                url: 'bid_backend.php',
+                enctype: 'multipart/form-data',
+                type: "POST",
+                cache: false, 
+                processData: false,
+                contentType: false,
+                data: formData, 
+                beforeSend: function() {
+                        document.getElementById("bid_Button_submit").style.color= '#6502d8';
+                        document.getElementById("bid_Button_submit").innerHTML="Παρακαλώ περιμένετε";
+                        document.getElementById("bid_Button_submit").disabled=true;
+                },
+                success: function(data) {
+                    data = JSON.parse(data);
+                    if (data.statusCode==200) {
+                        document.getElementById('alertBox_success').style.display="block";
+                        setTimeout(function(){
+                            location.reload(); ;
+                        },2000);
+            
+                    }else if (data.statusCode==201) {
+                        document.getElementById('alertBox_fail_server').style.display="block";
+                    }
+                },
+                complete: function() {
+                    document.getElementById("bid_Button_submit").disabled=false;
+                    document.getElementById("bid_Button_submit").style.color= '#ffffff';
+                    document.getElementById("bid_Button_submit").innerHTML= "Υποβολή";
+                }
+            });  
+        } 
+    }else{
+        window.location.href = "login.php";
+    }  
+}
+
 </script>
 
 <script>
