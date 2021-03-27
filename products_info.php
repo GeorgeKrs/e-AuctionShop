@@ -494,6 +494,11 @@ function bidPrice_function() {
         var product_id = <?php echo $prod_number; ?>;
         var max_bid = <?php echo $max_bid; ?>; 
 
+
+        if(isNaN(bid_price)) {
+            bid_price = parseFloat(0);
+        }
+
         // console.log("Bid price:", bid_price);
         // console.log("price:", price);
         // console.log("min Bid price:", min_price_raise);
@@ -507,7 +512,6 @@ function bidPrice_function() {
         if (bid_price <= max_bid){
             document.getElementById('alertBox_under_max_price').style.display="block";
             document.getElementById('alertBox_min_price').style.display="none";
-
         }else if (bid_price > max_bid && bid_price < (max_bid + min_price_raise)) {
             document.getElementById('alertBox_min_price').style.display="block";
             document.getElementById('alertBox_under_max_price').style.display="none";
