@@ -12,7 +12,6 @@ if(isset($_POST['password'])){
     $pw = ($_POST['password']);
 }
 
-
 // Checking if a username & pw match
 $search_username = "SELECT * FROM user_info WHERE username = '$username' && pw = '$pw'";
 $result = mysqli_query($connection, $search_username);

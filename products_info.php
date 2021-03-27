@@ -1,5 +1,6 @@
 <?php  
-    require 'uuid_search.php';
+    require "session_check.php";
+    require "db_connection.php";
 ?>
 
 <!DOCTYPE html>
@@ -37,8 +38,10 @@
 
     if(isset($_SESSION['username'])){
         require 'header_loggedin.php';
+        require "uuid_search.php";
     } else {
         require 'header.php';
+        $uuid = intval(0);
     }
 
 
@@ -47,6 +50,7 @@
         $id = $_GET['link'];
     } 
 
+    
 
     // product info sql query
     $sql_query = "SELECT * FROM products_table WHERE id='$id'";
@@ -56,7 +60,7 @@
     if (mysqli_num_rows($result) > 0) {
         while($row=mysqli_fetch_assoc($result)) {
 
-            $uuid = "$row[uuid]";
+            $user_id = "$row[uuid]";
             $id = "$row[id]";
             $title = "$row[title]";
             $price = "$row[price]";
@@ -74,8 +78,6 @@
             $prod_number = "$row[prod_number]";
             $auction_started = "$row[auction_started]";
             $auction_ended = "$row[auction_ended]";
-
-            $bid_price = $price;
         }
     }
     // product info sql query
@@ -83,7 +85,7 @@
 
 
     // owner info sql query
-    $sql_query = "SELECT * FROM user_info WHERE uuid='$uuid'";
+    $sql_query = "SELECT * FROM user_info WHERE uuid='$user_id'";
 
     $result = mysqli_query($connection, $sql_query);
 
@@ -104,22 +106,27 @@
 
     $total_rows_product = mysqli_num_rows($result_count);
     
-    if ($total_rows_product > 1) {
+    if ($total_rows_product > 0) {
 
-        $sql_query_bids = "SELECT MAX(bid_price) FROM bids_table WHERE product_id='$id'";
+        $sql_query_bids = "SELECT MAX(bid_price) AS maxBid FROM bids_table";
 
         $result_bids = mysqli_query($connection, $sql_query_bids);
 
         if (mysqli_num_rows($result_bids) > 0) {
             while($row=mysqli_fetch_assoc($result_bids)) {
 
-                $bid_price = "$row[bid_price]";
-                $maxBidUser = "$row[uuid]";
+                $max_bid = "$row[maxBid]";
+                // $maxBidUser = "$row[uuid]";
+                echo $max_bid;
+                echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+                echo $max_bid;
+
             }
         }else{
-            
-            $bid_price = intval(0);
+            $max_bid = intval(0);
         }   
+    }else{
+        $max_bid = intval(0);
     }
     // bid_price sql query
 
@@ -204,10 +211,10 @@
                         <div class="card-body text-center">
                             <p class="card-text">';
 
-                                if ($price == $bid_price){
+                                if ($price > $max_bid){
                                     echo "$price&euro;";
-                                }else if ($price < $bid_price){
-                                    echo "$bid_price&euro;";
+                                }else if ($price <= $max_bid){
+                                    echo "$max_bid&euro;";
                                 }
                                     
                 echo '           
@@ -239,6 +246,19 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="card-columns" id="alertBox_min_price" style="display: none">
+                    <div class="card bg-danger">
+                        <div 
+                        class="card-body text-center">
+                            <i class="fas fa-exclamation-triangle" 
+                                <h6 style="font-size: 20px; padding-top: 8px;"> Η τιμή της προσφοράς σας δεν
+                                ικανοποιεί το κριτήριο της ελάχιστης προσφοράς του προϊόντος</h6>
+                             </i>
+
+                        </div>
+                    </div>
+                </div>
                 ';
 
             }else{
@@ -251,12 +271,8 @@
                     <div class="card bg-light">
                         <div class="card-body text-center">
                             <p class="card-text">';
-
-                                if ($price == $bid_price){
-                                    echo "$price&euro;";
-                                }else if ($price < $bid_price){
-                                    echo "$bid_price&euro;";
-                                }
+                                echo "$price&euro;";
+                                
                                     
                 echo '    
                             </p>
@@ -433,16 +449,58 @@
 
 <script>
     function bidPrice_function() {
-        var bid_price = parseInt(document.getElementById("bid_price").value);
-        var price = parseInt(<?php echo $price; ?>);
-        var min_price_raise = parseInt(<?php echo $price_raise; ?>);
 
-        if (bid_price < min_price_raise){
-            alert("Η προσφορά σας είναι μικρότερη από την ελάχιστη προσφορά")
+        var bid_id = <?php echo $uuid; ?> ;
+        
+        if(bid_id != 0) {
+            var bid_price = parseFloat(document.getElementById("bid_price").value);
+            var price =  parseFloat(<?php echo $price; ?>);
+            var min_price_raise = parseFloat(<?php echo $price_raise; ?>);
+            var product_id = <?php echo $prod_number; ?>;
+
+            if ((bid_price-price) < min_price_raise){
+                document.getElementById('alertBox_min_price').style.display="block";
+            }else{
+                document.getElementById('alertBox_min_price').style.display="none";
+                
+                formData = new FormData();
+                
+                formData.append("bid_price", bid_price);
+                formData.append("bid_id", bid_id);
+                formData.append("product_id", product_id);
+
+                $.ajax({
+                    url: 'bid_backend.php',
+                    enctype: 'multipart/form-data',
+                    type: "POST",
+                    cache: false, 
+                    processData: false,
+                    contentType: false,
+                    data: formData, 
+                    beforeSend: function() {
+                            document.getElementById("bid_Button_submit").style.color= '#6502d8';
+                            document.getElementById("bid_Button_submit").innerHTML="Παρακαλώ περιμένετε";
+                            document.getElementById("bid_Button_submit").disabled=true;
+                    },
+                    success: function(data) {
+                        data = JSON.parse(data);
+                        if (data.statusCode==200) {
+                            document.getElementById('alertBox_success').style.display="block";
+                
+                        }else if (data.statusCode==201) {
+                            document.getElementById('alertBox_fail').style.display="block";
+                        }
+                    },
+                    complete: function() {
+                        document.getElementById("bid_Button_submit").disabled=false;
+                        document.getElementById("bid_Button_submit").style.color= '#ffffff';
+                        document.getElementById("bid_Button_submit").innerHTML= "Υποβολή";
+                    }
+                });  
+            }
         }else{
-            bid_price = bid_price + price; 
-            alert(bid_price);
-        }
+            window.location.href = "login.php";
+        }    
     }
 </script>
 
@@ -450,7 +508,6 @@
     function buyProduct_function() {
         alert("Buy function not build yet");
     }
-
 </script>
 
 
