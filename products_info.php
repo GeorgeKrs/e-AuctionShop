@@ -105,12 +105,10 @@
     $result_count = mysqli_query($connection, $total_rows_query);
 
     $total_rows_product = mysqli_num_rows($result_count);
-    
+
     if ($total_rows_product > 0) {
 
-        // $sql_query_bids = "SELECT MAX(bid_price) AS maxBid FROM bids_table ";
-
-        $sql_query_bids = "SELECT bid_price FROM bids_table WHERE product_id='$prod_number' ORDER BY bid_price DESC LIMIT 1";
+        $sql_query_bids = "SELECT bid_price,uuid FROM bids_table WHERE product_id='$prod_number' ORDER BY bid_price DESC LIMIT 1";
 
         $result_bids = mysqli_query($connection, $sql_query_bids);
 
@@ -118,14 +116,17 @@
             while($row=mysqli_fetch_assoc($result_bids)) {
                 
                 $max_bid = "$row[bid_price]";
-
+                $winner_bid_id = "$row[uuid]";
             }
         }else{
-            $max_bid = intval(0);   
+            $max_bid = floatval(0); 
+            $winner_bid_id = intval(0);;  
         }   
     }else{
-        $max_bid = intval(0);
+        $max_bid = floatval(0);
+        $winner_bid_id = intval(0);;
     }
+
     // bid_price sql query
 
 
@@ -609,10 +610,19 @@ function bidPrice_function() {
             document.getElementById("timerCard").style.color = "red"; 
 
             var id = <?php echo $id;?>;
+           
+            var price =  <?php echo $price;?>;
+            var max_bid = <?php echo $max_bid;?>; 
 
             formData = new FormData();
-            formData.append("id",id)
+            formData.append("id",id);
 
+            if (price < max_bid){
+                var winner_bid_id = <?php echo $winner_bid_id;?>;
+                formData.append("winner_bid_id",winner_bid_id); 
+            }
+          
+            
             $.ajax({
                 url: 'auction_status_change.php',
                 enctype: 'multipart/form-data',
