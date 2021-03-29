@@ -126,8 +126,17 @@
         $max_bid = floatval(0);
         $winner_bid_id = intval(0);;
     }
-
     // bid_price sql query
+
+    // check for min price bid
+    if ($auction_type == "Δημοπρασία"){
+        if ($price < $max_bid){
+            $min_bid = ($max_bid + $price_raise);
+        }else{
+            $min_bid ($price + $price_raise);
+        }
+    }
+    // check for min price bid
 
 
     // date and time data
@@ -229,7 +238,7 @@
                             Προσφορά:
                             </p>
                             
-                            <input type="number" id="bid_price" name="bid_price" step="0.5" min='.$price_raise.'>
+                            <input type="number" id="bid_price" name="bid_price" step="0.5" min='.$min_bid.'>
                             <button id="bid_Button_submit" class="btn btn-dark" type="button" onclick="bidPrice_function()">Υποβολή</button>
 
                         </div>
@@ -239,7 +248,7 @@
                     <div class="card bg-light">
                         <div class="card-body text-center">
                             <p class="card-text">
-                                Ελάχιστη προσφορά: '.$price_raise.'&euro;
+                                Ελάχιστη προσφορά: '.$min_bid.'&euro;
 
                             </p>
                         </div>
