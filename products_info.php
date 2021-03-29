@@ -80,8 +80,6 @@
             $auction_ended = "$row[auction_ended]";
         }
     }
-    // product info sql query
-
 
 
     // owner info sql query
@@ -133,7 +131,7 @@
         if ($price < $max_bid){
             $min_bid = ($max_bid + $price_raise);
         }else{
-            $min_bid ($price + $price_raise);
+            $min_bid = ($price + $price_raise);
         }
     }
     // check for min price bid
