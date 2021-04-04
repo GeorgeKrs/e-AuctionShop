@@ -210,7 +210,7 @@
                 </div>
 
 
-                <h4><b><u>Τρέχουσα τιμή:</u></b></h4>
+                <h4 id="current_price_id"><b><u>Τρέχουσα τιμή:</u></b></h4>
 
                 <div class="mt-4 card-columns">
                     <div class="card bg-light">
@@ -629,7 +629,7 @@ function bidPrice_function() {
                 formData.append("winner_bid_id",winner_bid_id); 
             }
           
-            
+
             $.ajax({
                 url: 'auction_status_change.php',
                 enctype: 'multipart/form-data',
@@ -641,17 +641,16 @@ function bidPrice_function() {
                 success: function(data) {
                 }
             });   
-
+            
             <?php 
                 if ($auction_type=="Δημοπρασία"){
                     echo "document.getElementById('bid_price').disabled = true;\n"; 
-                    echo "document.getElementById('bid_button').disabled = true;";   
+                    echo "document.getElementById('bid_button').disabled = true;\n";   
                 }else{
                     echo "document.getElementById('buy_button').disabled = true;\n"; 
                 }
             ?>
 
-              
     }
     }, 1000);
 

@@ -66,7 +66,7 @@
 
     <div class="form-group" style="text-align: center;">
     
-        <a href="#" class="nav-link">Το ιστορικό αγορών μου
+        <a href="user_history_purch.php" class="nav-link">Το ιστορικό αγορών μου
             <i class="fas fa-shopping-bag fasPadding"></i>
         </a>
     </div>

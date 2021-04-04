@@ -8,7 +8,7 @@ if (isset($_POST['id'])){
 if (isset($_POST['winner_bid_id'])){
     $winner_bid_id=$_POST['winner_bid_id'];
 }else{
-    echo "No winner bid";
+    $winner_bid_id = intval(0);
 }
 
 

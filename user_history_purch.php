@@ -31,25 +31,6 @@
     </div>
     ';
     require 'header_loggedin.php';
-
-    if (isset($_GET['auctionStatus'])) {
-        $auctionsHistory = $_GET['auctionStatus'];
-    }
-
-    if (isset($_GET['myCurrentAuctions'])) {
-        $myCurrentAuctions = $_GET['myCurrentAuctions'];
-    }
-
-    if (isset($_GET['myEndedAuctions'])) {
-        $myEndedAuctions = $_GET['myEndedAuctions'];
-    }
-    
-
-    if ($auctionsHistory=="Ενεργές Δημοπρασίες") {
-        $auction_status="active";
-    }else{
-        $auction_status="expired";
-    }
 ?>
 
 <div class="container generalContainer roundedForms mt-4">  
@@ -57,8 +38,7 @@
     <ul class="breadcrumb">
         <li><a href="index.php" class="category-links">Αρχική Σελίδα</a></li>
         <li><a href="user_settings.php" class="category-links">Ρυθμίσεις Χρήστη</a></li>
-        <li><a href="myAuctions.php" class="category-links">Οι καταχωρήσεις μου</a></li>
-        <li style="font-size: 18px;"><b><?php echo $auctionsHistory; ?></b></li>
+        <li style="font-size: 18px;"><b>Ιστορικό αγορών μου</b></li>
     </ul>
 </div>
 
@@ -67,9 +47,8 @@
 <div class="container generalContainer roundedForms mt-4">  
     <div class="row">
         <?php
-        $sql_query_auctions = "SELECT * FROM products_table WHERE uuid='$uuid' AND auction_status='$auction_status'";
 
-
+        $sql_query_auctions = "SELECT * FROM products_table WHERE winner_bid_id='$uuid' AND auction_status='expired'";
         $result_auctions = mysqli_query($connection, $sql_query_auctions);
 
         if (mysqli_num_rows($result_auctions) > 0) {
@@ -100,7 +79,7 @@
         }else{
             echo 
             '<div class="text-center" style="margin: auto;">
-                <h2>Δε βρέθηκαν καταχωρήσεις.</h2>
+                <h2>Το ιστορικό αγορών σας είναι άδειο.</h2>
             </div>';
         }
         ?>
@@ -132,4 +111,3 @@
     
 </body>
 </html>
-    
