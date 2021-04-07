@@ -277,7 +277,7 @@
                             <p class="card-text">';
 
                             if ($logical_leading == true){
-                                echo 'Χρήστης που προηγείται της δημοπρασίας: '.$leading_username.'</b>';   
+                                echo 'Χρήστης που προηγείται της δημοπρασίας: <b>'.$leading_username.'</b>';   
                             }else{
                                 echo "<b>$leading_username</b>";
                             }
