@@ -126,6 +126,24 @@
     }
     // bid_price sql query
 
+    if ($winner_bid_id != intval(0)) {
+
+        $sql_leading_bid_id = "SELECT * FROM user_info WHERE uuid='$winner_bid_id'";
+
+        $leading_bid_username = mysqli_query($connection, $sql_leading_bid_id);
+
+        if (mysqli_num_rows($leading_bid_username) > 0) {
+            while($row=mysqli_fetch_assoc($leading_bid_username)) {
+                
+                $leading_username = "$row[username]";
+                $logical_leading = true;
+            }
+        }
+    }else{
+        $leading_username = "Δεν έχει γίνει καμία προσφορά για το συγκεκριμένο προϊόν.";
+        $logical_leading = false;
+    }
+
     // check for min price bid
     if ($auction_type == "Δημοπρασία"){
         if ($price < $max_bid){
@@ -248,6 +266,23 @@
                             <p class="card-text">
                                 Ελάχιστη προσφορά: '.$min_bid.'&euro;
 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-columns">
+                    <div class="card bg-light">
+                        <div class="card-body text-center">
+                            <p class="card-text">';
+
+                            if ($logical_leading == true){
+                                echo 'Χρήστης που προηγείται της δημοπρασίας: <b>'.$leading_username.'</b>';   
+                            }else{
+                                echo "<b>$leading_username</b>";
+                            }
+
+                echo '
                             </p>
                         </div>
                     </div>
