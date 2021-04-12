@@ -610,7 +610,52 @@ function bidPrice_function() {
 <script>
     function buyProduct_function() {
         alert("Buy function not build yet");
+
+        var bid_id = <?php echo $uuid; ?> ;
+
+        if(bid_id != 0) {
+            formData = new FormData();
+            
+            formData.append("bid_price", bid_price);
+            formData.append("bid_id", bid_id);
+            formData.append("product_id", product_id);
+            
+            $.ajax({
+                url: 'buy_prod_backend.php',
+                enctype: 'multipart/form-data',
+                type: "POST",
+                cache: false, 
+                processData: false,
+                contentType: false,
+                data: formData, 
+                beforeSend: function() {
+                        document.getElementById("bid_Button_submit").style.color= '#6502d8';
+                        document.getElementById("bid_Button_submit").innerHTML="Παρακαλώ περιμένετε";
+                        document.getElementById("bid_Button_submit").disabled=true;
+                },
+                success: function(data) {
+                    data = JSON.parse(data);
+                    if (data.statusCode==200) {
+                        document.getElementById('alertBox_success').style.display="block";
+                        setTimeout(function(){
+                            location.reload(); ;
+                        },2000);
+            
+                    }else if (data.statusCode==201) {
+                        document.getElementById('alertBox_fail_server').style.display="block";
+                    }
+                },
+                complete: function() {
+                    document.getElementById("bid_Button_submit").disabled=false;
+                    document.getElementById("bid_Button_submit").style.color= '#ffffff';
+                    document.getElementById("bid_Button_submit").innerHTML= "Υποβολή";
+                }
+            });   
+        }else{
+            window.location.href = "login.php";
+        }  
     }
+    
 </script>
 
 
