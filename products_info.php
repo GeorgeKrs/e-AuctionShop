@@ -1,6 +1,6 @@
 <?php  
     require "session_check.php";
-    require "db_connection.php";
+    require "uuid_search.php";
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +38,6 @@
 
     if(isset($_SESSION['username'])){
         require 'header_loggedin.php';
-        require "uuid_search.php";
     } else {
         require 'header.php';
         $uuid = intval(0);
@@ -213,7 +212,7 @@
             <?php 
 
             if ($auction_type=="Δημοπρασία"){
-
+                $auction_Type_Bool = true;
                 echo '
                 <h4><b><u>Αρχική τιμή:</u></b></h4>
 
@@ -342,7 +341,7 @@
                 ';
                 
             }else{
-            
+                $auction_Type_Bool = "Πώληση";
                 echo '
 
                 <h4><b><u>Τιμή:</u></b></h4>
@@ -734,19 +733,18 @@ function bidPrice_function() {
            
             var price =  <?php echo $price;?>;
             var max_bid = <?php echo $max_bid;?>; 
-            var auction_type = <?php echo $auction_type;?>; 
+            
+            var auction_Type = <?php echo $auction_Type_Bool;?>;           
 
             formData = new FormData();
             formData.append("id",id);
-            formData.append("auction_type", auction_type);
-
+            formData.append("auction_Type", auction_Type);
             
 
             if (price < max_bid){
                 var winner_bid_id = <?php echo $winner_bid_id;?>;
                 formData.append("winner_bid_id",winner_bid_id); 
             }
-            
           
 
             $.ajax({
@@ -757,7 +755,7 @@ function bidPrice_function() {
                 processData: false,
                 contentType: false,
                 data: formData, 
-                success: function(data) {
+                success: function() {
                 }
             });   
             
