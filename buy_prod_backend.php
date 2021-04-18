@@ -27,15 +27,20 @@
                     ('$product_id', '$bid_id', '$bid_price', '$bid_timestamp')";
 
 
-    if ($bid_registry){
-        echo json_encode(array("statusCode"=>200));
-    }else{
-        echo json_encode(array("statusCode"=>201));
-    }
-
     mysqli_query($connection, $bid_registry);
-
     
+
+
+        
+    $sql_query_buy_update = "UPDATE products_table SET winner_bid_id = '$bid_id', auction_status='expired', auction_ended='$bid_timestamp' WHERE prod_number='$product_id'";
+
+    $response = mysqli_query($connection, $sql_query_buy_update);
+
+    if ($response){
+        echo json_encode(array("statusCode"=>300));
+    }else{
+        echo json_encode(array("statusCode"=>301));
+    }
 
 
 ?>

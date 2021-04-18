@@ -160,6 +160,8 @@
     $date = explode("-", $date_and_time[0]);
     $time = explode(":", $date_and_time[1]);
     // date and time data
+
+
 ?>
 
 
@@ -356,7 +358,7 @@
                             </p>
                             </div>
                         </div>
-                    </div>       
+                    </div>     
 
                 
                 <div class="card-columns">
@@ -365,6 +367,30 @@
                             <p class="card-text">
 
                             <button id="buy_button" class="btn btn-dark" type="button" onclick="buyProduct_function()">Αγορά Προϊόντος</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-columns" id="alertBox_success" style="display: none">
+                    <div class="card bg-success">
+                        <div 
+                        class="card-body text-center">
+                            <i class="fas fa-clipboard-check">
+                                <h6 style="font-size: 20px; padding-top: 8px;"> Tο προϊόν αγοράστηκε με επιτυχία. Θα το βρείτε στο ιστορικό αγορών σας. Αυτόματη ανακατεύθυνση σε 5 δευτερόλεπτα.</h6>
+                            </i>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-columns" id="alertBox_fail_server" style="display: none">
+                    <div class="card bg-danger">
+                        <div 
+                        class="card-body text-center">
+                            <i class="fas fa-exclamation-triangle">
+                                <h6 style="font-size: 20px; padding-top: 8px;"> Παρουσιάστηκε σφάλμα. Παρακαλώ δοκιμάστε αργότερα.</h6>
+                            </i>
 
                         </div>
                     </div>
@@ -609,9 +635,10 @@ function bidPrice_function() {
 
 <script>
     function buyProduct_function() {
-        alert("Buy function not build yet");
 
         var bid_id = <?php echo $uuid; ?> ;
+        var bid_price =  parseFloat(<?php echo $price; ?>);
+        var product_id = <?php echo $prod_number; ?>;
 
         if(bid_id != 0) {
             formData = new FormData();
@@ -629,26 +656,26 @@ function bidPrice_function() {
                 contentType: false,
                 data: formData, 
                 beforeSend: function() {
-                        document.getElementById("bid_Button_submit").style.color= '#6502d8';
-                        document.getElementById("bid_Button_submit").innerHTML="Παρακαλώ περιμένετε";
-                        document.getElementById("bid_Button_submit").disabled=true;
+                        document.getElementById("buy_button").style.color= '#6502d8';
+                        document.getElementById("buy_button").innerHTML="Παρακαλώ περιμένετε";
+                        document.getElementById("buy_button").disabled=true;
                 },
                 success: function(data) {
                     data = JSON.parse(data);
-                    if (data.statusCode==200) {
+                    if (data.statusCode==300) {
+                        document.getElementById("buy_button").innerHTML= "Αγοράστηκε με επιτυχία.";
+                        document.getElementById("buy_button").style.color= '#d8020a';
                         document.getElementById('alertBox_success').style.display="block";
                         setTimeout(function(){
-                            location.reload(); ;
-                        },2000);
+                            window.location.replace('index.php');
+                        },5000);
             
-                    }else if (data.statusCode==201) {
+                    }else if (data.statusCode==301) {
                         document.getElementById('alertBox_fail_server').style.display="block";
+                        document.getElementById("buy_button").disabled=false;
+                        document.getElementById("buy_button").innerHTML="Αγορά Προϊόντος";
+                        document.getElementById("buy_button").style.color= '#ffffff';
                     }
-                },
-                complete: function() {
-                    document.getElementById("bid_Button_submit").disabled=false;
-                    document.getElementById("bid_Button_submit").style.color= '#ffffff';
-                    document.getElementById("bid_Button_submit").innerHTML= "Υποβολή";
                 }
             });   
         }else{
@@ -695,19 +722,31 @@ function bidPrice_function() {
             clearInterval(updateTimer);
             document.getElementById("countDown").innerHTML = "Η <?php echo $auction_type; ?> έχει λήξει.";
             document.getElementById("timerCard").style.color = "red"; 
-
+            <?php 
+                if ($auction_type=="Δημοπρασία"){
+                    echo "document.getElementById('bid_price').disabled = true;"; 
+                    echo "document.getElementById('bid_Button_submit').disabled = true;";   
+                }else{
+                    echo "document.getElementById('buy_button').disabled = true;\n"; 
+                }
+            ?>
             var id = <?php echo $id;?>;
            
             var price =  <?php echo $price;?>;
             var max_bid = <?php echo $max_bid;?>; 
+            var auction_type = <?php echo $auction_type;?>; 
 
             formData = new FormData();
             formData.append("id",id);
+            formData.append("auction_type", auction_type);
+
+            
 
             if (price < max_bid){
                 var winner_bid_id = <?php echo $winner_bid_id;?>;
                 formData.append("winner_bid_id",winner_bid_id); 
             }
+            
           
 
             $.ajax({
@@ -722,14 +761,6 @@ function bidPrice_function() {
                 }
             });   
             
-            <?php 
-                if ($auction_type=="Δημοπρασία"){
-                    echo "document.getElementById('bid_price').disabled = true;\n"; 
-                    echo "document.getElementById('bid_button').disabled = true;\n";   
-                }else{
-                    echo "document.getElementById('buy_button').disabled = true;\n"; 
-                }
-            ?>
 
     }
     }, 1000);
