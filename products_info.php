@@ -341,7 +341,7 @@
                 ';
                 
             }else{
-                $auction_Type_Bool = "Πώληση";
+                $auction_Type_Bool = intval(0);
                 echo '
 
                 <h4><b><u>Τιμή:</u></b></h4>
@@ -734,12 +734,14 @@ function bidPrice_function() {
             var price =  <?php echo $price;?>;
             var max_bid = <?php echo $max_bid;?>; 
             
-            var auction_Type = <?php echo $auction_Type_Bool;?>;           
+            var auction_Type = <?php echo $auction_Type_Bool;?>;
+            var id_product = <?php echo $prod_number;?>;
 
             formData = new FormData();
             formData.append("id",id);
             formData.append("auction_Type", auction_Type);
-            
+            formData.append("id_product", id_product);
+
 
             if (price < max_bid){
                 var winner_bid_id = <?php echo $winner_bid_id;?>;
