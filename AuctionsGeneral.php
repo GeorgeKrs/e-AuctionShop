@@ -87,7 +87,7 @@
                 //get the most popular products on bids 
                 $most_bids_products_array = [];
                 
-                $sql_query_most_popular = "SELECT product_id FROM bids_table GROUP BY product_id ORDER BY count(*) DESC LIMIT 6";
+                $sql_query_most_popular = "SELECT product_id FROM bids_table GROUP BY product_id ORDER BY count(*) DESC LIMIT 7";
                 $result_most_popular = mysqli_query($connection,$sql_query_most_popular);
                 while($row = mysqli_fetch_array($result_most_popular)){
                     array_push($most_bids_products_array, "$row[product_id]");
