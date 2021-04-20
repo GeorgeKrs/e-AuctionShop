@@ -1,3 +1,8 @@
+<?php    
+    require 'session_check.php';
+    require 'db_connection.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +29,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <?php 
-    require 'session_check.php';
-    require 'db_connection.php';
+    if (isset($_POST['searchID'])) {
+        $search_input = $_POST['searchID'];
+    }else{
+        $search_input = intval(0);
+    }
+
+    // echo gettype($search_input);
+
     echo '
         <div class="text-center" id="siteName" style="background-color: #000; color: #0275d8; padding:12px; display: none;">
             <h3 style="font-family:Big Shoulders Display, cursive;">e-AuctionShop.gr</h3>
@@ -64,7 +75,9 @@
             <div class="row mt-4" id=result_search>
 
                 <?php 
-                $sql_query = "SELECT * FROM products_table WHERE auction_status='active'";
+                $prod_counter = intval(0);
+
+                $sql_query = "SELECT * FROM products_table WHERE auction_status='active' AND prod_number='$search_input' ";
                 $result_data = mysqli_query($connection,$sql_query);
 
                 if (!empty($result_data)){
@@ -91,10 +104,11 @@
                             </div>
                         </div>
                         ';
-
+                        $prod_counter += 1;
                     }
-                }else{
-                    echo '<h3><b>Δε βρέθηκαν αποτελέσματα στην αναζήτησή σας.</b></h3>'; 
+                }
+                if ($prod_counter==0){
+                    echo '<h3>Δε βρέθηκαν αποτελέσματα στην αναζήτησή σας.</h3>'; 
                 }
 
                 ?>
