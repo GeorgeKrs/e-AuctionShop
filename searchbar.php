@@ -1,18 +1,16 @@
 <div class="d-flex justify-content-end search-container">
+
     <form name=search_form id=search_form method="post" action="search_products.php">
-        <input class="searchInput" type="text" placeholder="Αναζήτηση.." id="searchID" name="searchID">
-        <button class="btn-primary btnsearch"  type="submit"> <i class="fa fa-search"></i></button>
+        <span data-toggle="tooltip" data-placement="top" title="Αναζήτηση κωδικού προϊόντος ή αναζήτηση με λέξεις κλειδιά (κατηγορία ή υποκατηγορία ή όνομα)." Tooltip on top >
+            <input class="searchInput" type="text" placeholder="Αναζήτηση.." id="searchID" name="searchID">
+            <button class="btn-primary btnsearch" type="submit"> <i class="fa fa-search"></i> </button>
+        </span>
     </form>
 </div>
 
-<!-- onclick="SearchFunction()" -->
-<!-- <script>
-function SearchFunction(){
-    var search_input = document.getElementById("searchID").value;
-    validate_search = parseInt(search_input);
 
-    if (!isNaN(validate_search)){
-        search_input = parseInt(search_input);
-    }
-}
-</script> -->
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>

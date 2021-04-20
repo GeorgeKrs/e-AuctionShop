@@ -35,7 +35,6 @@
         $search_input = intval(0);
     }
 
-    // echo gettype($search_input);
 
     echo '
         <div class="text-center" id="siteName" style="background-color: #000; color: #0275d8; padding:12px; display: none;">
@@ -66,8 +65,8 @@
 
         <div class="col-lg-9 col-sm-12 mt-4">   
             <div class="container">
-                <h3 id="AuctionsGeneral_Titles"><b>Αποτελέσματα Αναζήτησης:</h3></b>
-                <hr id="AuctionsGeneral_Ruler" style="float:left; background-color: #0275d8; width: 50%; height: 100%; border-width:3px;">
+                <h3 id="AuctionsGeneral_Titles"><b>Αποτελέσματα αναζήτησης για <?php echo $search_input;?>:</h3></b>
+                <hr id="AuctionsGeneral_Ruler" style="float:left; background-color: #0275d8; width: 75%; height: 100%; border-width:3px;">
             </div>
 
             <div class="row mt-4"></div>
@@ -76,46 +75,77 @@
 
                 <?php 
                 $prod_counter = intval(0);
+                    if (!empty($search_input)){
 
-                $sql_query = "SELECT * FROM products_table WHERE auction_status='active' 
-                            AND prod_number='$search_input' 
-                            OR category='$search_input'
-                            OR sub_category='$search_input'";
-                $result_data = mysqli_query($connection,$sql_query);
+                    // $prod_counter = intval(0);
 
-                if (!empty($result_data)){
-                    while($row = mysqli_fetch_array($result_data)){
+                    $search_array = ["prod_number", "category", "sub_category", "title", "prod_description"];
+                    $products_results = [];
+                    
 
-                        $image = "$row[primary_image_url]";
-                        $title = "$row[title]";
-                        $price = "$row[price]";
-                        $id = "$row[id]";
-                        $auction_ended = "$row[auction_ended]";
-                        $auction_type = "$row[auction_type]";
+                    foreach ($search_array as $search_filter){
+                        $sql_result_search = "SELECT * FROM products_table WHERE $search_filter LIKE '%$search_input%' AND auction_status='active'";
+                        $result_data = mysqli_query($connection,$sql_result_search);
 
-                        echo '
-                        <div class="mt-4 mb-4 col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
-                            <div class="card product-zoom-Div" style="padding: 30px;">
-                                <a class="category-links" href="products_info.php?link='.$id.'">
-                                    <img class="card-img-top" src="auctions_images/'.$image.'" alt="product">
-                                    <div class="card-body">
-                                        <p class="card-text">'.$title.'</p>
-                                        <p class="card-text">Λήξη '.$auction_type.'ς:<br>'.$auction_ended.'</p>
-                                        <p class="card-text">Αρχική Τιμή: '.$price.'&euro;</p>
-                                    </div>
-                                </a>
+                        if (!empty($result_data)){
+                            while($row = mysqli_fetch_array($result_data)){
+
+                                $product_id_search_result = "$row[prod_number]";
+
+                                if(!in_array($product_id_search_result, $products_results, true)){
+                                    array_push($products_results, $product_id_search_result);
+                                }
+                            }
+                        }
+                    }
+
+                        // fetch the data in the index page
+                    foreach ($products_results as $products_from_search){
+                        $sql_query_to_show = "SELECT * FROM products_table WHERE prod_number='$products_from_search' AND auction_status='active'";
+                        $result_search_final = mysqli_query($connection,$sql_query_to_show);
+
+
+                        while($row = mysqli_fetch_array($result_search_final)){
+
+                            $image = "$row[primary_image_url]";
+                            $title = "$row[title]";
+                            $price = "$row[price]";
+                            $id = "$row[id]";
+                            $auction_ended = "$row[auction_ended]";
+                            $auction_type = "$row[auction_type]";
+
+                            echo '
+                            <div class="mt-4 mb-4 col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
+                                <div class="card product-zoom-Div" style="padding: 30px;"> 
+                                    <a class="category-links" href="products_info.php?link='.$id.'">
+                                        <img class="card-img-top" src="auctions_images/'.$image.'" alt="product">
+                                        <div class="card-body">
+                                            <p class="card-text">'.$title.'</p>
+                                            <p class="card-text">Λήξη '.$auction_type.'ς:<br>'.$auction_ended.'</p>
+                                            <p class="card-text">Αρχική Τιμή: '.$price.'&euro;</p>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        ';
+                            ';
                         $prod_counter += 1;
+
+                        }
                     }
                 }
-
+                
                 if ($prod_counter==0){
-                    echo '<h3>Δε βρέθηκαν αποτελέσματα στην αναζήτησή σας.</h3>'; 
+                    echo '<h3>Δε βρέθηκαν αποτελέσματα για την αναζήτηση '.$search_input.'.</h3>'; 
                 }
 
+
+                mysqli_close($connection);
                 ?>
+    
+                
+                
+                        
+                
 
             </div>
         </div>  
