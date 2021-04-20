@@ -77,7 +77,10 @@
                 <?php 
                 $prod_counter = intval(0);
 
-                $sql_query = "SELECT * FROM products_table WHERE auction_status='active' AND prod_number='$search_input' ";
+                $sql_query = "SELECT * FROM products_table WHERE auction_status='active' 
+                            AND prod_number='$search_input' 
+                            OR category='$search_input'
+                            OR sub_category='$search_input'";
                 $result_data = mysqli_query($connection,$sql_query);
 
                 if (!empty($result_data)){
@@ -107,6 +110,7 @@
                         $prod_counter += 1;
                     }
                 }
+
                 if ($prod_counter==0){
                     echo '<h3>Δε βρέθηκαν αποτελέσματα στην αναζήτησή σας.</h3>'; 
                 }

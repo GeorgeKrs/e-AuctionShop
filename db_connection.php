@@ -4,13 +4,13 @@
 // $server_username = "root";
 // $dbpassword = "admin12345";
 
-$servername = "localhost";
-$server_username = "root";
-$dbpassword = "";
-
 // $servername = "localhost";
-// $server_username = "gkoursoumis";
-// $dbpassword = "gkoursoumis_ele46272";
+// $server_username = "root";
+// $dbpassword = "";
+
+$servername = "localhost";
+$server_username = "gkoursoumis";
+$dbpassword = "gkoursoumis_ele46272";
 
 // setting the connection
 $connection = mysqli_connect($servername, $server_username, $dbpassword);
