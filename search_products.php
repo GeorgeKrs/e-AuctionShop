@@ -79,7 +79,7 @@
 
                     // $prod_counter = intval(0);
 
-                    $search_array = ["prod_number", "category", "sub_category", "title", "prod_description"];
+                    $search_array = ["prod_number", "category", "sub_category", "title"];
                     $products_results = [];
                     
 
