@@ -65,7 +65,7 @@
 
         <div class="col-lg-9 col-sm-12 mt-4">   
             <div class="container">
-                <h3 id="AuctionsGeneral_Titles"><b>Αποτελέσματα αναζήτησης για <?php echo $search_input;?>:</h3></b>
+                <h3 id="AuctionsGeneral_Titles"><b>Αποτελέσματα αναζήτησης για "<?php echo $search_input;?>":</h3></b>
                 <hr id="AuctionsGeneral_Ruler" style="float:left; background-color: #0275d8; width: 75%; height: 100%; border-width:3px;">
             </div>
 
@@ -135,7 +135,10 @@
                 }
                 
                 if ($prod_counter==0){
-                    echo '<h3>Δε βρέθηκαν αποτελέσματα για την αναζήτηση '.$search_input.'.</h3>'; 
+                    echo
+                    '<div class="text-center">
+                        <h3>Δε βρέθηκαν αποτελέσματα για την αναζήτηση '.$search_input.'.</h3>
+                    </div>';
                 }
 
 
