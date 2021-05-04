@@ -23,7 +23,7 @@
 
 
 </head>
-<body>
+<body onload="initialize()">>
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -437,12 +437,54 @@
         <!-- owner location -->
         <div style="padding: 20px;">
             
-            <h5><b><i class="fas fa-map-marked-alt"> Τοποθεσία Πωλητή:</i></b></h5>
-          
+            <h5><b>
+                <i class="fas fa-map-marked-alt"> Τοποθεσία Πωλητή:</i></b>     
+            </h5>
+
             <?php 
                 echo "$city - $district.";
             ?>
-        </div>
+            <br>
+
+            <div>
+                <div class="mt-4" id="map" style="width: 500px; height: 480px;"></div>
+                <div>
+                    <input id="address" type="textbox" value="Αθήνα, Ελλάδα">
+                    <input class="mt-4" type="button" value="Εύρεση Περιοχή Πωλητή" onclick="codeAddress()">
+                </div>
+            </div>
+
+
+            <script>    
+                var geocoder;
+                var map;
+                function initialize() {
+                    geocoder = new google.maps.Geocoder();
+                    var latlng = new google.maps.LatLng(37.9838, 23.7275);
+                    var mapOptions = {
+                    zoom: 13,
+                    center: latlng
+                    }
+                    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                }
+
+                function codeAddress() {
+                    var address = document.getElementById('address').value;
+                    geocoder.geocode( { 'address': address}, function(results, status) {
+                    if (status == 'OK') {
+                        map.setCenter(results[0].geometry.location);
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location
+                        });
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                    });
+                }
+            </script>
+
+        </div> 
         <!-- owner location -->
 
 
@@ -769,6 +811,12 @@ function bidPrice_function() {
 </script>
 
 
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8SY6XJG0VnI2PGrXANhDq6_gQKYvvgZ4&callback=initMap&libraries=&v=weekly">
+    </script>
+
+   
+<!-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaZZuFci6IYxgijDyUOKh-d3ctH34Opso&callback=initMap&libraries=&v=weekly" -->
     
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
