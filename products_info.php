@@ -23,7 +23,10 @@
 
 
 </head>
-<body onload="initialize()">>
+<!-- <body onload="initialize()"> -->
+<!-- <body> -->
+<body onload="initMap()">
+
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -440,50 +443,88 @@
             <h5><b>
                 <i class="fas fa-map-marked-alt"> Τοποθεσία Πωλητή:</i></b>     
             </h5>
+            
 
             <?php 
                 echo "$city - $district.";
             ?>
             <br>
 
+
             <div>
-                <div class="mt-4" id="map" style="width: 500px; height: 480px;"></div>
-                <div>
-                    <input id="address" type="textbox" value="Αθήνα, Ελλάδα">
-                    <input class="mt-4" type="button" value="Εύρεση Περιοχή Πωλητή" onclick="codeAddress()">
-                </div>
+                <div class="mt-4 map" id="map"></div>    
             </div>
 
+            <div>
+                <input class="btn btn-primary mt-4" type="button" value="Εύρεση Περιοχή Πωλητή" onclick="codeAddress()">
+            </div>
 
-            <script>    
+            <script> 
+                var username_api = "<?php echo $username; ?>"; ; 
+            </script> 
+
+
+            <!-- script for api google maps -->
+            <script>   
                 var geocoder;
                 var map;
-                function initialize() {
+                function initMap() {
                     geocoder = new google.maps.Geocoder();
                     var latlng = new google.maps.LatLng(37.9838, 23.7275);
                     var mapOptions = {
-                    zoom: 13,
+                    zoom: 14,
                     center: latlng
                     }
                     map = new google.maps.Map(document.getElementById('map'), mapOptions);
                 }
 
                 function codeAddress() {
-                    var address = document.getElementById('address').value;
-                    geocoder.geocode( { 'address': address}, function(results, status) {
-                    if (status == 'OK') {
-                        map.setCenter(results[0].geometry.location);
-                        var marker = new google.maps.Marker({
-                            map: map,
-                            position: results[0].geometry.location
-                        });
-                    } else {
-                        alert('Geocode was not successful for the following reason: ' + status);
-                    }
-                    });
-                }
-            </script>
 
+                    formData = new FormData();
+                    formData.append("username_api",username_api);
+
+                        $.ajax({
+                            url: "1googleApi.php",
+                            enctype: 'multipart/form-data',
+                            type: "POST",
+                            processData: false,
+                            contentType: false,
+                            cache: false,
+                            data: formData,
+                            
+                            success: function(data) {
+                                data = JSON.parse(data);
+                                if (data.statusCode==200){
+
+                                    document.getElementById('map').style.display = "block";
+                                    var address = data.city_google_api;
+                                    geocoder.geocode( { 'address': address}, function(results, status) {
+                                    if (status == 'OK') {
+                                        map.setCenter(results[0].geometry.location);
+                                        var marker = new google.maps.Marker({
+                                            map: map,
+                                            position: results[0].geometry.location
+                                        });
+                                    } else {
+                                        alert('Geocode was not successful for the following reason: ' + status);
+                                    }
+                                });
+                       
+                                }else if (data.statusCode==201) {
+                                    alert("Error on the server-side");  
+                                }
+                            }
+                        }); 
+                    };
+            </script>
+            <!-- end of script for api google maps -->
+
+
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8SY6XJG0VnI2PGrXANhDq6_gQKYvvgZ4&callback=initMap&libraries=&v=weekly">
+        </script>
+
+        
         </div> 
         <!-- owner location -->
 
@@ -811,9 +852,7 @@ function bidPrice_function() {
 </script>
 
 
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8SY6XJG0VnI2PGrXANhDq6_gQKYvvgZ4&callback=initMap&libraries=&v=weekly">
-    </script>
+
 
    
 <!-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaZZuFci6IYxgijDyUOKh-d3ctH34Opso&callback=initMap&libraries=&v=weekly" -->

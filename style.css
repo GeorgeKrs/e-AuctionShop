@@ -5,217 +5,216 @@
 /* body css */
 
 body {
-    font-family: 'Roboto', 'sans-serif', 'Times New Roman', 'Times', 'serif';
-    background-color: #dfdfdf;
+  font-family: "Roboto", "sans-serif", "Times New Roman", "Times", "serif";
+  background-color: #dfdfdf;
 }
-
 
 /* header css */
 
 .centerlogo {
-    height: 100px;
-    width: 100px;
-    justify-content: center;
+  height: 100px;
+  width: 100px;
+  justify-content: center;
 }
 
 .centerLS {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .nav-link {
-    color: #0275d8;
+  color: #0275d8;
 }
 
-.nav-link:hover{
-    color: #000;
-    transition: 700ms;
+.nav-link:hover {
+  color: #000;
+  transition: 700ms;
 }
-
 
 /* header search css  */
 
 .searchInput {
-    border-color: #0275d8 !important;
+  border-color: #0275d8 !important;
 }
 
-
 .btnsearch {
-    background-color: #fff;
-    border-color: #fff;
-    transition: 1000ms;
+  background-color: #fff;
+  border-color: #fff;
+  transition: 1000ms;
 }
 
 .btnsearch:hover {
-    background-color: #fff; 
-    border-color: #0275d8;
-    transition: 1000ms;
+  background-color: #fff;
+  border-color: #0275d8;
+  transition: 1000ms;
 }
 
 .btnsearch:active {
-    background-color: #fff !important;
+  background-color: #fff !important;
 }
 
 .fa-search {
-    cursor: pointer;
-    border: none;
-    color: #0275d8;
+  cursor: pointer;
+  border: none;
+  color: #0275d8;
 }
 
 /* header_2 css */
 
 .header-2-list {
-    list-style: none;
-    padding: 20px;
+  list-style: none;
+  padding: 20px;
 }
 
 .generalContainer {
-    background-color: #fff ;
-    /* Overflow hidden to float category list and main section elements without losing background color */
-    overflow: hidden; 
+  background-color: #fff;
+  /* Overflow hidden to float category list and main section elements without losing background color */
+  overflow: hidden;
 }
 
 /* header loggedin css */
 
 /* user link animation */
 
-.user{
-    position: relative;
-    display: inline-block;
+.user {
+  position: relative;
+  display: inline-block;
 }
 
-.user:hover{
-    color:#0275d8;
+.user:hover {
+  color: #0275d8;
 }
 
 .user::before {
-    position: absolute;
-    content: attr(data-content); /* Prints the value of the attribute */
-    color: #000;
-    overflow: hidden;
-    transition: 700ms ease;
-    text-decoration: underline;
-    width: 0px;
+  position: absolute;
+  content: attr(data-content); /* Prints the value of the attribute */
+  color: #000;
+  overflow: hidden;
+  transition: 700ms ease;
+  text-decoration: underline;
+  width: 0px;
 }
- 
 
 .user:hover::before {
-    width: 100px;
+  width: 100px;
 }
 
 .fa-user-cog {
-    color:#000;
+  color: #000;
 }
 
 /* search category css */
 
 .sideNav {
-    width: 220px;
+  width: 220px;
 }
 
 .category-list {
-    list-style: none;
-    padding: 20px;
-    width: 100%;
-    background-color: #dfdfdf;
-    margin-left: 20px;
-    margin-bottom: 20px;
-}    
+  list-style: none;
+  padding: 20px;
+  width: 100%;
+  background-color: #dfdfdf;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
 
 .category-links {
-    font-size: 16px;
-    color: #000;
-    transition: 200ms;
-    font-weight: bold;
+  font-size: 16px;
+  color: #000;
+  transition: 200ms;
+  font-weight: bold;
 }
 
 .category-links:hover {
-    text-decoration: none;
-    color: #0275d8;
-    font-weight: bold;
-    transition: 200ms;
-    text-decoration-line: underline !important;
+  text-decoration: none;
+  color: #0275d8;
+  font-weight: bold;
+  transition: 200ms;
+  text-decoration-line: underline !important;
 }
 
 /* main_section css */
 
-.disabled-link{
-    color: #000;
-    pointer-events: none;
+.disabled-link {
+  color: #000;
+  pointer-events: none;
 }
 
 /* product */
 .product-zoom-Div {
-    transition: 0.4s;  
+  transition: 0.4s;
 }
 
-.product-zoom-Div:hover {  
-    transform: scale(1.1);
-    z-index: 100;
+.product-zoom-Div:hover {
+  transform: scale(1.1);
+  z-index: 100;
 }
-
 
 /* login, signup css */
 
 .loginInput {
-    width: 300px;
+  width: 300px;
 }
 
 .roundedForms {
-    border-radius: 15px 50px;
-    border: 2px solid #0275d8;
+  border-radius: 15px 50px;
+  border: 2px solid #0275d8;
 }
-
 
 /* footer css */
 
 .footer-list {
-    list-style: none;
-    padding: 20px;
-    width: 100%;
-    /* background-color: #dfdfdf; */
-    margin-left: 20px;
-    margin-bottom: 20px;
-}    
-
-.footer-links {
-    font-size: 30px;
-    color: #000;
-}   
-
-.fa-instagram:hover {
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    -webkit-background-clip: text;
-          /* Also define standard property for compatibility */
-          background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 30px;
+  list-style: none;
+  padding: 20px;
+  width: 100%;
+  /* background-color: #dfdfdf; */
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
 
+.footer-links {
+  font-size: 30px;
+  color: #000;
+}
+
+.fa-instagram:hover {
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+  -webkit-background-clip: text;
+  /* Also define standard property for compatibility */
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 30px;
+}
 
 /* user settings */
 
 .fasPadding {
-    padding-left:5px;
+  padding-left: 5px;
 }
 
-.fa-times-circle{
-    font-size: 20px;
-    color:#000;
-    padding-top: 20px;
+.fa-times-circle {
+  font-size: 20px;
+  color: #000;
+  padding-top: 20px;
 }
 
-.fa-times-circle:hover{
-    color:#0275d8;
+.fa-times-circle:hover {
+  color: #0275d8;
 }
-
 
 /* z pages , top found results div */
 
 .resultsDiv {
-    background-color: #dfdfdf;
-    padding: 10px;
-    margin-left: 20px;
+  background-color: #dfdfdf;
+  padding: 10px;
+  margin-left: 20px;
 }
 
 /* .card {
@@ -232,158 +231,165 @@ body {
 } */
 
 .card-columns {
-    column-count: 1;
+  column-count: 1;
 }
 
 /* breadcrumb path, url path to subnavigations */
 
 ul.breadcrumb {
-    padding: 10px 16px;
-    list-style: none;
-    background-color: #fff;
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #fff;
 }
 ul.breadcrumb li {
-display: inline;
-font-size: 18px;
+  display: inline;
+  font-size: 18px;
 }
-ul.breadcrumb li+li:before {
-padding: 8px;
-color: black;
-content: "/\00a0";
-font-weight: bold;
+ul.breadcrumb li + li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+  font-weight: bold;
 }
 ul.breadcrumb li a {
-color: #0275d8;
-text-decoration: none;
+  color: #0275d8;
+  text-decoration: none;
 }
 ul.breadcrumb li a:hover {
-color: #000;
+  color: #000;
 }
-
 
 /* product info */
 .disabledDiv {
-    pointer-events: none;
-    opacity: 0.4;
+  pointer-events: none;
+  opacity: 0.4;
 }
 
 /* pagination */
 
-.active-btn{
-    background-color: #000;
-    color: #fff;
-    border-color: #000;
+.active-btn {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
 }
-
 
 /* Tooltip container */
 .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
 }
-  
+
 .tooltip .tooltiptext {
-    /* visibility: hidden; */
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
+  /* visibility: hidden; */
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
 
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
 }
-  
+
 .tooltip:hover .tooltiptext {
-    visibility: visible;
+  visibility: visible;
 }
 
+.map {
+  height: 500px;
+  width: 500px;
+  display: none;
+}
 
 /* responsive css */
 
 @media screen and (max-width: 790px) {
-    /* header changes */
-    #siteName{
-        display: block!important;
-    }
+  /* header changes */
+  #siteName {
+    display: block !important;
+  }
 
-    .btnsearch{
-        border-color: #0275d8!important;
-    }
+  .btnsearch {
+    border-color: #0275d8 !important;
+  }
 
-    #usernamePhone{
-        display: none!important;
-    }
+  #usernamePhone {
+    display: none !important;
+  }
 
-    #userSettingsIcon_onPhone{
-        display: block!important;
-    }
+  #userSettingsIcon_onPhone {
+    display: block !important;
+  }
 
-    #logoImg{
-        display: none!important;
-    }
-    #homeLink{
-        display: block!important;
-    }
-    #logoImg{
-        display: none!important;
-    }
-    #alertBox_success{
-        width: 100%!important;
-    }
-    #alertBox_fail{
-        width: 100%!important;
-    }
-    #user_settings{
-        width: 100%!important;
-    }
-    #sortById{
-        text-align: center!important;
-    }
-    #sortByIdH5tag{
-        float: none !important;
-    }
-    #overflowID{
-        overflow-x: hidden!important;
-    }
+  #logoImg {
+    display: none !important;
+  }
+  #homeLink {
+    display: block !important;
+  }
+  #logoImg {
+    display: none !important;
+  }
+  #alertBox_success {
+    width: 100% !important;
+  }
+  #alertBox_fail {
+    width: 100% !important;
+  }
+  #user_settings {
+    width: 100% !important;
+  }
+  #sortById {
+    text-align: center !important;
+  }
+  #sortByIdH5tag {
+    float: none !important;
+  }
+  #overflowID {
+    overflow-x: hidden !important;
+  }
 
-    /* prod_categories */
-    #main_section_id{
-        text-align: center!important;  
-    }
-    #h5_tag{
-        float: none!important;
-    }
+  /* prod_categories */
+  #main_section_id {
+    text-align: center !important;
+  }
+  #h5_tag {
+    float: none !important;
+  }
 
-    /* forgot pw button */
-    #forgotPwButton{
-        float: none!important;
-        margin-top: 20px!important;    
-    }
+  /* forgot pw button */
+  #forgotPwButton {
+    float: none !important;
+    margin-top: 20px !important;
+  }
 
-    /* pagination */
-    #pagination{
-        font-size: 14px!important;
-   }
+  /* pagination */
+  #pagination {
+    font-size: 14px !important;
+  }
 
-   /* Auctions General, index */
-   #AuctionsGeneral_Titles{
-       font-size: 20px!important;
-   }
-   #AuctionsGeneral_Ruler{
-       width: 100%!important;
-   }
-   #products_ruler{
-       display: block!important;
-   }
+  /* Auctions General, index */
+  #AuctionsGeneral_Titles {
+    font-size: 20px !important;
+  }
+  #AuctionsGeneral_Ruler {
+    width: 100% !important;
+  }
+  #products_ruler {
+    display: block !important;
+  }
 
-   /* product info */
+  /* product info */
 
-   #bid_Button_submit{
-       margin-top: 16px!important;
-   }
+  #bid_Button_submit {
+    margin-top: 16px !important;
+  }
+
+  #map {
+    height: 250px !important;
+    width: 250px !important;
+  }
 }
-
