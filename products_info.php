@@ -25,6 +25,11 @@
 </head>
 <!-- <body onload="initialize()"> -->
 <!-- <body> -->
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8SY6XJG0VnI2PGrXANhDq6_gQKYvvgZ4&callback=initMap&libraries=&v=weekly">
+</script>
+
 <body onload="initMap()">
 
 
@@ -520,9 +525,7 @@
             <!-- end of script for api google maps -->
 
 
-        <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8SY6XJG0VnI2PGrXANhDq6_gQKYvvgZ4&callback=initMap&libraries=&v=weekly">
-        </script>
+        
 
         
         </div> 
